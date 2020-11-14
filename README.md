@@ -10,6 +10,7 @@ Attack:
 Defense:
 
 Special Attack: something2 masochist
+
 Deals the amount of damage taken  last turn as an attack
 
 ### Archer
@@ -19,6 +20,7 @@ Attack:
 Defense:
 
 Special Attack: Steal!!
+
 Deals little damage, has a chance to gain equipment or item upon use
 
 ### Sorcerer
@@ -28,18 +30,31 @@ Attack:
 Defense:
 
 Special Attack: Expurusion, but with gacha
+
 Deals 0-9999 damage
 
 ## Sistem
 Intro + Tutorial isinya teks, trus ada battle sekali.
+
 World ada map, shop, random enemy encounter, pintu ke final boss ketutup dulu di awalnya
+
 Bisa ambil quest yg isinya bunuh enemy berdasarkan tipe, rewardnya bisa gold, exp, atau item
+
 Quest cuma bisa ambil satu2
+
 Enemy drop exp sama gold
+
 Gold pake buat shop gacha
+
 Inventory sama item, ada item yg bisa diequip
+
 item potion, bisa heal sama buff damage atau defense
+
 Battle mechanic loop smpe ada yg mati
+
 Flavor text attacknya ganti2.
+
 Klo udh X quest yg selesai, pintu ke final boss kebuka
+
 Menang lawan final boss, cue epilogue
+
