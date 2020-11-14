@@ -5,8 +5,11 @@ MC adalah seseorang mahasiswa IF ITB yang stres dengan tubesnya. Oleh karena itu
 ## Job
 ### Swordsman
 Defense oriented
+
 Stat:
+
 Attack:
+
 Defense:
 
 Special Attack: something2 masochist
@@ -15,8 +18,11 @@ Deals the amount of damage taken  last turn as an attack
 
 ### Archer
 Gimmick oriented
+
 Stat:
+
 Attack:
+
 Defense:
 
 Special Attack: Steal!!
@@ -25,8 +31,11 @@ Deals little damage, has a chance to gain equipment or item upon use
 
 ### Sorcerer
 Glass cannon
+
 Stat:
+
 Attack:
+
 Defense:
 
 Special Attack: Expurusion, but with gacha
