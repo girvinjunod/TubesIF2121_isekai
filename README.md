@@ -8,22 +8,26 @@ Defense oriented
 
 Stat:
 
-Attack:
+Initial Max HP: 800
 
-Defense:
+Attack: 50
 
-Special Attack: something2 masochist
+Defense: 150
 
-Deals the amount of damage taken  last turn as an attack
+Special Attack: something2 masochist related (will decide on name later)
+
+Deals the amount of damage taken last turn as an attack
 
 ### Archer
 Gimmick oriented
 
 Stat:
 
-Attack:
+Initial Max HP: 500
 
-Defense:
+Attack: 150
+
+Defense: 50
 
 Special Attack: Steal!!
 
@@ -34,13 +38,17 @@ Glass cannon
 
 Stat:
 
-Attack:
+Initial Max HP: 400
 
-Defense:
+Attack: 200
+
+Defense: 50
 
 Special Attack: Expurusion, but with gacha
 
 Deals 0-9999 damage
+
+_Stats are still works in progress and may still be changed_
 
 ## Sistem
 Intro + Tutorial isinya teks, trus ada battle sekali.
