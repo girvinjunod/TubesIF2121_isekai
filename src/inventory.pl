@@ -7,7 +7,7 @@ inventory([
   health_potion,
   health_potion,
   health_potion
-  ]).
+]).
 
 listInventory :- inventory(X), write(X).
 
