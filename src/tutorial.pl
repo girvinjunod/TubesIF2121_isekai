@@ -74,7 +74,7 @@ tpb(X) :-
 	write('Monster-monster tubes inilah yang sedang meneror dunia jurusan dan alasan mengapa Anda disummon ke sini.\n'),
 	nl,
 	write('Anda sebagai mahasiswa IF ITB pastinya sudah terbiasa dan jago dalam mengalahkan tubes.\n'),
-	write('Oleh karena itu, tolonglah kami oh pejuang IF ITB, selamatkan kami dari badai tubes ini dan selamatkan dunia ini.\n'),
+	write('Oleh karena itu, tolonglah kami oh pejuang IF ITB, selamatkan kami dari badai tubes ini, hentikan Raja Naga Keri yang marah2, dan selamatkan dunia ini.\n'),
 	nl,
 	write('Paus Asdos pun tidak menunggu respon '),
 	write(X),
@@ -83,5 +83,12 @@ tpb(X) :-
 	write(' setuju.\n'),
 	write('Ia pun langsung diterjunkan ke tutorial battle melawan sebuah tubes Alstrukdat yang telah berubah menjadi goblin.\n'),
 	nl,
-	write('Start tutorial battle.\n').
+	write('Start tutorial battle.\n'),
+	write('anggap aj udh selesai\n'),
+	nl,
+	write('Dengan selesainya tutorial battle ini Paus Asdos pun langsung mengeluarkan '),
+	write(X),
+	write(' ke dunia jurusan yang kejam.\n'),
+	nl,nl,
+	write('ADVENTURE START').
 	
