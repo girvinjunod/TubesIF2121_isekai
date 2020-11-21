@@ -26,6 +26,7 @@ tpb(X) :-
 	write('      1. Swordsman\n'),
 	write('      2. Archer\n'),
 	write('      3. Sorcerer\n'),
+	write('      4. Penjelasan job\n'),
 	nl,
 	write('   Input: \n'),
 	nl,
