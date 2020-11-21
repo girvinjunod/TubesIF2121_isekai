@@ -88,7 +88,7 @@ tpb(X) :-
 	nl,
 	write('Dengan selesainya tutorial battle ini Paus Asdos pun langsung mengeluarkan '),
 	write(X),
-	write(' ke dunia jurusan yang kejam.\n'),
+	write(' ke dunia Jurusan yang kejam.\n'),
 	nl,nl,
 	write('ADVENTURE START').
 	
