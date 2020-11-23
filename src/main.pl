@@ -29,15 +29,13 @@ acak(X) :-
   real_time(RT),
   set_seed(RT),
   random(R),
-  X is R,
-  write(X).
+  X is R.
 
 acak(P,Q,X) :-
   real_time(RT),
   set_seed(RT),
   random(P,Q,R),
-  X is R,
-  write(X).
+  X is R.
 
 start :-
   mainMenu,
