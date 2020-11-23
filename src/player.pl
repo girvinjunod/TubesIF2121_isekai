@@ -16,7 +16,9 @@ class(sorcerer).
 pilihKelas(_) :- playerClass(_), !.
 pilihKelas(Kelas) :- asserta(playerClass(Kelas)), setStat.
 
-setStat :- playerClass(swordsman),
+setStat(swordsman) :-
+  retractall(hp(_)),
+  retractall(attack(_)),
   asserta(hp(10)),
   asserta(level(1)),
   asserta(experience(0)),
@@ -24,7 +26,9 @@ setStat :- playerClass(swordsman),
   asserta(defense(10)),
   asserta(maxHP(10)),!.
 
-setStat :- playerClass(archer),
+setStat(archer) :-
+  retractall(hp(_)),
+  retractall(attack(_)),
   asserta(level(1)),
   asserta(experience(0)),
   asserta(attack(13)),
@@ -32,7 +36,9 @@ setStat :- playerClass(archer),
   asserta(maxHP(10)),
   asserta(hp(10)), !.
 
-setStat :- playerClass(sorcerer),
+setStat(sorcerer) :-
+  retractall(hp(_)),
+  retractall(attack(_)),
   asserta(level(1)),
   asserta(experience(0)),
   asserta(attack(20)),
@@ -73,7 +79,11 @@ consumeItem(Item) :-
     asserta(defense(NewDEF)),
     removeFromInventory(Item)
   )).
-
 setName(X) :-
   retractall(name(_)),
   asserta(name(X)).
+earnExp(X) :-
+  experience(XP),
+  NewXP is XP + X,
+  retractall(experience(_)),
+  asserta(experience(NewXP)).
