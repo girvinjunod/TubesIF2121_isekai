@@ -102,4 +102,5 @@ formulir(X) :-
   write(' ----------------------------------------------------\n'), nl.
 
 battleTutorial(X) :-
-  write(X).
+  setState(tutorial),
+  write('hia battle ceunah'), nl.

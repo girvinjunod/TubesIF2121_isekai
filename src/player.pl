@@ -46,7 +46,7 @@ setStat(sorcerer) :-
   asserta(maxHP(8)),
   asserta(hp(8)), !.
 
-consumeItem(Item) :-
+use(Item) :-
   item_effect(Item, StatsAffacted, X),
   ((
     StatsAffacted = attack, !,

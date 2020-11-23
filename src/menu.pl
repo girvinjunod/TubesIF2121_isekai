@@ -28,22 +28,44 @@ mainMenu :-
 
 status :-
   hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF),
-   write('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'), nl,
-   write('$           ~Status kamu~         $\n'),
-  format('$ HP: ~w/~w                       $', [HP, MaxHP]), nl,
-  format('$ Attack: ~w                      $', [ATK]), nl,
-  format('$ Defense: ~w                     $', [DEF]), nl,
-   write('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'), nl.
+   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+   write('$                                  ~Status kamu~                               $\n'),
+  format('$ HP: ~w/~w                                                                    $', [HP, MaxHP]), nl,
+  format('$ Attack: ~w                                                                   $', [ATK]), nl,
+  format('$ Defense: ~w                                                                  $', [DEF]), nl,
+   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 help :-
+  state(free), !,
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('%                              ~perintah permainan~                            %\n'),
   write('% 1. map    : menampilkan peta                                                 %\n'),
   write('% 2. status : menampilkan kondisimu terkini                                    %\n'),
   write('% 3. w      : gerak ke utara 1 langkah                                         %\n'),
   write('% 4. s      : gerak ke selatan 1 langkah                                       %\n'),
   write('% 5. d      : gerak ke ke timur 1 langkah                                      %\n'),
   write('% 6. a      : gerak ke barat 1 langkah                                         %\n'),
-  write('% 7. Status : menampilkan status pemain                                        %\n'),
-  write('% 8. help   : menampilkan segala bantuan                                       %\n'),
-  write('% 9. exit   : keluar dair gim                                                  %\n'),
+  write('% 7. help   : menampilkan segala bantuan                                       %\n'),
+  write('% 8. exit   : keluar dair gim                                                  %\n'),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+
+help  :-
+  state(battle), !,
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('%                              ~perintah battle~                               %\n'),
+  write('% 1. attack        : Serang monster                                            %\n'),
+  write('% 2. item          : Menuliskan item yang dimiliki                             %\n'),
+  write('% 3. kabur         : Kabur dari battle                                         %\n'),
+  write('% 4. use(Nama)     : Menggunakan item dengan nama item `Nama`                  %\n'),
+  write('% 5. help          : menampilkan segala bantuan                                %\n'),
+  write('% 6. Status        : menampilkan status pemain                                 %\n'),
+  write('% 7. exit          : keluar dari gim                                           %\n'),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+
+help  :-
+  state(not_started), !,
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('%                                          ~menu~                              %\n'),
+  write('% 1. start         : Mulai gim                                            %\n'),
+  write('% 2. exit          : keluar dari gim                                           %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').

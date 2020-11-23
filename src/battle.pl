@@ -1,4 +1,3 @@
-:- dynamic(in_battle/0).
 :- dynamic(current_monster/1).
 :- dynamic(monster_hp/1).
 :- dynamic(monster_atk/1).
@@ -8,10 +7,9 @@
 :- dynamic(monster_lvl/1).
 
 monster_encounter :-
-	\+in_battle,
+	state(S),
 	random(X),
 	X < 0.4,
-	asserta(in_battle),
 	random(Y),
 	randomize_monster(Y),
 	write('Encountered '),
@@ -28,6 +26,7 @@ monster_encounter.
 
 randomize_monster(X) :-
 	X < 0.5,
+	setState(battle),
 	asserta(current_monster('slime')),
 	asserta(monster_hp(200)),
 	asserta(monster_atk(50)),
@@ -37,6 +36,7 @@ randomize_monster(X) :-
 	!.
 randomize_monster(X) :-
 	X < 0.8,
+	setState(battle),
 	asserta(current_monster('goblin')),
 	asserta(monster_hp(300)),
 	asserta(monster_atk(75)),
@@ -46,6 +46,7 @@ randomize_monster(X) :-
 	!.
 randomize_monster(X) :-
 	X < 0.99,
+	setState(battle),
 	asserta(current_monster('wolf')),
 	asserta(monster_hp(400)),
 	asserta(monster_atk(135)),
@@ -55,6 +56,7 @@ randomize_monster(X) :-
 	!.
 
 randomize_monster(_) :-
+	setState(battle),
 	asserta(current_monster('ghost')),
 	asserta(monster_hp(560)),
 	asserta(monster_atk(200)),
@@ -124,5 +126,23 @@ monster_die :-
 	retractall(monster_atk(_)),
 	retractall(monster_def(_)),
 	retractall(monster_exp(_)),
-	retractall(in_battle),
+	setState(free),
 	!.
+
+kabur :-
+	state(battle),
+	random(X),
+	(
+		X < 0.3,
+		write('Kamu berhasil kabur :D.'),
+		setState(free), !
+	);
+	(
+		(
+			state(battle),
+			write('Kamu gagal kabur :\'(.'), !
+		);
+		(
+			write('Kamu kan lagi ga battle, mau kabur dari mana? :(.'), !
+		)
+	).

@@ -127,57 +127,82 @@ map :-
 
 /* player actions */
 w :-
+	state(free),
 	player_coordinate(R,C),
 	NewR is R - 1,
 	fence(NewR,C),
 	!,
-	write('invalid move'), nl.
+	write('Kamu berusaha berjalan ke atas, tapi kamu menabrak ujung dunia.'), nl.
 w :-
+	state(free),
 	player_coordinate(R,C),
 	NewR is R - 1,
 	retractall(player_coordinate(_,_)),
-	asserta(player_coordinate(NewR,C)),
+	asserta(player_coordinate(NewR,C)), !,
 	write('you moved north'), nl,
 	monster_encounter.
 
+w :-
+	state(X),
+	X \= free,
+	format('Kamu tidak dapat berjalan selagi kamu dalam ~w.', [X]).
+
 a :-
+	state(free),
 	player_coordinate(R,C),
 	NewC is C - 1,
 	fence(R,NewC),
 	!,
-	write('invalid move'), nl.
+	write('Kamu berusaha berjalan ke kiri, tapi kamu menabrak ujung dunia.'), nl.
 a :-
+	state(free),
 	player_coordinate(R,C),
 	NewC is C - 1,
 	retractall(player_coordinate(_,_)),
-	asserta(player_coordinate(R,NewC)),
+	asserta(player_coordinate(R,NewC)), !,
 	write('you moved west'), nl,
 	monster_encounter.
+a :-
+	state(X),
+	X \= free,
+	format('Kamu tidak dapat berjalan selagi kamu dalam ~w.', [X]).
 
 s :-
+	state(free),
 	player_coordinate(R,C),
 	NewR is R + 1,
 	fence(NewR,C),
 	!,
-	write('invalid move'), nl.
+	write('Kamu berusaha berjalan ke bawah, tapi kamu menabrak ujung dunia.'), nl.
 s :-
+	state(free),
 	player_coordinate(R,C),
 	NewR is R + 1,
 	retractall(player_coordinate(_,_)),
-	asserta(player_coordinate(NewR,C)),
+	asserta(player_coordinate(NewR,C)), !,
 	write('you moved south'), nl,
 	monster_encounter.
+s :-
+	state(X),
+	X \= free,
+	format('Kamu tidak dapat berjalan selagi kamu dalam ~w.', [X]).
 
 d :-
+	state(free),
 	player_coordinate(R,C),
 	NewC is C + 1,
 	fence(R,NewC),
 	!,
-	write('invalid move'), nl.
+	write('Kamu berusaha berjalan ke kanan, tapi kamu menabrak ujung dunia.'), nl.
 d :-
+	state(free),
 	player_coordinate(R,C),
 	NewC is C + 1,
 	retractall(player_coordinate(_,_)),
-	asserta(player_coordinate(R,NewC)),
+	asserta(player_coordinate(R,NewC)), !,
 	write('you moved east'), nl,
 	monster_encounter.
+d :-
+	state(X),
+	X \= free,
+	format('Kamu tidak dapat berjalan selagi kamu dalam ~w.', [X]).

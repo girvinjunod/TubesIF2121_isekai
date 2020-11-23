@@ -7,6 +7,17 @@
 :- include('map.pl').
 :- include('battle.pl').
 
+:- dynamic(state/1).
+
+state(free).
+/* Kemungkinan states:
+ * - tutorial
+ * - not_started
+ * - free
+ * - shop
+ * - battle
+ */
+
 start :-
   mainMenu,
   nl,
@@ -27,7 +38,12 @@ newGame :-
   write('Siapa namamu, Petualang? '),
   read(NamaPemain),
   setName(NamaPemain),
-  tpb(NamaPemain).
+  tpb(NamaPemain),
+  setState(free).
+
+setState(X) :-
+  retractall(state(_)),
+  asserta(state(X)).
 
 exit :-
   halt.
