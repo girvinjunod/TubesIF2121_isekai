@@ -27,13 +27,18 @@ mainMenu :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 status :-
-  hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF),
+  hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP), levelUpCap(LUC),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
    write('$                                  ~Status Kamu~                               $\n'),
   format('$ HP: ~w/~w                                                                    $', [HP, MaxHP]), nl,
   format('$ Attack: ~w                                                                   $', [ATK]), nl,
   format('$ Defense: ~w                                                                  $', [DEF]), nl,
+  format('$ Level: ~w                                                                    $', [LVL]), nl,
+  format('$ Experience: ~w/~w                                                            $', [EXP, LUC]), nl,
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+
+stats :-
+  status.
 
 help :-
   state(free), !,
