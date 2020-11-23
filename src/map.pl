@@ -16,6 +16,15 @@
 /* dynamic predicate koordinat player */
 :- dynamic(player_coordinate/2).
 
+/* dynamic predicate jenis yang ditempati sel player */
+/* kemungkinan player_cell:
+ * kosong (-)
+ * store_cell (S)
+ * quest_cell (Q)
+ * dungeon_boss_cell (D)
+ */
+:- dynamic(player_cell/1).
+
 /* jenis-jenis map */
 map1 :-
 	/* ini map spek */
@@ -54,7 +63,8 @@ map1 :-
 	/* koordinat quest (Q) di map ini */
 	asserta(quest_coordinate(4,8)),
  	/* koordinat awal player (P) di map ini */
-	asserta(player_coordinate(2,2)).
+	asserta(player_coordinate(2,2)),
+	asserta(player_cell(kosong)).
 
 map2 :-
 	/* hapus map yang sudah ada */
@@ -83,7 +93,8 @@ map2 :-
 	/* koordinat quest (Q) di map ini */
 	asserta(quest_coordinate(9,19)),
 	/* koordinat awal player (P) di map ini */
-	asserta(player_coordinate(2,2)).
+	asserta(player_coordinate(2,2)),
+	asserta(player_cell(kosong)).
 
 /* randomize map, dipanggil di awal game */
 /* note: harus dirombak kalau mau nambah map lagi */
@@ -129,7 +140,28 @@ map :-
 		nl
 	)).
 
-/* player actions */
+/* cell-checking util., buat ganti-ganti player_cell */
+cekCell(R,C) :-
+	store_coordinate(R,C),
+	!,
+	retractall(player_cell(_)),
+	asserta(player_cell(store_cell)).
+cekCell(R,C) :-
+	quest_coordinate(R,C),
+	!,
+	retractall(player_cell(_)),
+	asserta(player_cell(quest_cell)).
+cekCell(R,C) :-
+	dungeon_boss_coordinate(R,C),
+	!,
+	retractall(player_cell(_)),
+	asserta(player_cell(dungeon_boss_cell)).
+cekCell(_,_) :-
+	retractall(player_cell(_)),
+	asserta(player_cell(kosong)),
+	monster_encounter.
+
+/* player movements */
 w :-
 	state(free),
 	player_coordinate(R,C),
@@ -144,6 +176,7 @@ w :-
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)), !,
 	write('You moved north.'), nl,
+
 	monster_encounter.
 
 w :-
@@ -165,7 +198,7 @@ a :-
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
 	write('You moved west.'), nl,
-	monster_encounter.
+	cekCell.
 a :-
 	state(X),
 	X \= free,
@@ -185,7 +218,7 @@ s :-
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)), !,
 	write('You moved south.'), nl,
-	monster_encounter.
+	cekCell.
 s :-
 	state(X),
 	X \= free,
@@ -205,7 +238,7 @@ d :-
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
 	write('You moved east.'), nl,
-	monster_encounter.
+	cekCell.
 d :-
 	state(X),
 	X \= free,
