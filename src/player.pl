@@ -15,7 +15,7 @@ class(archer).
 class(sorcerer).
 
 pilihKelas(_) :- playerClass(_), !.
-pilihKelas(Kelas) :- asserta(playerClass(Kelas)), setStat(Kelas), firstLevel.
+pilihKelas(Kelas) :- setStat(Kelas), firstLevel.
 
 firstLevel :-
   maxHP(HP),
@@ -29,25 +29,31 @@ firstLevel :-
   asserta(hp(HP)).
 
 setStat(swordsman) :-
+  retractall(playerClass(_)),
   retractall(attack(_)),
   retractall(defense(_)),
   retractall(maxHP(_)),
+  asserta(playerClass(swordsman)),
   asserta(attack(10)),
   asserta(defense(10)),
   asserta(maxHP(10)),!.
 
 setStat(archer) :-
+  retractall(playerClass(_)),
   retractall(attack(_)),
   retractall(defense(_)),
   retractall(maxHP(_)),
+  asserta(playerClass(archer)),
   asserta(attack(13)),
   asserta(defense(9)),
   asserta(maxHP(10)),!.
 
 setStat(sorcerer) :-
+  retractall(playerClass(_)),
   retractall(attack(_)),
   retractall(defense(_)),
   retractall(maxHP(_)),
+  asserta(playerClass(sorcerer)),
   asserta(attack(20)),
   asserta(defense(5)),
   asserta(maxHP(8)),!.
@@ -108,7 +114,6 @@ statsUp :-
 
 levelUp(Lebih) :-
   level(CurLVL),
-  levelUpCap(CurLUC),
 
   retractall(experience(_)),
   retractall(level(_)),
@@ -142,7 +147,6 @@ levelUp(Lebih) :-
 
 levelUp(Lebih, gacha) :-
   level(CurLVL),
-  levelUpCap(CurLUC),
 
   retractall(experience(_)),
   retractall(level(_)),
