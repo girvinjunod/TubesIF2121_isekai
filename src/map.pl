@@ -176,8 +176,7 @@ w :-
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)), !,
 	write('You moved north.'), nl,
-
-	monster_encounter.
+	cekCell(NewR,C).
 
 w :-
 	state(X),
@@ -198,7 +197,7 @@ a :-
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
 	write('You moved west.'), nl,
-	cekCell.
+	cekCell(R,NewC).
 a :-
 	state(X),
 	X \= free,
@@ -218,7 +217,7 @@ s :-
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)), !,
 	write('You moved south.'), nl,
-	cekCell.
+	cekCell(NewR,C).
 s :-
 	state(X),
 	X \= free,
@@ -238,7 +237,7 @@ d :-
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
 	write('You moved east.'), nl,
-	cekCell.
+	cekCell(R,NewC).
 d :-
 	state(X),
 	X \= free,
