@@ -51,7 +51,9 @@ map1 :-
 	asserta(store_coordinate(3,3)),
 	/* koordinat dungeon boss (D) di map ini */
 	asserta(dungeon_boss_coordinate(18,15)),
-	/* koordinat awal player (P) di map ini */
+	/* koordinat quest (Q) di map ini */
+	asserta(quest_coordinate(4,8)),
+ 	/* koordinat awal player (P) di map ini */
 	asserta(player_coordinate(2,2)).
 
 map2 :-
@@ -78,6 +80,8 @@ map2 :-
 	asserta(store_coordinate(3,3)),
 	/* koordinat dungeon boss (D) di map ini */
 	asserta(dungeon_boss_coordinate(3,2)),
+	/* koordinat quest (Q) di map ini */
+	asserta(quest_coordinate(9,19)),
 	/* koordinat awal player (P) di map ini */
 	asserta(player_coordinate(2,2)).
 
@@ -97,6 +101,10 @@ printCell(R,C) :-
 	!,
 	write('#').
 printCell(R,C) :-
+	player_coordinate(R,C),
+	!,
+	write('P').
+printCell(R,C) :-
 	store_coordinate(R,C),
 	!,
 	write('S').
@@ -108,10 +116,6 @@ printCell(R,C) :-
 	quest_coordinate(R,C),
 	!,
 	write('Q').
-printCell(R,C) :-
-	player_coordinate(R,C),
-	!,
-	write('P').
 printCell(_,_) :-
 	write('-').
 
@@ -139,7 +143,7 @@ w :-
 	NewR is R - 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)), !,
-	write('you moved north'), nl,
+	write('You moved north.'), nl,
 	monster_encounter.
 
 w :-
@@ -160,7 +164,7 @@ a :-
 	NewC is C - 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
-	write('you moved west'), nl,
+	write('You moved west.'), nl,
 	monster_encounter.
 a :-
 	state(X),
@@ -180,7 +184,7 @@ s :-
 	NewR is R + 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)), !,
-	write('you moved south'), nl,
+	write('You moved south.'), nl,
 	monster_encounter.
 s :-
 	state(X),
@@ -200,7 +204,7 @@ d :-
 	NewC is C + 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
-	write('you moved east'), nl,
+	write('You moved east.'), nl,
 	monster_encounter.
 d :-
 	state(X),
