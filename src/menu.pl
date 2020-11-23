@@ -1,4 +1,4 @@
-menu :-
+mainMenu :-
   write('$$\\   $$\\          $$\\             $$$$$$\\                     $$\\                $$\\        $$$$$$\\ \n'),
   write('$$ | $$  |         $$ |            \\_$$  _|                    $$ |               \\__|      $$  __$$\\ \n'),
   write('$$ |$$  / $$$$$$\\  $$ |  $$\\         $$ |   $$$$$$$\\  $$$$$$\\  $$ |  $$\\ $$$$$$\\  $$\\       $$ /  \\__|$$\\  $$\\  $$\\ \n'),
@@ -21,22 +21,29 @@ menu :-
   nl,
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   write('%                          ~Kok Isekai Gw Penuh Tubes~                         %\n'),
-  write('% 1. start  : untuk memulai petualanganmu                                      %\n'),
-  write('% 2. map    : menampilkan peta                                                 %\n'),
-  write('% 3. status : menampilkan kondisimu terkini                                    %\n'),
-  write('% 4. w      : gerak ke utara 1 langkah                                         %\n'),
-  write('% 5. s      : gerak ke selatan 1 langkah                                       %\n'),
-  write('% 6. d      : gerak ke ke timur 1 langkah                                      %\n'),
-  write('% 7. a      : gerak ke barat 1 langkah                                         %\n'),
-  write('% 8. Status : menampilkan status pemain                                        %\n'),
-  write('% 9. help   : menampilkan segala bantuan                                       %\n'),
+  write('% 1. new game  : untuk memulai petualanganmu                                   %\n'),
+  write('% 2. load game : untuk melanjutkan petualanganmu                               %\n'),
+  write('% 3. exit      : keluar dair gim                                               %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-
 
 status :-
   hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF),
    write('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'), nl,
+   write('$           ~Status kamu~         $\n'),
   format('$ HP: ~w/~w                       $', [HP, MaxHP]), nl,
   format('$ Attack: ~w                      $', [ATK]), nl,
-  format('$ Defense: ~w                      $', [DEF]), nl,
+  format('$ Defense: ~w                     $', [DEF]), nl,
    write('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'), nl.
+
+help :-
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('% 1. map    : menampilkan peta                                                 %\n'),
+  write('% 2. status : menampilkan kondisimu terkini                                    %\n'),
+  write('% 3. w      : gerak ke utara 1 langkah                                         %\n'),
+  write('% 4. s      : gerak ke selatan 1 langkah                                       %\n'),
+  write('% 5. d      : gerak ke ke timur 1 langkah                                      %\n'),
+  write('% 6. a      : gerak ke barat 1 langkah                                         %\n'),
+  write('% 7. Status : menampilkan status pemain                                        %\n'),
+  write('% 8. help   : menampilkan segala bantuan                                       %\n'),
+  write('% 9. exit   : keluar dair gim                                                  %\n'),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').

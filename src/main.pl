@@ -4,12 +4,29 @@
 :- include('menu.pl').
 :- include('items.pl').
 :- include('tutorial.pl').
-
-game :-
-    menu.
+:- include('map.pl').
 
 start :-
-  write('Siapa namamu, petualang? '),
+  mainMenu,
+  nl,
+  write('Apa yang mau kamu lakukan (new / load / exit): '),
+  read(Act),
+  nl, nl, nl,
+  ((
+    Act = new,
+    newGame
+  );
+  (
+    Act = exit,
+    exit
+  )).
+
+newGame :-
+  randomize_map,
+  write('Siapa namamu, Petualang? '),
   read(NamaPemain),
   setName(NamaPemain),
   tpb(NamaPemain).
+
+exit :-
+  halt.
