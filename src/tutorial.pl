@@ -6,8 +6,8 @@ tpb(X) :-
     write(' ditabrak oleh truck-kun dan dia pun pergi ke isekai, yaitu dunia "Jurusan". \n'),
     nl,
     write(X),
-    write(' pun terbangun di sebuah gedung bernama TPB. Ia menyadari bahwa ia tidak ada pakaian apa2 dan tidak ada barang apa2.\n')
-	write('Di sini ia disambut oleh seseorang yang dikenal dengan sebutan Paus Asdos.\n'),
+    write(' pun terbangun di sebuah gedung bernama TPB. Ia menyadari bahwa ia tidak ada pakaian apa2 dan tidak ada barang apa2.\n'),
+	write('Lalu tiba2 datang seseorang yang dikenal dengan sebutan Paus Asdos menyambut dia.\n'),
     write('Paus Asdos mengatakan bahwa '),
     write(X),
     write(' telah disummon ke dunia lain untuk membantu dunia "Jurusan" untuk membantu masyarakatnya melawan wabah monster tubes.\n'),
@@ -65,7 +65,7 @@ tpb(X) :-
     write(X),
     write(' mengisi formulir jobnya, Paus Asdos pun memberikan equipment sesuai job yang dipilih kepadanya dan menyuruhnya untuk memakainya.\n'),
     nl,
-	write('Lalu Paus Asdos pun melanjutkan eksposisinya.\n')
+	write('Lalu Paus Asdos pun melanjutkan eksposisinya.\n'),
     write('Ia bilang bahwa di dunia ini dewa-dewi Dosen telah memberikan anugerah kepada manusia dalam bentuk tubes.\n'),
     write('Dengan menyelesaikan tubes seseorang akan dapat menerima EXP points dan bisa level up, menjadi lebih hebat dari sebelumnya.\n'),
     nl,
