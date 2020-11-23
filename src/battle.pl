@@ -10,7 +10,7 @@
 monster_encounter :-
 	\+in_battle,
 	random(X),
-	X < 0.9,
+	X < 0.4,
 	asserta(in_battle),
 	random(Y),
 	randomize_monster(Y),
