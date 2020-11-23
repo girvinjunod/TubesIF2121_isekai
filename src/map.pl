@@ -4,13 +4,10 @@
  * koordinat (1,C), (nRow,C), (R,1), (R,nCol) selalu pagar untuk 1<=R<=nRow, 1<=C<=nCol
  */
 
-
 /* size map */
 nRow(20).
 nCol(20).
 
-/* dynamic predicate koordinat player */
-:- dynamic(player_coordinate/2).
 
 /* koordinat-koordinat pagar (#) */
 /* note: koordinat (1,C), (nRow,C), (R,1), (R,nCol) selalu pagar untuk 1<=R<=nRow, 1<=C<=nCol */
@@ -23,10 +20,16 @@ fence(6,6).
 fence(7,7).
 
 /* koordinat store (S) */
-store(3,3).
+store_coordinate(3,3).
 
 /* koordinat dungeon boss (D) */
-dungeon_boss(3,2).
+dungeon_boss_coordinate(3,2).
+
+/* koordinat pengambilan quest (Q) */
+quest_coordinate(3,4).
+
+/* dynamic predicate koordinat player */
+:- dynamic(player_coordinate/2).
 
 /* koordinat player (P) */
 player_coordinate(2,2).
@@ -37,13 +40,17 @@ printCell(R,C) :-
 	!,
 	write('#').
 printCell(R,C) :-
-	store(R,C),
+	store_coordinate(R,C),
 	!,
 	write('S').
 printCell(R,C) :-
-	dungeon_boss(R,C),
+	dungeon_boss_coordinate(R,C),
 	!,
 	write('D').
+printCell(R,C) :-
+	quest_coordinate(R,C),
+	!,
+	write('Q').
 printCell(R,C) :-
 	player_coordinate(R,C),
 	!,
