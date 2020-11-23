@@ -8,7 +8,7 @@
 :- dynamic(monster_turn/1).
 :- dynamic(monster_lvl/1).
 
-monster_encounter(_) :-
+monster_encounter :-
 	\+in_battle,
 	random(X),
 	X < 0.2,
@@ -22,7 +22,7 @@ monster_encounter(_) :-
 	write('Level: '),
 	asserta(monster_turn(0)),
 	!.
-monster_encounter(_) :- in_battle.
+monster_encounter :- in_battle.
 
 randomize_monster(X) :-
 	X < 0.5,
@@ -60,16 +60,16 @@ randomize_monster(_) :-
 	asserta(monster_exp(200)),
 	asserta(monster_lvl(50)).
 
-monster_count_move(_) :-
+monster_count_move :-
 	monster_turn(T),
 	T > 0,
 	U is T - 1,
 	retractall(monster_turn(_)),
 	asserta(monster_turn(U)), !.
 
-monster_count_move(_) :- monster_turn(T), T = 0.
+monster_count_move :- monster_turn(T), T = 0.
 
-monster_move(_) :-
+monster_move :-
 	monster_turn(T),
 	random(X),
 	X < 0.3,
@@ -78,7 +78,7 @@ monster_move(_) :-
 	monster_count_move,
 	!.
 
-monster_move(_) :-
+monster_move :-
 	monster_atk(X),
 	damagePlayer(X),
 	current_monster(Name),
@@ -88,7 +88,7 @@ monster_move(_) :-
 	write(' damage.'),
 	monster_count_move.
 
-monster_special(_) :-
+monster_special :-
 	monster_atk(atk),
 	dmg is atk * 3,
 	damagePlayer(dmg),
@@ -108,7 +108,7 @@ damage_monster(X) :-
 	retractall(monster_hp(Curr)),
 	asserta(monster_hp(After)).
 
-monster_die(_) :-
+monster_die :-
 	current_monster(Name),
 	monster_exp(XP),
 	earnExp(XP),
