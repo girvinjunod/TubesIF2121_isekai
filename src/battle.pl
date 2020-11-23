@@ -1,4 +1,3 @@
-:- include('player.pl').
 :- dynamic(in_battle/0).
 :- dynamic(current_monster/1).
 :- dynamic(monster_hp/1).
@@ -11,18 +10,21 @@
 monster_encounter :-
 	\+in_battle,
 	random(X),
-	X < 0.2,
+	X < 0.9,
 	asserta(in_battle),
 	random(Y),
 	randomize_monster(Y),
 	write('Encountered '),
 	current_monster(Name),
+	monster_lvl(Lv),
 	write(Name),
-	write(' in the fields.'),
+	write(' in the fields.'), nl,
 	write('Level: '),
+	write(Lv),
 	asserta(monster_turn(0)),
 	!.
-monster_encounter :- in_battle.
+
+monster_encounter.
 
 randomize_monster(X) :-
 	X < 0.5,
@@ -122,4 +124,5 @@ monster_die :-
 	retractall(monster_atk(_)),
 	retractall(monster_def(_)),
 	retractall(monster_exp(_)),
+	retractall(in_battle),
 	!.

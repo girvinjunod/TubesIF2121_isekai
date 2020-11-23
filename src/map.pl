@@ -1,38 +1,96 @@
+:- include('battle.pl').
 /* spesifikasi map:
- *	(R,C) itu sel di baris ke-R kolom ke-C
+ * ada 2 jenis map, dirandom di awal game
+ * (R,C) itu sel di baris ke-R kolom ke-C
  * pojok kiri atas itu (1,1), pojok kanan bawah itu (nRow,nCol)
  * koordinat (1,C), (nRow,C), (R,1), (R,nCol) selalu pagar untuk 1<=R<=nRow, 1<=C<=nCol
  */
 
-/* size map */
-nRow(20).
-nCol(20).
-
-
-/* koordinat-koordinat pagar (#) */
-/* note: koordinat (1,C), (nRow,C), (R,1), (R,nCol) selalu pagar untuk 1<=R<=nRow, 1<=C<=nCol */
-fence(R,_) :- R = 1.
-fence(R,_) :- nRow(R).
-fence(_,C) :- C = 1.
-fence(_,C) :- nCol(C).
-fence(5,5).
-fence(6,6).
-fence(7,7).
-
-/* koordinat store (S) */
-store_coordinate(3,3).
-
-/* koordinat dungeon boss (D) */
-dungeon_boss_coordinate(3,2).
-
-/* koordinat pengambilan quest (Q) */
-quest_coordinate(3,4).
+/* dynamic predicate map */
+:- dynamic(nRow/1).
+:- dynamic(nCol/1).
+:- dynamic(fence/2).
+:- dynamic(store_coordinate/2).
+:- dynamic(dungeon_boss_coordinate/2).
+:- dynamic(quest_coordinate/2).
 
 /* dynamic predicate koordinat player */
 :- dynamic(player_coordinate/2).
 
-/* koordinat player (P) */
-player_coordinate(2,2).
+/* jenis-jenis map */
+map1 :-
+	/* ini map spek */
+	/* hapus map yang sudah ada */
+	retractall(fence(_,_)),
+	retractall(store_coordinate(_,_)),
+	retractall(dungeon_boss_coordinate(_,_)),
+	retractall(quest_coordinate(_,_)),
+	retractall(player_coordinate(_,_)),
+	retractall(nRow(_)),
+	retractall(nCol(_)),
+	/* size map ini */
+	asserta(nRow(19)),
+	asserta(nCol(16)),
+	/* koordinat-koordinat pagar (#) di map ini */
+	asserta((fence(R,_) :- R = 1)),
+	asserta((fence(R,_) :- nRow(R))),
+	asserta((fence(_,C) :- C = 1)),
+	asserta((fence(_,C) :- nCol(C))),
+	asserta(fence(6,9)),
+	asserta(fence(7,9)),
+	asserta(fence(8,9)),
+	asserta(fence(8,10)),
+	asserta(fence(8,11)),
+	asserta(fence(8,12)),
+	asserta(fence(15,8)),
+	asserta(fence(16,5)),
+	asserta(fence(16,6)),
+	asserta(fence(16,7)),
+	asserta(fence(16,8)),
+	asserta(fence(17,8)),
+	/* koordinat store (S) di map ini */
+	asserta(store_coordinate(3,3)),
+	/* koordinat dungeon boss (D) di map ini */
+	asserta(dungeon_boss_coordinate(18,15)),
+	/* koordinat awal player (P) di map ini */
+	asserta(player_coordinate(2,2)).
+
+map2 :-
+	/* hapus map yang sudah ada */
+	retractall(fence(_,_)),
+	retractall(store_coordinate(_,_)),
+	retractall(dungeon_boss_coordinate(_,_)),
+	retractall(quest_coordinate(_,_)),
+	retractall(player_coordinate(_,_)),
+	retractall(nRow(_)),
+	retractall(nCol(_)),
+	/* size map ini */
+	asserta(nRow(10)),
+	asserta(nCol(20)),
+	/* koordinat-koordinat pagar (#) di map ini */
+	asserta((fence(R,_) :- R = 1)),
+	asserta((fence(R,_) :- nRow(R))),
+	asserta((fence(_,C) :- C = 1)),
+	asserta((fence(_,C) :- nCol(C))),
+	asserta(fence(5,5)),
+	asserta(fence(6,6)),
+	asserta(fence(7,7)),
+	/* koordinat store (S) di map ini */
+	asserta(store_coordinate(3,3)),
+	/* koordinat dungeon boss (D) di map ini */
+	asserta(dungeon_boss_coordinate(3,2)),
+	/* koordinat awal player (P) di map ini */
+	asserta(player_coordinate(2,2)).
+
+/* randomize map, dipanggil di awal game */
+/* note: harus dirombak kalau mau nambah map lagi */
+randomize_map :-
+	random(1,3,X),
+	X is 1,
+	!,
+	map1.
+randomize_map :-
+	map2.
 
 /* map-printing functions */
 printCell(R,C) :-
@@ -80,7 +138,8 @@ w :-
 	NewR is R - 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)),
-	write('you moved north'), nl.
+	write('you moved north'), nl,
+	monster_encounter.
 
 a :-
 	player_coordinate(R,C),
@@ -93,7 +152,8 @@ a :-
 	NewC is C - 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)),
-	write('you moved west'), nl.
+	write('you moved west'), nl,
+	monster_encounter.
 
 s :-
 	player_coordinate(R,C),
@@ -106,7 +166,8 @@ s :-
 	NewR is R + 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)),
-	write('you moved south'), nl.
+	write('you moved south'), nl,
+	monster_encounter.
 
 d :-
 	player_coordinate(R,C),
@@ -119,4 +180,5 @@ d :-
 	NewC is C + 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)),
-	write('you moved east'), nl.
+	write('you moved east'), nl,
+	monster_encounter.
