@@ -9,7 +9,7 @@
 
 :- dynamic(state/1).
 
-state(free).
+state(not_started).
 /* Kemungkinan states:
  * - tutorial
  * - not_started
@@ -17,6 +17,27 @@ state(free).
  * - shop
  * - battle
  */
+
+setState(X) :-
+  retractall(state(_)),
+  asserta(state(X)).
+
+exit :-
+  halt.
+
+acak(X) :-
+  real_time(RT),
+  set_seed(RT),
+  random(R),
+  X is R,
+  write(X).
+
+acak(P,Q,X) :-
+  real_time(RT),
+  set_seed(RT),
+  random(P,Q,R),
+  X is R,
+  write(X).
 
 start :-
   mainMenu,
@@ -27,6 +48,10 @@ start :-
   ((
     Act = new,
     newGame
+  );
+  (
+    Act = load,
+    loadGame
   );
   (
     Act = exit,
@@ -41,9 +66,8 @@ newGame :-
   tpb(NamaPemain),
   setState(free).
 
-setState(X) :-
-  retractall(state(_)),
-  asserta(state(X)).
+loadGame :-
+  write('Fitur belum diimplementasikan :('), nl.
 
-exit :-
-  halt.
+save :-
+  write('Fitur belum diimplementasikan :('), nl.

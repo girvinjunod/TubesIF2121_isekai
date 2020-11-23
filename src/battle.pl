@@ -8,9 +8,11 @@
 
 monster_encounter :-
 	state(S),
-	random(X),
+	%random(X),
+	acak(X),
 	X < 0.4,
-	random(Y),
+	%random(Y),
+	acak(Y),
 	randomize_monster(Y),
 	write('Encountered '),
 	current_monster(Name),
@@ -75,7 +77,8 @@ monster_count_move :- monster_turn(T), T = 0.
 
 monster_move :-
 	monster_turn(T),
-	random(X),
+	%random(X),
+	acak(X),
 	X < 0.3,
 	T =< 0,
 	monster_special,
@@ -131,7 +134,8 @@ monster_die :-
 
 kabur :-
 	state(battle),
-	random(X),
+	%random(X),
+	acak(X),
 	(
 		X < 0.3,
 		write('Kamu berhasil kabur :D.'),

@@ -84,9 +84,9 @@ map2 :-
 /* randomize map, dipanggil di awal game */
 /* note: harus dirombak kalau mau nambah map lagi */
 randomize_map :-
-	random(1,3,X),
-	X is 1,
-	!,
+	%random(1,3,X),
+	acak(1,3,X),
+	X is 1, !,
 	map1.
 randomize_map :-
 	map2.
