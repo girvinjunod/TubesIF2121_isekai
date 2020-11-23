@@ -1,5 +1,6 @@
 :- include('inventory.pl').
 :- include('items.pl').
+:- dynamic(name/1).
 :- dynamic(hp/1).
 :- dynamic(maxHP/1).
 :- dynamic(level/1).
@@ -17,11 +18,14 @@ class(sorcerer).
 hp(100).
 attack(100).
 defense(100).
+setNama(X) :- retractall(name(_)), asserta(name(X)).
 
 pilihKelas(_) :- playerClass(_), !.
 pilihKelas(Kelas) :- asserta(playerClass(Kelas)), setStat.
 
 setStat :- playerClass(swordsman),
+  retractall(hp(_)),
+  retractall(attack(_)),
   asserta(hp(10)),
   asserta(level(1)),
   asserta(experience(0)),
@@ -30,6 +34,8 @@ setStat :- playerClass(swordsman),
   asserta(maxHP(10)),!.
 
 setStat :- playerClass(archer),
+  retractall(hp(_)),
+  retractall(attack(_)),
   asserta(level(1)),
   asserta(experience(0)),
   asserta(attack(13)),
@@ -38,6 +44,8 @@ setStat :- playerClass(archer),
   asserta(hp(10)), !.
 
 setStat :- playerClass(sorcerer),
+  retractall(hp(_)),
+  retractall(attack(_)),
   asserta(level(1)),
   asserta(experience(0)),
   asserta(attack(20)),
@@ -71,3 +79,8 @@ consumeItem(Item) :-
     asserta(defense(NewDEF)),
     removeFromInventory(Item)
   )).
+earnExp(X) :-
+	experience(XP),
+	NewXP is XP + X,
+	retractall(experience(_)),
+	asserta(experience(NewXP)).
