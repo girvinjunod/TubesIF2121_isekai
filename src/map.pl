@@ -1,4 +1,3 @@
-:- include('battle.pl').
 /* spesifikasi map:
  * ada 2 jenis map, dirandom di awal game
  * (R,C) itu sel di baris ke-R kolom ke-C

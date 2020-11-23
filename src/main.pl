@@ -5,6 +5,7 @@
 :- include('items.pl').
 :- include('tutorial.pl').
 :- include('map.pl').
+:- include('battle.pl').
 
 start :-
   mainMenu,
