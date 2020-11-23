@@ -1,6 +1,8 @@
 /* list item yang valid */
 /* format: (nama, tipe) */
-item(health_potion, consumable).
+item(potion, consumable).
+item(xAtk, consumable).
+item(xDef, consumable).
 
 /* list efek item */
 /* format: (nama, stats_affacted, value change) */
@@ -11,4 +13,6 @@ item(health_potion, consumable).
  * level?
  * experience?
 */
-item(health_potion, hp, 10).
+item_effect(potion, hp, 10).
+item_effect(xAtk, attack, 10).
+item_effect(xDef, defense, 10).

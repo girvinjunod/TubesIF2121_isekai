@@ -1,4 +1,5 @@
 :- include('inventory.pl').
+:- include('items.pl').
 :- dynamic(hp/1).
 :- dynamic(maxHP/1).
 :- dynamic(level/1).
@@ -9,12 +10,13 @@
 :- dynamic(weapon/1).
 :- dynamic(armor/1).
 
-hp(100).
-attack(100).
-
 class(swordsman).
 class(archer).
 class(sorcerer).
+
+hp(100).
+attack(100).
+defense(100).
 
 pilihKelas(_) :- playerClass(_), !.
 pilihKelas(Kelas) :- asserta(playerClass(Kelas)), setStat.
@@ -43,23 +45,29 @@ setStat :- playerClass(sorcerer),
   asserta(maxHP(8)),
   asserta(hp(8)), !.
 
-consumeItem(Nama, hp, X) :-
-  hp(HP),
-  retractall(hp(_)),
-  NewHP is HP + X,
-  asserta(hp(NewHP)),
-  removeFromInventory(Nama).
-
-consumeItem(Nama, attack, X) :-
-  attack(ATK),
-  retractall(attack(_)),
-  NewATK is ATK + X,
-  asserta(attack(NewATK)),
-  removeFromInventory(Nama).
-
-consumeItem(Nama, defense, X) :-
-  defense(DEF),
-  retractall(defense(_)),
-  NewDEF is DEF + X,
-  asserta(defense(NewDEF)),
-  removeFromInventory(Nama).
+consumeItem(Item) :-
+  item_effect(Item, StatsAffacted, X),
+  ((
+    StatsAffacted = attack, !,
+    attack(ATK),
+    retractall(attack(_)),
+    NewATK is ATK + X,
+    asserta(attack(NewATK)),
+    removeFromInventory(Item)
+  );
+  (
+    StatsAffacted = hp, !,
+    hp(HP),
+    retractall(hp(_)),
+    NewHP is HP + X,
+    asserta(hp(NewHP)),
+    removeFromInventory(Item)
+  );
+  (
+    StatsAffacted = defense, !,
+    defense(DEF),
+    retractall(defense(_)),
+    NewDEF is DEF + X,
+    asserta(defense(NewDEF)),
+    removeFromInventory(Item)
+  )).
