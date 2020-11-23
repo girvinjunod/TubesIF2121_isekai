@@ -1,5 +1,3 @@
-:- include('inventory.pl').
-:- include('items.pl').
 :- dynamic(hp/1).
 :- dynamic(maxHP/1).
 :- dynamic(level/1).
@@ -9,14 +7,11 @@
 :- dynamic(defense/1).
 :- dynamic(weapon/1).
 :- dynamic(armor/1).
+:- dynamic(name/1).
 
 class(swordsman).
 class(archer).
 class(sorcerer).
-
-hp(100).
-attack(100).
-defense(100).
 
 pilihKelas(_) :- playerClass(_), !.
 pilihKelas(Kelas) :- asserta(playerClass(Kelas)), setStat.
@@ -58,8 +53,15 @@ consumeItem(Item) :-
   (
     StatsAffacted = hp, !,
     hp(HP),
+    maxHP(Max),
+    ((
+      NewHP is HP + X,
+      NewHP =< Max
+    );
+    (
+      NewHP is Max
+    )),
     retractall(hp(_)),
-    NewHP is HP + X,
     asserta(hp(NewHP)),
     removeFromInventory(Item)
   );
@@ -71,3 +73,7 @@ consumeItem(Item) :-
     asserta(defense(NewDEF)),
     removeFromInventory(Item)
   )).
+
+setName(X) :-
+  retractall(name(_)),
+  asserta(name(X)).
