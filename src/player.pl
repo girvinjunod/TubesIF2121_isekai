@@ -14,7 +14,7 @@ class(archer).
 class(sorcerer).
 
 pilihKelas(_) :- playerClass(_), !.
-pilihKelas(Kelas) :- asserta(playerClass(Kelas)), setStat.
+pilihKelas(Kelas) :- asserta(playerClass(Kelas)), setStat(Kelas).
 
 setStat(swordsman) :-
   retractall(hp(_)),
