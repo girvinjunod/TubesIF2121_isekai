@@ -79,6 +79,7 @@ tpb(X) :-
     nl,
     write('Anda sebagai mahasiswa IF ITB pastinya sudah terbiasa dan jago dalam mengalahkan tubes.\n'),
     write('Oleh karena itu, tolonglah kami oh pejuang IF ITB, selamatkan kami dari badai tubes ini, hentikan Raja Naga Keri yang marah2, dan selamatkan dunia ini.\n'),
+	write('Btw, portal balik ke dunia Anda hanya ada di istana Raja Naga Keri jadi semangat!\n'),
     nl,
     write('Paus Asdos pun tidak menunggu respon '),
     write(X),
