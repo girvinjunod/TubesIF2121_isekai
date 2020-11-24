@@ -25,8 +25,8 @@ countItem(X, [Y|Z], Cnt) :-
   ), !.
 
 /* asumsi: 0<N<=size List */
-removeNth([_|Tail],1,Tail).
-removeNth([Head|Tail],N,Ret) :-
+removeNth([X|Tail],1,Tail,X).
+removeNth([Head|Tail],N,RetList,RemovedElmt) :-
 	NextN is N - 1,
-	removeNth(Tail,NextN,Tmp),
-	Ret = [Head|Tmp].
+	removeNth(Tail,NextN,Tmp,RemovedElmt),
+	RetList = [Head|Tmp].
