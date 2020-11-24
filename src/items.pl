@@ -1,8 +1,38 @@
-/* list item yang valid */
-/* format: (nama, tipe) */
+/* list item yang valid 
+format: (nama, tipe)*/
 item(potion, consumable).
 item(xAtk, consumable).
 item(xDef, consumable).
+item(pedang_1, weapon, swordsman).
+item(armor_1, armor, swordsman).
+item(pedang_2, weapon, swordsman).
+item(armor_2, armor, swordsman).
+item(pedang_3, weapon, swordsman).
+item(armor_3, armor, swordsman).
+item(pedang_4, weapon, swordsman).
+item(armor_4, armor, swordsman).
+item(pedang_5, weapon, swordsman).
+item(armor_5, armor, swordsman).
+item(busur_panah_dan_jangka_1, weapon, archer).
+item(jaket_1, armor, archer).
+item(busur_panah_dan_jangka_2, weapon, archer).
+item(jaket_2, armor, archer).
+item(busur_panah_dan_jangka_3, weapon, archer).
+item(jaket_3, armor, archer).
+item(busur_panah_dan_jangka_4, weapon, archer).
+item(jaket_4, armor, archer).
+item(busur_panah_dan_jangka_5, weapon, archer).
+item(jaket_5, armor, archer).
+item(magic_stick_1, weapon, sorcerer).
+item(kaos_1, armor, sorcerer).
+item(magic_stick_2, weapon, sorcerer).
+item(kaos_2, armor, sorcerer).
+item(magic_stick_3, weapon, sorcerer).
+item(kaos_3, armor, sorcerer).
+item(magic_stick_4, weapon, sorcerer).
+item(kaos_4, armor, sorcerer).
+item(magic_stick_5, weapon, sorcerer).
+item(kaos_5, armor, sorcerer).
 
 /* list efek item */
 /* format: (nama, stats_affacted, value change) */
@@ -16,54 +46,38 @@ item(xDef, consumable).
 item_effect(potion, hp, 10).
 item_effect(xAtk, attack, 10).
 item_effect(xDef, defense, 10).
+item_effect(pedang_1, attack, 30).
+item_effect(armor_1, armor, 50).
+item_effect(pedang_2, attack, 60).
+item_effect(armor_2, armor, 100).
+item_effect(pedang_3, attack, 90).
+item_effect(armor_3, armor, 150).
+item_effect(pedang_4, attack, 120).
+item_effect(armor_4, armor, 200).
+item_effect(pedang_5, attack, 150).
+item_effect(armor_5, armor, 250).
+item_effect(busur_panah_dan_jangka_1, attack, 50).
+item_effect(jaket_1, armor, 20).
+item_effect(busur_panah_dan_jangka_2, attack, 100).
+item_effect(jaket_2, armor, 40).
+item_effect(busur_panah_dan_jangka_3, attack, 150).
+item_effect(jaket_3, armor, 60).
+item_effect(busur_panah_dan_jangka_4, attack, 200).
+item_effect(jaket_4, armor, 80).
+item_effect(busur_panah_dan_jangka_5, attack, 250).
+item_effect(jaket_5, armor, 100).
+item_effect(magic_stick_1, attack, 60).
+item_effect(kaos_1, armor, 10).
+item_effect(magic_stick_2, attack, 120).
+item_effect(kaos_2, armor, 20).
+item_effect(magic_stick_3, attack, 180).
+item_effect(kaos_3, armor, 30).
+item_effect(magic_stick_4, attack, 240).
+item_effect(kaos_4, armor, 40).
+item_effect(magic_stick_5, attack, 300).
+item_effect(kaos_5, armor, 50).
 
-/*swordsman
-starting:
-pedang 1 : +30 atck
-armor 1: +50 def
-
-Equipment dri gacha store:
-pedang 2: +60 atck
-armor 2: +100 def
-pedang 3: + 90 atck
-armor 3: + 150 def
-pedang 4: + 120 atck
-armor 4: + 200 def
-pedang 5: + 150 atck
-armor 5: + 250 def
-
-
-archer
-starting:
-busur, panah, dan jangka 1 : 50 atck
-jaket 1 : 20 def
-
-Equipement dri gacha store:
-busur, panah, dan jangka 2 : 100 atck
-jaket 2 : 40 def
-busur, panah, dan jangka 3 : 150
-jaket 3 : 60 def
-busur, panah, dan jangka 4 : 200
-jaket 4 : 80 def
-busur, panah, dan jangka 5 : 250 atck
-jaket 5 : 100 def
-
-sorcerer
-starting:
-magic stick 1: 60 atck
-kaos 1 : 10 def
-
-Equipment dri gacha store:
-magic stick 2 : 120 atck
-kaos 2 : 20 def
-magic stick 3 : 180 atck
-kaos 3 : 30 def
-magic stick 4 : 240 atck
-kaos 4 : 40 def
-magic stick 5 : 300 atck
-kaos 5 : 50 def
-
-
+/*
 
 drop chancenya (dri steal sama gacha)
 rarity 1 : 25%
