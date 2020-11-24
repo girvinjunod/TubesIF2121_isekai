@@ -1,3 +1,58 @@
+store :-
+  state(not_started), !,
+  write('Permainan belum dimulai, kamu tidak dapat ke store.'), nl.
+
+store :- % Player tidak di store
+  state(free),
+  store_coordinate(Xs,Ys),
+  player_coordinate(Xp,Yp),
+  (Xs \= Xp, !; Ys \= Yp, !),
+  write('Gagal membuka store karena kamu sedang tidak di store.'), nl.
+
+store :- % Item dijual
+  state(free),
+  store_coordinate(Xs,Ys),
+  player_coordinate(Xp,Yp),
+  Xs =:= Xp, !,
+  Ys =:= Yp, !,
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('%                                   ~Store~                                    %\n'),
+  write('%                                                                              %\n'),
+  write('% Item yang kami jual:                                                         %\n'),
+  write('% 1. potion (50 gold)                                                          %\n'),
+  write('% 2. kupon_gacha_item (70 gold)                                                %\n'),
+  write('% 3. kupon_gacha_equipment (90 gold)                                           %\n'),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  nl,
+  write('Masukkan nama item yang mau kamu beli: '),
+  read(Item),
+  (
+    ( % Kasus item yg dibeli ga ada
+      \+hargaItem(Item, Harga), !,
+      write('Kami tidak menjual item itu :(.'), nl
+    );
+    (
+      (
+        (
+          gold(UangTersedia),
+          hargaItem(Item, Harga),
+          UangTersedia < Harga, !,
+          write('Kamu kurang cukup kaya untuk membeli item ini.'), nl,
+          write('Go slay some monster atau ambil lah quest terlebih dahulu.'), nl
+        );
+        (
+          gold(UangTersedia),
+          hargaItem(Item, Harga),
+          NewGold is UangTersedia - Harga,
+          retractall(gold(_)),
+          asserta(gold(NewGold)),
+          format('Selamat atas pembelian ~w kamu! Senang berbisnis dengan mu.', [Item]), nl,
+          addToInventory(Item)
+        )
+      )
+    )
+  ).
+
 /*
 * drop chancenya (dri steal sama gacha)
 * SSR: 5%
@@ -124,6 +179,7 @@ gachaItem :-
   write('Kamu tidak memiliki kupon gacha :(, silakan beli dahulu di store.').
 
 gachaItem :-
+  removeFromInventory(kupon_gacha_item),
   write('Melakukan gacha...'), nl,
   write('Deg... '),
   sleep(1),

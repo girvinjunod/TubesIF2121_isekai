@@ -7,6 +7,10 @@ item(skincare, consumable).
 item(kupon_gacha_equipment, consumable).
 item(kupon_gacha_item, consumable).
 
+hargaItem(potion, 50).
+hargaItem(kupon_gacha_item, 70).
+hargaItem(kupon_gacha_equipment, 90).
+
 /* list item equip
 format: (nama, tipe, role) */
 item(pedang_1, weapon, swordsman).

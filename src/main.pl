@@ -7,7 +7,6 @@
 :- include('map.pl').
 :- include('battle.pl').
 :- include('store.pl').
-:- include('gacha.pl').
 
 :- dynamic(state/1).
 

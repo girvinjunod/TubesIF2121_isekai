@@ -27,15 +27,17 @@ mainMenu :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 status :-
-  hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP), levelUpCap(LUC), playerClass(PC),
+  hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP),
+  levelUpCap(LUC), playerClass(PC), gold(Gold),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
    write('                                   ~Status Kamu~                                \n'),
-  format('  HP: ~w/~w', [HP, MaxHP]), nl,
-  format('  Attack: ~w', [ATK]), nl,
-  format('  Defense: ~w', [DEF]), nl,
-  format('  Level: ~w', [LVL]), nl,
-  format('  Experience: ~w/~w', [EXP, LUC]), nl,
-  format('  Class: ~w', [PC]), nl,
+  format('  HP          : ~w/~w', [HP, MaxHP]), nl,
+  format('  Attack      : ~w', [ATK]), nl,
+  format('  Defense     : ~w', [DEF]), nl,
+  format('  Level       : ~w', [LVL]), nl,
+  format('  Experience  : ~w/~w', [EXP, LUC]), nl,
+  format('  Class       : ~w', [PC]), nl,
+  format('  Gold        : ~w', [Gold]), nl,
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 stats :-
@@ -82,13 +84,11 @@ help  :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 inventory :-
-  state(X),
-  X = not_started, !,
+  state(not_started), !,
   write('Inventory tidak tersedia karena permainan belum dimulai.'), nl.
 
 inventory :-
-  state(X),
-  X = tutorial, !,
+  state(tutorial), !,
   write('Inventory tidak tersedia selama tutorial.'), nl.
 
 inventory :-
@@ -106,3 +106,6 @@ inventory :-
   inventory(I),
   listInventory(1, I),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
+
+shop :-
+  store.
