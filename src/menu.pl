@@ -28,7 +28,7 @@ mainMenu :-
 
 status :-
   hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP),
-  levelUpCap(LUC), playerClass(PC), gold(Gold), armor(ARMOR), weapon(WEAP),
+  levelUpCap(LUC), playerClass(PC), gold(Gold), armorequipped(ARMOR), weaponequipped(WEAP),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
    write('                                   ~Status Kamu~                                \n'),
   format('  HP          : ~w/~w', [HP, MaxHP]), nl,
