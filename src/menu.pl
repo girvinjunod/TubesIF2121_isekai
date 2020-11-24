@@ -29,13 +29,13 @@ mainMenu :-
 status :-
   hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP), levelUpCap(LUC), playerClass(PC),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
-   write('$                                  ~Status Kamu~                               $\n'),
-  format('$ HP: ~w/~w                                                                    $', [HP, MaxHP]), nl,
-  format('$ Attack: ~w                                                                   $', [ATK]), nl,
-  format('$ Defense: ~w                                                                  $', [DEF]), nl,
-  format('$ Level: ~w                                                                    $', [LVL]), nl,
-  format('$ Experience: ~w/~w                                                            $', [EXP, LUC]), nl,
-  format('$ Class: ~w                                                               $', [PC]), nl,
+   write('                                   ~Status Kamu~                                \n'),
+  format('  HP: ~w/~w', [HP, MaxHP]), nl,
+  format('  Attack: ~w', [ATK]), nl,
+  format('  Defense: ~w', [DEF]), nl,
+  format('  Level: ~w', [LVL]), nl,
+  format('  Experience: ~w/~w', [EXP, LUC]), nl,
+  format('  Class: ~w', [PC]), nl,
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 stats :-
@@ -82,14 +82,27 @@ help  :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 inventory :-
-    state(X),
-    X = not_started, !,
-    write('Inventory tidak tersedia karena permainan belum dimulai.'), nl.
+  state(X),
+  X = not_started, !,
+  write('Inventory tidak tersedia karena permainan belum dimulai.'), nl.
 
 inventory :-
-    state(X),
-    X = tutorial, !,
-    write('Inventory tidak tersedia selama tutorial.'), nl.
+  state(X),
+  X = tutorial, !,
+  write('Inventory tidak tersedia selama tutorial.'), nl.
 
 inventory :-
-    listInventory.
+  inventory(I),
+  I = [], !,
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('%                                ~Inventory~                                   %\n'),
+  write('%                                                                              %\n'),
+  write('%                            Inventory mu kosong                               %\n'),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
+
+inventory :-
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('%                                ~Inventory~                                   %\n'),
+  inventory(I),
+  listInventory(1, I),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').

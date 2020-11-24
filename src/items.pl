@@ -1,8 +1,11 @@
-/* list item yang valid 
+/* list item yang valid
 format: (nama, tipe)*/
 item(potion, consumable).
 item(xAtk, consumable).
 item(xDef, consumable).
+
+/* list item equip
+format: (nama, tipe, role) */
 item(pedang_1, weapon, swordsman).
 item(armor_1, armor, swordsman).
 item(pedang_2, weapon, swordsman).
@@ -13,6 +16,7 @@ item(pedang_4, weapon, swordsman).
 item(armor_4, armor, swordsman).
 item(pedang_5, weapon, swordsman).
 item(armor_5, armor, swordsman).
+
 item(busur_panah_dan_jangka_1, weapon, archer).
 item(jaket_1, armor, archer).
 item(busur_panah_dan_jangka_2, weapon, archer).
@@ -23,6 +27,7 @@ item(busur_panah_dan_jangka_4, weapon, archer).
 item(jaket_4, armor, archer).
 item(busur_panah_dan_jangka_5, weapon, archer).
 item(jaket_5, armor, archer).
+
 item(magic_stick_1, weapon, sorcerer).
 item(kaos_1, armor, sorcerer).
 item(magic_stick_2, weapon, sorcerer).

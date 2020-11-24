@@ -5,11 +5,36 @@ inventory([
   %potion,
   %potion,
   %potion,
-  %potion,
-  %potion
+  %pedang_1,
+  %jaket_1,
+  %xDef,
+  %xAtk,
+  %magic_stick_1,
+  %kaos_1
 ]).
 
-listInventory :- inventory(X), write(X).
+listInventory(_, []) :-
+  true, !. %do nothing
+listInventory(Counter, [H|T]) :-
+  item(H, consumable), !,
+  nl,
+  format('  ~w. ~w', [Counter, H]), nl,
+  item_effect(H, StatsAffacted, Effect),
+   write('     type: consumable'), nl,
+  format('     effect: ~w ~w', [Effect, StatsAffacted]), nl,
+  NextCounter is Counter + 1,
+  listInventory(NextCounter, T).
+
+listInventory(Counter, [H|T]) :-
+  item(H, WA, Role), !,
+  nl,
+  format('  ~w. ~w', [Counter, H]), nl,
+  item_effect(H, StatsAffacted, Effect),
+  format('     ~w untuk ~w', [WA, Role]), nl,
+   write('     type: equipment'), nl,
+  format('     effect: ~w ~w', [Effect, StatsAffacted]), nl,
+  NextCounter is Counter + 1,
+  listInventory(NextCounter, T).
 
 /* Inventory operator */
 
