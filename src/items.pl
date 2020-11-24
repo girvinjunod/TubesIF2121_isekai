@@ -78,7 +78,6 @@ item_effect(magic_stick_5, attack, 300).
 item_effect(kaos_5, armor, 50).
 
 /*
-
 drop chancenya (dri steal sama gacha)
 rarity 1 : 25%
 rarity 2 : 50%

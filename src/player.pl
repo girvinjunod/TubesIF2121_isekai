@@ -147,7 +147,7 @@ levelUp(Lebih) :-
     (
       acak(0, 100, R),
       R < 6, !,
-      write('Kamu diberkati oleh dewa-dewa Shichi Fukujin, kamu mendapatkan level up sekali lagi.'), nl,
+      write('Kamu diberkati oleh dewa-dewi Dosen, kamu mendapatkan level up sekali lagi.'), nl,
       levelUp(0, gacha)
     );
     (
