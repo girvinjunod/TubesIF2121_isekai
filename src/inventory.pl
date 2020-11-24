@@ -2,11 +2,11 @@
 :- include('list.pl').
 
 inventory([
-  health_potion,
-  health_potion,
-  health_potion,
-  health_potion,
-  health_potion
+  %potion,
+  %potion,
+  %potion,
+  %potion,
+  %potion
 ]).
 
 listInventory :- inventory(X), write(X).
@@ -24,3 +24,8 @@ removeFromInventory(X) :- inventory(OldInven),
   retractall(inventory(_)),
   removeFromList(X, OldInven, NewInven),
   asserta(inventory(NewInven)).
+
+countItemInInvetory(X, C) :-
+  inventory(I),
+  countItem(X, I, Cnt),
+  C is Cnt.

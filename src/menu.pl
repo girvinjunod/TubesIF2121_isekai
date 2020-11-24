@@ -80,3 +80,16 @@ help  :-
   write('% 1. start         : Mulai gim                                                 %\n'),
   write('% 2. exit          : Keluar dari gim                                           %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+
+inventory :-
+    state(X),
+    X = not_started, !,
+    write('Inventory tidak tersedia karena permainan belum dimulai.'), nl.
+
+inventory :-
+    state(X),
+    X = tutorial, !,
+    write('Inventory tidak tersedia selama tutorial.'), nl.
+
+inventory :-
+    listInventory.

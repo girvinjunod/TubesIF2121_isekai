@@ -9,6 +9,7 @@
 :- dynamic(armor/1).
 :- dynamic(name/1).
 :- dynamic(levelUpCap/1).
+:- dynamic(gold/1).
 
 class(swordsman).
 class(archer).
@@ -23,10 +24,12 @@ firstLevel :-
   retractall(levelUpCap(_)),
   retractall(experience(_)),
   retractall(hp(_)),
+  retractall(gold(_)),
   asserta(level(1)),
   asserta(levelUpCap(1000)),
   asserta(experience(0)),
-  asserta(hp(HP)).
+  asserta(hp(HP)),
+  asserta(gold(0)).
 
 setStat(swordsman) :-
   retractall(playerClass(_)),
@@ -44,8 +47,8 @@ setStat(archer) :-
   retractall(defense(_)),
   retractall(maxHP(_)),
   asserta(playerClass(archer)),
-  asserta(attack(13)),
-  asserta(defense(9)),
+  asserta(attack(12)),
+  asserta(defense(8)),
   asserta(maxHP(10)),!.
 
 setStat(sorcerer) :-
@@ -54,43 +57,9 @@ setStat(sorcerer) :-
   retractall(defense(_)),
   retractall(maxHP(_)),
   asserta(playerClass(sorcerer)),
-  asserta(attack(20)),
+  asserta(attack(15)),
   asserta(defense(5)),
   asserta(maxHP(8)),!.
-
-use(Item) :-
-  item_effect(Item, StatsAffacted, X),
-  ((
-    StatsAffacted = attack, !,
-    attack(ATK),
-    retractall(attack(_)),
-    NewATK is ATK + X,
-    asserta(attack(NewATK)),
-    removeFromInventory(Item)
-  );
-  (
-    StatsAffacted = hp, !,
-    hp(HP),
-    maxHP(Max),
-    ((
-      NewHP is HP + X,
-      NewHP =< Max
-    );
-    (
-      NewHP is Max
-    )),
-    retractall(hp(_)),
-    asserta(hp(NewHP)),
-    removeFromInventory(Item)
-  );
-  (
-    StatsAffacted = defense, !,
-    defense(DEF),
-    retractall(defense(_)),
-    NewDEF is DEF + X,
-    asserta(defense(NewDEF)),
-    removeFromInventory(Item)
-  )).
 
 setName(X) :-
   retractall(name(_)),
@@ -109,8 +78,50 @@ earnExp(X) :-
   retractall(experience(_)),
   asserta(experience(NewXP)).
 
+earnGold(X) :-
+  gold(CurrGold),
+  retractall(gold(_)),
+  NewGold is CurrGold + X,
+  asserta(gold(NewGold)).
+
+statsUp :- % Untuk sekarang, setiap naik level dpt +10 di semua stats
+  playerClass(archer), !,
+  attack(CurATK),
+  defense(CurDEF),
+  maxHP(CurHP),
+  retractall(attack(_)), retractall(defense(_)),
+  retractall(maxHP(_)), retractall(hp(_)),
+  NewATK is CurATK + 7,
+  NewDef is CurDef + 3,
+  NewHP is CurHP + 10,
+  asserta(attack(NewATK)), asserta(defense(NewDef)),
+  asserta(maxHP(NewHP)), asserta(hp(NewHP)).
+
 statsUp :-
-  write('Not implemented yet'), nl.
+  playerClass(swordsman), !,
+  attack(CurATK),
+  defense(CurDef),
+  maxHP(CurHP),
+  retractall(attack(_)), retractall(defense(_)),
+  retractall(maxHP(_)), retractall(hp(_)),
+  NewATK is CurATK + 4,
+  NewDef is CurDef + 4,
+  NewHP is CurHP + 12,
+  asserta(attack(NewATK)), asserta(defense(NewDef)),
+  asserta(maxHP(NewHP)), asserta(hp(NewHP)).
+
+statsUp :-
+  playerClass(sorcerer), !,
+  attack(CurATK),
+  defense(CurDef),
+  maxHP(CurHP),
+  retractall(attack(_)), retractall(defense(_)),
+  retractall(maxHP(_)), retractall(hp(_)),
+  NewATK is CurATK + 8,
+  NewDef is CurDef + 3,
+  NewHP is CurHP + 9,
+  asserta(attack(NewATK)), asserta(defense(NewDef)),
+  asserta(maxHP(NewHP)), asserta(hp(NewHP)).
 
 levelUp(Lebih) :-
   level(CurLVL),
@@ -135,7 +146,6 @@ levelUp(Lebih) :-
     asserta(experience(Lebih)),
     (
       acak(0, 100, R),
-      write(R), nl,
       R < 6, !,
       write('Kamu diberkati oleh dewa-dewa Shichi Fukujin, kamu mendapatkan level up sekali lagi.'), nl,
       levelUp(0, gacha)

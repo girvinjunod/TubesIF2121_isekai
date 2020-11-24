@@ -10,7 +10,7 @@ removeFromList(_, [], []) :- !.
 removeFromList(X, [X|T], T) :- !.
 removeFromList(X, [H|T], [H|Ret]) :- removeFromList(X, T, Ret), !.
 
-countItem(X, [], Cnt) :- Cnt is 0, !.
+countItem(_, [], Cnt) :- Cnt is 0, !.
 countItem(X, [Y], Cnt) :-
   (
     X \== Y, Cnt is 0;
