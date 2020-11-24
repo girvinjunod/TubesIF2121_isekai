@@ -1,8 +1,11 @@
 /* list item yang valid
+ * Kalo item diubah, tambahin di store.pl
 format: (nama, tipe)*/
 item(potion, consumable).
-item(xAtk, consumable).
-item(xDef, consumable).
+item(steroids, consumable).
+item(skincare, consumable).
+item(kupon_gacha_equipment, consumable).
+item(kupon_gacha_item, consumable).
 
 /* list item equip
 format: (nama, tipe, role) */
@@ -49,46 +52,50 @@ item(kaos_5, armor, sorcerer).
  * experience?
 */
 item_effect(potion, hp, 10).
-item_effect(xAtk, attack, 10).
-item_effect(xDef, defense, 10).
-item_effect(pedang_1, attack, 30).
-item_effect(armor_1, armor, 50).
-item_effect(pedang_2, attack, 60).
-item_effect(armor_2, armor, 100).
-item_effect(pedang_3, attack, 90).
-item_effect(armor_3, armor, 150).
-item_effect(pedang_4, attack, 120).
-item_effect(armor_4, armor, 200).
-item_effect(pedang_5, attack, 150).
-item_effect(armor_5, armor, 250).
-item_effect(busur_panah_dan_jangka_1, attack, 50).
-item_effect(jaket_1, armor, 20).
-item_effect(busur_panah_dan_jangka_2, attack, 100).
-item_effect(jaket_2, armor, 40).
-item_effect(busur_panah_dan_jangka_3, attack, 150).
-item_effect(jaket_3, armor, 60).
-item_effect(busur_panah_dan_jangka_4, attack, 200).
-item_effect(jaket_4, armor, 80).
-item_effect(busur_panah_dan_jangka_5, attack, 250).
-item_effect(jaket_5, armor, 100).
+item_effect(steroids, attack, 10).
+item_effect(skincare, defense, 10).
+item_effect(kupon_gacha_equipment, -, -).
+item_effect(kupon_gacha_item, -, -).
+
+% Common: (50%)
 item_effect(magic_stick_1, attack, 60).
 item_effect(kaos_1, armor, 10).
+item_effect(busur_panah_dan_jangka_1, attack, 50).
+item_effect(jaket_1, armor, 20).
+item_effect(pedang_1, attack, 30).
+item_effect(armor_1, armor, 50).
+
+% Rare: (30%)
 item_effect(magic_stick_2, attack, 120).
 item_effect(kaos_2, armor, 20).
+item_effect(busur_panah_dan_jangka_2, attack, 100).
+item_effect(jaket_2, armor, 40).
+item_effect(pedang_2, attack, 60).
+item_effect(armor_2, armor, 100).
+
+% Ultra Rare: (12%)
+item_effect(pedang_3, attack, 90).
+item_effect(armor_3, armor, 150).
+item_effect(busur_panah_dan_jangka_3, attack, 150).
+item_effect(jaket_3, armor, 60).
 item_effect(magic_stick_3, attack, 180).
 item_effect(kaos_3, armor, 30).
+
+% SR: (5%)
+item_effect(pedang_4, attack, 120).
+item_effect(armor_4, armor, 200).
+item_effect(busur_panah_dan_jangka_4, attack, 200).
+item_effect(jaket_4, armor, 80).
 item_effect(magic_stick_4, attack, 240).
 item_effect(kaos_4, armor, 40).
+
+% SSR: (3%)
+item_effect(pedang_5, attack, 150).
+item_effect(armor_5, armor, 250).
+item_effect(busur_panah_dan_jangka_5, attack, 250).
+item_effect(jaket_5, armor, 100).
 item_effect(magic_stick_5, attack, 300).
 item_effect(kaos_5, armor, 50).
-
-/*
-drop chancenya (dri steal sama gacha)
-rarity 1 : 25%
-rarity 2 : 50%
-rarity 3 : 25%
-rarity 4 : 15%
-rarity 5 : 5%*/
 
 /* Penggunaan item */
 use(_) :-

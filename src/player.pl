@@ -146,7 +146,7 @@ levelUp(Lebih) :-
     asserta(experience(Lebih)),
     (
       acak(0, 100, R),
-      R < 6, !,
+      R < 5, !,
       write('Kamu diberkati oleh dewa-dewi Dosen, kamu mendapatkan level up sekali lagi.'), nl,
       levelUp(0, gacha)
     );
