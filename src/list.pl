@@ -23,3 +23,10 @@ countItem(X, [Y|Z], Cnt) :-
     X == Y, Cnt is LastCnt+1;
     X \== Y, Cnt is LastCnt
   ), !.
+
+/* asumsi: 0<N<=size List */
+removeNth([_|Tail],1,Tail).
+removeNth([Head|Tail],N,Ret) :-
+	NextN is N - 1,
+	removeNth(Tail,NextN,Tmp),
+	Ret = [Head|Tmp].
