@@ -5,8 +5,8 @@
 :- dynamic(playerClass/1).
 :- dynamic(attack/1).
 :- dynamic(defense/1).
-:- dynamic(weapon/1).
-:- dynamic(armor/1).
+:- dynamic(weaponequipped/1).
+:- dynamic(armorequipped/1).
 :- dynamic(name/1).
 :- dynamic(levelUpCap/1).
 :- dynamic(gold/1).
