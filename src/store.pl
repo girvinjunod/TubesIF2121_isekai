@@ -1,4 +1,4 @@
-store :-
+store :- % Permainan belum dimulai
   state(not_started), !,
   write('Permainan belum dimulai, kamu tidak dapat ke store.'), nl.
 
@@ -8,7 +8,7 @@ store :- % Player tidak di store
   Cell \= store_cell, !,
   write('Gagal membuka store karena kamu sedang tidak di store.'), nl.
 
-store :-
+store :- % Player di store
   state(free),
   player_cell(Cell),
   Cell = store_cell, !,
@@ -36,12 +36,12 @@ store :-
     hargaItem(Item, Harga),
     QtyHarga is Harga*Qty,
     (
-      (
+      ( % Uang kurang
         UangTersedia < QtyHarga, !,
         write('Kamu kurang cukup kaya untuk membeli item ini.'), nl,
         write('Go slay some monster atau ambil lah quest terlebih dahulu.'), nl
       );
-      (
+      ( % Transaksi berhasil
         NewGold is UangTersedia - QtyHarga,
         retractall(gold(_)),
         asserta(gold(NewGold)),
@@ -51,7 +51,7 @@ store :-
     )
   ).
 
-sell :-
+sell :- % Permainan belum dimulai
   state(not_started), !,
   write('Permainan belum dimulai, kamu tidak dapat ke store.'), nl.
 
@@ -61,7 +61,7 @@ sell :- % Player tidak di store
   Cell \= store_cell, !,
   write('Gagal membuka store karena kamu sedang tidak di store.'), nl.
 
-sell :-
+sell :- % Player tidak memiliki item
   state(free),
   player_cell(Cell),
   Cell = store_cell,
@@ -69,7 +69,7 @@ sell :-
   I = [], !,
   write('Kamu tidak memiliki item yang dapat dijual :(.'), nl.
 
-sell :-
+sell :- % Player di store
   state(free),
   player_cell(Cell),
   Cell = store_cell, !,
@@ -110,7 +110,6 @@ sell :-
 * Rare: 25%%
 * Common: 50%
 */
-
 randomizeArmor(X, Item) :-
   X < 5, !,
   Y is X mod 3,
@@ -222,6 +221,12 @@ gachaEquipment :-
   addToInventory(Item),
   format('Selamat, kamu mendapatkan: ~w dari gacha! :D', [Item]), nl.
 
+/*
+* drop chancenya (dri gacha)
+* potion: 75%
+* skincare: 13%
+* steroids: 12%
+*/
 gachaItem :-
   countItemInInvetory(kupon_gacha_item, Cnt),
   Cnt =:= 0, !,

@@ -7,11 +7,8 @@
 :- dynamic(monster_lvl/1).
 
 monster_encounter :-
-	state(S),
-	%random(X),
 	acak(X),
 	X < 0.4,
-	%random(Y),
 	acak(Y),
 	randomize_monster(Y),
 	write('Encountered '),
