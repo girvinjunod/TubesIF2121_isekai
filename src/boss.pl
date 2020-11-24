@@ -55,7 +55,7 @@ boss(X) :-
 	write('Dia pun melihat dirinya sudah kembali lagi ke semula dengan pakaian biasanya dan tanpa kekuatan apa pun.\n'),
 	write('Dia meraba-raba kantongnya dan menemukan HPnya di sana, lalu ketika ia menyalakan HPnya ia pun terkejur.\n'),
 	nl,
-	write('Disitu tertulis tanggal 28 November 2020\n'),
+	write('Disitu tertulis tanggal 30 November 2020\n'),
 	nl,
 	write('"Hah kacau, udah deadline tubes Alstrukdat dong!!!!"\n'),
 	nl,nl,nl,
