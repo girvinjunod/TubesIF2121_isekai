@@ -4,17 +4,14 @@ store :-
 
 store :- % Player tidak di store
   state(free),
-  store_coordinate(Xs,Ys),
-  player_coordinate(Xp,Yp),
-  (Xs \= Xp, !; Ys \= Yp, !),
+  player_cell(Cell),
+  Cell \= store_cell, !,
   write('Gagal membuka store karena kamu sedang tidak di store.'), nl.
 
 store :- % Item dijual
   state(free),
-  store_coordinate(Xs,Ys),
-  player_coordinate(Xp,Yp),
-  Xs =:= Xp, !,
-  Ys =:= Yp, !,
+  player_cell(Cell),
+  Cell = store_cell, !,
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   write('%                                   ~Store~                                    %\n'),
   write('%                                                                              %\n'),
