@@ -25,11 +25,15 @@ firstLevel :-
   retractall(experience(_)),
   retractall(hp(_)),
   retractall(gold(_)),
+  retractall(weapon(_)),
+  retractall(armor(_)),
   asserta(level(1)),
   asserta(levelUpCap(1000)),
   asserta(experience(0)),
   asserta(hp(HP)),
-  asserta(gold(0)).
+  asserta(gold(0)),
+  asserta(weapon(telanjang)),
+  asserta(armor(telanjang)).
 
 setStat(swordsman) :-
   retractall(playerClass(_)),

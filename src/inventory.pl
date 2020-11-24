@@ -45,6 +45,14 @@ addToInventory(X) :- inventory(OldInven),
   addToList(X, OldInven, NewInven),
   asserta(inventory(NewInven)), !.
 
+addToInventory(X, 1) :-
+  addToInventory(X).
+
+addToInventory(X, Cnt) :-
+  addToInventory(X),
+  NewCnt is Cnt-1,
+  addToInventory(X, NewCnt).
+
 removeFromInventory(X) :- inventory(OldInven),
   retractall(inventory(_)),
   removeFromList(X, OldInven, NewInven),

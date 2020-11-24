@@ -203,3 +203,13 @@ unequip(Gear) :-
   retract(armorequipped(X)),
   X = Gear,
   write(Gear), write('telah di-unequip.'), !.
+drop(X) :-
+  removeFromInventory(X).
+
+drop(X, 1) :-
+  removeFromInventory(X).
+
+drop(X, Cnt) :-
+  removeFromInventory(X),
+  NewCnt is Cnt-1,
+  drop(X, NewCnt).
