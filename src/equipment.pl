@@ -1,4 +1,3 @@
-/* equip item*/
 equip(Gear) :-
     \+item(Gear,_,_),
     write('Item itu tidak ada.'),!.
@@ -16,16 +15,58 @@ equip(Gear) :-
     playerClass(X),
     Job = X,
     Slot = weapon,
-    retractall(weaponequipped(_)),
-    asserta(weaponequipped(Gear)),!.
+    \+retract(weaponequipped(_)),
+    asserta(weaponequipped(Gear)),
+    item_effect(Gear,Tipe,Stats),
+    Tipe = attack,
+    attack(ATK),
+    retractall(attack(_)),
+    NewATK is ATK + Stats,
+    asserta(attack(NewATK)),!.
 equip(Gear) :-
     item(Gear,Slot,Job),
     playerClass(X),
     Job = X,
     Slot = armor,
-    retractall(armorequipped(_)),
-    asserta(armorequipped(Gear)),!.
-/*unequip item*/
+    \+retract(armorequipped(_)),
+    asserta(armorequipped(Gear)),
+    item_effect(Gear,Tipe,Stats),
+    Tipe = defense,
+    defense(DEF),
+    retractall(defense(_)),
+    NewDEF is DEF + Stats,
+    asserta(defense(NewDEF)),
+    !.
+equip(Gear) :-
+    item(Gear,Slot,Job),
+    playerClass(X),
+    Job = X,
+    Slot = weapon,
+    retract(weaponequipped(Y)),
+    asserta(weaponequipped(Gear)),
+    item_effect(Gear,Tipe,Stats),
+    item_effect(Y,_, Dulu),
+    Tipe = attack,
+    attack(ATK),
+    retractall(attack(_)),
+    NewATK is ATK - Dulu + Stats,
+    asserta(attack(NewATK)),!.
+equip(Gear) :-
+    item(Gear,Slot,Job),
+    playerClass(X),
+    Job = X,
+    Slot = armor,
+    retract(armorequipped(Y)),
+    asserta(armorequipped(Gear)),
+    item_effect(Gear,Tipe,Stats),
+    item_effect(Y,_, Dulu),
+    Tipe = defense,
+    defense(DEF),
+    retractall(defense(_)),
+    NewDEF is DEF - Dulu + Stats,
+    asserta(defense(NewDEF)),!.
+
+
 unequip(Gear) :-
     \+(item(Gear,_,_)),
     write('Item itu tidak ada.'), !.
@@ -41,6 +82,11 @@ unequip(Gear) :-
   Slot = weapon,
   retract(weaponequipped(X)),
   X = Gear,
+  item_effect(X,_,Stats),
+  attack(ATK),
+  retractall(attack(_)),
+  NewATK is ATK - Stats,
+  asserta(attack(NewATK)),
   write(Gear), write('telah di-unequip.'), !.
 unequip(Gear) :-
   item(Gear,Slot,_),
@@ -54,4 +100,9 @@ unequip(Gear) :-
   Slot = armor,
   retract(armorequipped(X)),
   X = Gear,
+  item_effect(X,_,Stats),
+  defense(DEF),
+  retractall(defense(_)),
+  NewDEF is DEF - Stats,
+  asserta(defense(NewDEF)),
   write(Gear), write('telah di-unequip.'), !.
