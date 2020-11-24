@@ -103,4 +103,4 @@ formulir(X) :-
 
 battleTutorial(X) :-
   setState(tutorial),
-  write('hia battle ceunah'), nl.
+  format('hia ~w battle ceunah', X), nl.

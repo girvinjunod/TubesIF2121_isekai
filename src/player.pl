@@ -88,7 +88,7 @@ earnGold(X) :-
   NewGold is CurrGold + X,
   asserta(gold(NewGold)).
 
-statsUp :- % Untuk sekarang, setiap naik level dpt +10 di semua stats
+statsUp :-
   playerClass(archer), !,
   attack(CurATK),
   defense(CurDEF),
@@ -96,7 +96,7 @@ statsUp :- % Untuk sekarang, setiap naik level dpt +10 di semua stats
   retractall(attack(_)), retractall(defense(_)),
   retractall(maxHP(_)), retractall(hp(_)),
   NewATK is CurATK + 7,
-  NewDef is CurDef + 3,
+  NewDef is CurDEF + 3,
   NewHP is CurHP + 10,
   asserta(attack(NewATK)), asserta(defense(NewDef)),
   asserta(maxHP(NewHP)), asserta(hp(NewHP)).
@@ -104,12 +104,12 @@ statsUp :- % Untuk sekarang, setiap naik level dpt +10 di semua stats
 statsUp :-
   playerClass(swordsman), !,
   attack(CurATK),
-  defense(CurDef),
+  defense(CurDEF),
   maxHP(CurHP),
   retractall(attack(_)), retractall(defense(_)),
   retractall(maxHP(_)), retractall(hp(_)),
   NewATK is CurATK + 4,
-  NewDef is CurDef + 4,
+  NewDef is CurDEF + 4,
   NewHP is CurHP + 12,
   asserta(attack(NewATK)), asserta(defense(NewDef)),
   asserta(maxHP(NewHP)), asserta(hp(NewHP)).
@@ -117,12 +117,12 @@ statsUp :-
 statsUp :-
   playerClass(sorcerer), !,
   attack(CurATK),
-  defense(CurDef),
+  defense(CurDEF),
   maxHP(CurHP),
   retractall(attack(_)), retractall(defense(_)),
   retractall(maxHP(_)), retractall(hp(_)),
   NewATK is CurATK + 8,
-  NewDef is CurDef + 3,
+  NewDef is CurDEF + 3,
   NewHP is CurHP + 9,
   asserta(attack(NewATK)), asserta(defense(NewDef)),
   asserta(maxHP(NewHP)), asserta(hp(NewHP)).
