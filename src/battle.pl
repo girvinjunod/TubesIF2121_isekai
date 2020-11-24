@@ -116,6 +116,7 @@ monster_die :-
 	current_monster(Name),
 	monster_exp(XP),
 	earnExp(XP),
+	update_active_quest(Name),
 	write(Name),
 	write(' has been defeated.'), nl,
 	write('Gained '),
