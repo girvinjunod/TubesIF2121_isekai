@@ -145,3 +145,15 @@ use(Item) :-
     asserta(defense(NewDEF)),
     removeFromInventory(Item)
   )).
+
+
+drop(X) :-
+  removeFromInventory(X).
+
+drop(X, 1) :-
+  removeFromInventory(X).
+
+drop(X, Cnt) :-
+  removeFromInventory(X),
+  NewCnt is Cnt-1,
+  drop(X, NewCnt).

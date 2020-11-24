@@ -28,12 +28,14 @@ mainMenu :-
 
 status :-
   hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP),
-  levelUpCap(LUC), playerClass(PC), gold(Gold),
+  levelUpCap(LUC), playerClass(PC), gold(Gold), armor(ARMOR), weapon(WEAP),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
    write('                                   ~Status Kamu~                                \n'),
   format('  HP          : ~w/~w', [HP, MaxHP]), nl,
   format('  Attack      : ~w', [ATK]), nl,
   format('  Defense     : ~w', [DEF]), nl,
+  format('  Weapon      : ~w', [WEAP]), nl,
+  format('  Armor       : ~w', [ARMOR]), nl,
   format('  Level       : ~w', [LVL]), nl,
   format('  Experience  : ~w/~w', [EXP, LUC]), nl,
   format('  Class       : ~w', [PC]), nl,
@@ -60,7 +62,7 @@ help :-
   write('% 11. exit         : keluar dari gim                                           %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
-help  :-
+help :-
   state(battle), !,
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   write('%                              ~Perintah Battle~                               %\n'),
@@ -75,7 +77,7 @@ help  :-
   write('% 9. save         : Menyimpan gim                                             %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
-help  :-
+help :-
   state(not_started), !,
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   write('%                                  ~Menu~                                      %\n'),

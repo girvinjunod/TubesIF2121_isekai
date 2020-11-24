@@ -8,12 +8,14 @@ store :- % Player tidak di store
   Cell \= store_cell, !,
   write('Gagal membuka store karena kamu sedang tidak di store.'), nl.
 
-store :- % Item dijual
+store :-
   state(free),
   player_cell(Cell),
   Cell = store_cell, !,
+  gold(UangTersedia),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   write('%                                   ~Store~                                    %\n'),
+  format('  Uang tersedia: ~w\n', [UangTersedia]),
   write('%                                                                              %\n'),
   write('% Item yang kami jual:                                                         %\n'),
   write('% 1. potion (50 gold)                                                          %\n'),
@@ -28,24 +30,74 @@ store :- % Item dijual
       \+hargaItem(Item, Harga), !,
       write('Kami tidak menjual item itu :(.'), nl
     );
+    write('Berapa banyak? '),
+    read(Qty),
+    gold(UangTersedia),
+    hargaItem(Item, Harga),
+    QtyHarga is Harga*Qty,
     (
       (
-        (
-          gold(UangTersedia),
-          hargaItem(Item, Harga),
-          UangTersedia < Harga, !,
-          write('Kamu kurang cukup kaya untuk membeli item ini.'), nl,
-          write('Go slay some monster atau ambil lah quest terlebih dahulu.'), nl
-        );
-        (
-          gold(UangTersedia),
-          hargaItem(Item, Harga),
-          NewGold is UangTersedia - Harga,
-          retractall(gold(_)),
-          asserta(gold(NewGold)),
-          format('Selamat atas pembelian ~w kamu! Senang berbisnis dengan mu.', [Item]), nl,
-          addToInventory(Item)
-        )
+        UangTersedia < QtyHarga, !,
+        write('Kamu kurang cukup kaya untuk membeli item ini.'), nl,
+        write('Go slay some monster atau ambil lah quest terlebih dahulu.'), nl
+      );
+      (
+        NewGold is UangTersedia - QtyHarga,
+        retractall(gold(_)),
+        asserta(gold(NewGold)),
+        format('Selamat atas pembelian ~w kamu! Senang berbisnis dengan mu.', [Item]), nl,
+        addToInventory(Item, Qty), !
+      )
+    )
+  ).
+
+sell :-
+  state(not_started), !,
+  write('Permainan belum dimulai, kamu tidak dapat ke store.'), nl.
+
+sell :- % Player tidak di store
+  state(free),
+  player_cell(Cell),
+  Cell \= store_cell, !,
+  write('Gagal membuka store karena kamu sedang tidak di store.'), nl.
+
+sell :-
+  state(free),
+  player_cell(Cell),
+  Cell = store_cell,
+  inventory(I),
+  I = [], !,
+  write('Kamu tidak memiliki item yang dapat dijual :(.'), nl.
+
+sell :-
+  state(free),
+  player_cell(Cell),
+  Cell = store_cell, !,
+  inventory,
+  nl,
+  write('Masukkan nama item yang mau kamu jual: '),
+  read(Item),
+  (
+    ( % Kasus item yg dibeli ga ada
+      \+hargaItem(Item, Harga), !,
+      write('Kami tidak membeli item itu :(.'), nl
+    );
+    write('Berapa banyak? '),
+    read(Qty),
+    (
+      (% Kasus ga punya itemnya
+        countItemInInvetory(Item, C),
+        C < Qty, !,
+        format('Kamu tidak memiliki ~w sebanyak itu :(', [Item]), nl
+      );
+      (
+        gold(UangTersedia),
+        hargaItem(Item, Harga),
+        NewGold is UangTersedia + ((Harga // 2)*Qty),
+        retractall(gold(_)),
+        asserta(gold(NewGold)),
+        format('Terima kasih atas penjualan ~w kamu! Senang berbisnis dengan mu.', [Item]), nl,
+        drop(Item, Qty), !
       )
     )
   ).
