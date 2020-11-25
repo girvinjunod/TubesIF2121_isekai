@@ -57,6 +57,7 @@ status :-
   format('  Experience  : ~w/~w', [EXP, LUC]), nl,
   format('  Class       : ~w', [PC]), nl,
   format('  Gold        : ~w', [Gold]), nl,
+   write('  Active Quest: Kamu sedang tidak mengambil quest\n'),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 stats :-
@@ -87,7 +88,6 @@ help :-
   write('% 17. gachaItem        : Melakukan gacha item (harus memiliki kupon gacha)         %\n'),
   write('%                                                                                  %\n'),
   write('% 18. quest            : Mengambil quest (hanya bisa di quest (Q))                 %\n'),
-  write('% 18. cek_active_quest : Melihat quest yang sedang diambil                         %\n'),
   write('%                                                                                  %\n'),
   write('% 15. save             : Menyimpan gim                                             %\n'),
   write('% 16. exit             : keluar dari gim                                           %\n'),
