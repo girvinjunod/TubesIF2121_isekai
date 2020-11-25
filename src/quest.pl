@@ -121,10 +121,10 @@ active_quest_reward :-
 cek_active_quest :-
 	active_quest(S,Go,W,Gh,_,_),
 	!,
-	S = 0, !,
-	Go = 0, !,
-	W = 0, !,
-	Gh = 0, !,
+	S = 0,
+	Go = 0,
+	W = 0,
+	Gh = 0,
 	active_quest_reward, !.
 
 /* update active quest abis battle */
