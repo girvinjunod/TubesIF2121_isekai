@@ -7,7 +7,7 @@
 :- include('map.pl').
 :- include('battle.pl').
 :- include('store.pl').
-:- include('quest.pl').
+:- include('equipment.pl').
 
 :- dynamic(state/1).
 

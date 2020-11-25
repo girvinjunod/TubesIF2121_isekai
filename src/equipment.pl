@@ -1,3 +1,20 @@
+equip(telanjang) :-
+	retract(weaponequipped(X)),
+	retract(armorequipped(Y)),
+	item_effect(X,_, ATKDulu),
+	item_effect(Y,_, DEFDulu),
+	attack(ATK),
+    retractall(attack(_)),
+    NewATK is ATK - ATKDulu,
+    asserta(attack(NewATK)),
+	defense(DEF),
+    retractall(defense(_)),
+    NewDEF is DEF - DEFDulu,
+    asserta(defense(NewDEF)),
+	asserta(weaponequipped(telanjang)),
+	asserta(armorequipped(telanjang)),
+	write('Anda telah menelanjangkan diri.'), !.
+	
 equip(Gear) :-
     \+item(Gear,_,_),
     write('Item itu tidak ada.'),!.
@@ -9,34 +26,7 @@ equip(Gear) :-
     item(Gear,_,Job),
     playerClass(X),
     Job \= X,
-    write('Equipment tidak cocok dengan job kamu.'),!.
-equip(Gear) :-
-    item(Gear,Slot,Job),
-    playerClass(X),
-    Job = X,
-    Slot = weapon,
-    \+retract(weaponequipped(_)),
-    asserta(weaponequipped(Gear)),
-    item_effect(Gear,Tipe,Stats),
-    Tipe = attack,
-    attack(ATK),
-    retractall(attack(_)),
-    NewATK is ATK + Stats,
-    asserta(attack(NewATK)),!.
-equip(Gear) :-
-    item(Gear,Slot,Job),
-    playerClass(X),
-    Job = X,
-    Slot = armor,
-    \+retract(armorequipped(_)),
-    asserta(armorequipped(Gear)),
-    item_effect(Gear,Tipe,Stats),
-    Tipe = defense,
-    defense(DEF),
-    retractall(defense(_)),
-    NewDEF is DEF + Stats,
-    asserta(defense(NewDEF)),
-    !.
+    write('Equipment tidak cocok dengan job Anda.'),!.
 equip(Gear) :-
     item(Gear,Slot,Job),
     playerClass(X),
@@ -50,7 +40,8 @@ equip(Gear) :-
     attack(ATK),
     retractall(attack(_)),
     NewATK is ATK - Dulu + Stats,
-    asserta(attack(NewATK)),!.
+    asserta(attack(NewATK)),
+	write(Gear),write(' telah di-equip.'),!.
 equip(Gear) :-
     item(Gear,Slot,Job),
     playerClass(X),
@@ -64,9 +55,10 @@ equip(Gear) :-
     defense(DEF),
     retractall(defense(_)),
     NewDEF is DEF - Dulu + Stats,
-    asserta(defense(NewDEF)),!.
+    asserta(defense(NewDEF)),
+	write(Gear),write(' telah di-equip.'),!.
 
-
+unequip(telanjang) :- write('Sudah telanjang tidak bisa unequip apa-apa lagi :v'), !.
 unequip(Gear) :-
     \+(item(Gear,_,_)),
     write('Item itu tidak ada.'), !.
@@ -76,7 +68,7 @@ unequip(Gear) :-
   retract(weaponequipped(X)),
   X \= Gear,
   write('Kamu tidak sedang memakai item itu.'),
-  equip(Gear), !.
+  asserta(weaponequipped(Gear)), !.
 unequip(Gear) :-
   item(Gear,Slot,_),
   Slot = weapon,
@@ -87,6 +79,7 @@ unequip(Gear) :-
   retractall(attack(_)),
   NewATK is ATK - Stats,
   asserta(attack(NewATK)),
+  asserta(weaponequipped(telanjang)),
   write(Gear), write('telah di-unequip.'), !.
 unequip(Gear) :-
   item(Gear,Slot,_),
@@ -94,7 +87,7 @@ unequip(Gear) :-
   retract(armorequipped(X)),
   X \= Gear,
   write('Kamu tidak sedang memakai item itu.'),
-  equip(Gear), !.
+  asserta(armorequipped(Gear)), !.
 unequip(Gear) :-
   item(Gear,Slot,_),
   Slot = armor,
@@ -105,4 +98,5 @@ unequip(Gear) :-
   retractall(defense(_)),
   NewDEF is DEF - Stats,
   asserta(defense(NewDEF)),
+  asserta(armorequipped(telanjang)),
   write(Gear), write('telah di-unequip.'), !.
