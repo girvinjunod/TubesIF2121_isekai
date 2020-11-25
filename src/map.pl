@@ -129,7 +129,7 @@ printCell(R,C) :-
 printCell(R,C) :-
 	dungeon_boss_coordinate(R,C),
 	!,
-	write('D').
+	write('B').
 printCell(R,C) :-
 	quest_coordinate(R,C),
 	!,
