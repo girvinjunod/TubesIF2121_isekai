@@ -39,7 +39,7 @@ status :-
   format('  Armor       : ~w', [ARMOR]), nl,
   format('  Level       : ~w', [LVL]), nl,
   format('  Experience  : ~w/~w', [EXP, LUC]), nl,
-  format('  Class       : ~w', [PC]), nl,
+  format('  Job         : ~w', [PC]), nl,
   format('  Gold        : ~w', [Gold]), nl,
   format('  Active Quest: ~d Slime(s) ~d Goblin(s) ~d Wolf(s) ~d Ghost(s) ~d Exp(s) ~d Gold(s)\n',[S,Go,W,Gh,QuestExp,QuestGold]),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
@@ -55,7 +55,7 @@ status :-
   format('  Armor       : ~w', [ARMOR]), nl,
   format('  Level       : ~w', [LVL]), nl,
   format('  Experience  : ~w/~w', [EXP, LUC]), nl,
-  format('  Class       : ~w', [PC]), nl,
+  format('  Job         : ~w', [PC]), nl,
   format('  Gold        : ~w', [Gold]), nl,
    write('  Active Quest: Kamu sedang tidak mengambil quest\n'),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
@@ -91,6 +91,13 @@ help :-
   write('%                                                                                  %\n'),
   write('% 15. save             : Menyimpan gim                                             %\n'),
   write('% 16. exit             : keluar dari gim                                           %\n'),
+  write('%                                                                                  %\n'),
+  write('%                                   ~Legenda Map~                                  %\n'),
+  write('% 1. P                 : Player                                                    %\n'),
+  write('% 2. S                 : Store                                                     %\n'),
+  write('% 3. B                 : Boss                                                      %\n'),
+  write('% 4. #                 : Pagar                                                     %\n'),
+  write('% 4. -                 : Jalan                                                     %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 help :-
