@@ -17,11 +17,11 @@ equip(telanjang) :-
 
 equip(Gear) :-
 	\+item(Gear,_,_),
-	write('Item itu tidak ada.'),!.
+	write('Equipment itu tidak ada.'),!.
 equip(Gear) :-
   countItemInInvetory(Gear, GearCount),
   GearCount =:= 0, !,
-  write('Kamu tidak memiliki item itu.'), !.
+  write('Kamu tidak memiliki equipment itu.'), !.
 equip(Gear) :-
 	item(Gear,_,Job),
 	playerClass(X),
@@ -61,13 +61,13 @@ equip(Gear) :-
 unequip(telanjang) :- write('Sudah telanjang tidak bisa unequip apa-apa lagi :v'), !.
 unequip(Gear) :-
 	\+(item(Gear,_,_)),
-	write('Item itu tidak ada.'), !.
+	write('Equipment itu tidak ada.'), !.
 unequip(Gear) :-
   item(Gear,Slot,_),
   Slot = weapon,
   retract(weaponequipped(X)),
   X \= Gear,
-  write('Kamu tidak sedang memakai item itu.'),
+  write('Kamu tidak sedang memakai equipment itu.'),
   asserta(weaponequipped(Gear)), !.
 unequip(Gear) :-
   item(Gear,Slot,_),
@@ -86,7 +86,7 @@ unequip(Gear) :-
   Slot = armor,
   retract(armorequipped(X)),
   X \= Gear,
-  write('Kamu tidak sedang memakai item itu.'),
+  write('Kamu tidak sedang memakai equipment itu.'),
   asserta(armorequipped(Gear)), !.
 unequip(Gear) :-
   item(Gear,Slot,_),

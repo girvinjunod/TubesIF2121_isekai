@@ -38,10 +38,10 @@ randomize_monster(X, Lvl) :-
 	X < 0.5,
 	setState(battle),
 	asserta(current_monster('slime')),
-	HP is 5 * Lvl + 5,
-	Atk is 3 * Lvl + 2,
-	Def is 2 * Lvl + 1,
-	XP is 25 * Lvl + 150,
+	HP is 50 * Lvl + 150,
+	Atk is 3 * Lvl + 10,
+	Def is 10 * Lvl + 100,
+	XP is 10 * Lvl + 50,
 	asserta(monster_hp(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
@@ -57,9 +57,9 @@ randomize_monster(X, Lvl) :-
 		Lvl > 30, MLvl is 30;
 		MLvl is Lvl
 	),
-	HP is 10 * MLvl + 3,
-	Atk is 4 * MLvl + 2,
-	Def is 4 * MLvl + 1,
+	HP is 25 * MLvl + 150,
+	Atk is 10 * MLvl + 15,
+	Def is 5 * MLvl + 5,
 	XP is 35 * MLvl + 225,
 	asserta(monster_hp(HP)),
 	asserta(monster_atk(Atk)),
@@ -76,8 +76,8 @@ randomize_monster(X, Lvl) :-
 		Lvl > 45, MLvl is 45;
 		MLvl is Lvl
 	),
-	HP is 15 * MLvl + 5,
-	Atk is 8 * MLvl + 2,
+	HP is 30 * MLvl + 150,
+	Atk is 15 * MLvl + 20,
 	Def is 10 * MLvl + 5,
 	XP is 55 * MLvl + 325,
 	asserta(monster_hp(HP)),
@@ -95,7 +95,7 @@ randomize_monster(_, Lvl) :-
 		Lvl > 70; MLvl is 70;
 		MLvl is Lvl
 	),
-	HP is 50 * MLvl + 5,
+	HP is 40 * MLvl + 200,
 	Atk is 20 * MLvl + 2,
 	Def is 30 * MLvl + 5,
 	XP is 100 * MLvl + 325,
@@ -240,7 +240,7 @@ special_attack :-
 	!.
 
 special_attack :-
-	write('You can\'t use that now, that\'d be cheating...').
+	write('Special attack masih cooldown...').
 
 attack :-
 	special_counter,

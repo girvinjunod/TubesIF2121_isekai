@@ -41,9 +41,9 @@ setStat(swordsman) :-
   retractall(defense(_)),
   retractall(maxHP(_)),
   asserta(playerClass(swordsman)),
-  asserta(attack(10)),
-  asserta(defense(10)),
-  asserta(maxHP(10)),!.
+  asserta(attack(50)),
+  asserta(defense(150)),
+  asserta(maxHP(800)),!.
 
 setStat(archer) :-
   retractall(playerClass(_)),
@@ -51,9 +51,9 @@ setStat(archer) :-
   retractall(defense(_)),
   retractall(maxHP(_)),
   asserta(playerClass(archer)),
-  asserta(attack(12)),
-  asserta(defense(8)),
-  asserta(maxHP(10)),!.
+  asserta(attack(150)),
+  asserta(defense(50)),
+  asserta(maxHP(500)),!.
 
 setStat(sorcerer) :-
   retractall(playerClass(_)),
@@ -61,9 +61,9 @@ setStat(sorcerer) :-
   retractall(defense(_)),
   retractall(maxHP(_)),
   asserta(playerClass(sorcerer)),
-  asserta(attack(15)),
-  asserta(defense(5)),
-  asserta(maxHP(8)),!.
+  asserta(attack(200)),
+  asserta(defense(50)),
+  asserta(maxHP(400)),!.
 
 setName(X) :-
   retractall(name(_)),
@@ -95,9 +95,9 @@ statsUp :-
   maxHP(CurHP),
   retractall(attack(_)), retractall(defense(_)),
   retractall(maxHP(_)), retractall(hp(_)),
-  NewATK is CurATK + 7,
-  NewDef is CurDEF + 3,
-  NewHP is CurHP + 10,
+  NewATK is CurATK + 15,
+  NewDef is CurDEF + 10,
+  NewHP is CurHP + 30,
   asserta(attack(NewATK)), asserta(defense(NewDef)),
   asserta(maxHP(NewHP)), asserta(hp(NewHP)).
 
@@ -108,9 +108,9 @@ statsUp :-
   maxHP(CurHP),
   retractall(attack(_)), retractall(defense(_)),
   retractall(maxHP(_)), retractall(hp(_)),
-  NewATK is CurATK + 4,
-  NewDef is CurDEF + 4,
-  NewHP is CurHP + 12,
+  NewATK is CurATK + 10,
+  NewDef is CurDEF + 20,
+  NewHP is CurHP + 50,
   asserta(attack(NewATK)), asserta(defense(NewDef)),
   asserta(maxHP(NewHP)), asserta(hp(NewHP)).
 
@@ -121,9 +121,9 @@ statsUp :-
   maxHP(CurHP),
   retractall(attack(_)), retractall(defense(_)),
   retractall(maxHP(_)), retractall(hp(_)),
-  NewATK is CurATK + 8,
-  NewDef is CurDEF + 3,
-  NewHP is CurHP + 9,
+  NewATK is CurATK + 30,
+  NewDef is CurDEF + 5,
+  NewHP is CurHP + 20,
   asserta(attack(NewATK)), asserta(defense(NewDef)),
   asserta(maxHP(NewHP)), asserta(hp(NewHP)).
 
