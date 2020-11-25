@@ -27,6 +27,24 @@ mainMenu :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 status :-
+  active_quest(S,Go,W,Gh,QuestExp,QuestGold),
+  !,
+  hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP),
+  levelUpCap(LUC), playerClass(PC), gold(Gold), armorequipped(ARMOR), weaponequipped(WEAP),
+   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+   write('                                   ~Status Kamu~                                \n'),
+  format('  HP          : ~w/~w', [HP, MaxHP]), nl,
+  format('  Attack      : ~w', [ATK]), nl,
+  format('  Defense     : ~w', [DEF]), nl,
+  format('  Weapon      : ~w', [WEAP]), nl,
+  format('  Armor       : ~w', [ARMOR]), nl,
+  format('  Level       : ~w', [LVL]), nl,
+  format('  Experience  : ~w/~w', [EXP, LUC]), nl,
+  format('  Class       : ~w', [PC]), nl,
+  format('  Gold        : ~w', [Gold]), nl,
+  format('  Active Quest: ~d Slime(s) ~d Goblin(s) ~d Wolf(s) ~d Ghost(s) ~d Exp(s) ~d Gold(s)\n',[S,Go,W,Gh,QuestExp,QuestGold]),
+   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+status :-
   hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP),
   levelUpCap(LUC), playerClass(PC), gold(Gold), armorequipped(ARMOR), weaponequipped(WEAP),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),

@@ -62,6 +62,7 @@ start :-
 newGame :-
   setState(tutorial),
   randomize_map,
+  generate_quest,
   write('Siapa namamu, Petualang? '),
   read(NamaPemain),
   setName(NamaPemain),

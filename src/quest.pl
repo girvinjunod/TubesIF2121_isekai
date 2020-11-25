@@ -112,6 +112,8 @@ quest :-
 /* ngereward quest yang udah selesai */
 active_quest_reward :-
 	active_quest(_,_,_,_,Exp,Gold),
+	write('You have completed your current quest!\n'),
+	format('You gained ~d Exp(s) and ~d Gold(s).\n',[Exp,Gold]),
 	earnExp(Exp),
 	earnGold(Gold),
 	retractall(active_quest(_,_,_,_,_,_)),
