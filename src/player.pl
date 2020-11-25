@@ -231,3 +231,14 @@ teleport :-
       write('Tidak ada portal di tempat pilihanmu, teleport dibatalkan.')
     )
   ).
+die :-
+  retractall(maxHP(_)),
+  retractall(level(_)),
+  retractall(levelUpCap(_)),
+  retractall(experience(_)),
+  retractall(hp(_)),
+  retractall(gold(_)),
+  retractall(weaponequipped(_)),
+  retractall(armorequipped(_)),
+  write('You died, and as the darkness devours you, you heard the cry for help...'), nl,
+  write('Unfortunately, you are unable to move, as your mortal body is torn apart.'), nl.
