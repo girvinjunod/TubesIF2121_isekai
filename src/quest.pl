@@ -178,3 +178,4 @@ update_active_quest(Monster) :-
 	),
 	cek_active_quest,
 	!.
+update_active_quest(_).
