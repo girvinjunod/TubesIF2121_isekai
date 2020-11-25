@@ -22,11 +22,11 @@ monster_encounter :-
 		TrueMLvl is MLvl
 	),
 	randomize_monster(Y, TrueMLvl),
-	write('Encountered '),
+	write('Bertemu '),
 	current_monster(Name),
 	monster_lvl(Lv),
 	write(Name),
-	write(' in the fields.'), nl,
+	write(' di jalan.'), nl,
 	write('Level: '),
 	write(Lv),
 	asserta(monster_turn(0)),

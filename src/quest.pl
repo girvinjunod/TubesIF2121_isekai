@@ -68,24 +68,24 @@ quest :-
 	state(free),
 	\+player_cell(quest_cell),
 	!,
-	write('You are currently not in a quest cell (Q)!\n').
+	write('Anda sedang tidak ada di dekat quest board (Q)!\n').
 /* player punya active quest */
 quest :-
 	state(free),
 	active_quest(_,_,_,_,_,_),
 	!,
-	write('You still haven\'t finished your current quest!\n').
+	write('Anda belum menyelesaikan quest Anda!\n').
 /* available_quest abis */
 quest :-
 	state(free),
 	\+available_quest(_),
 	!,
-	write('There are no more quests to do.\n').
+	write('Tidak ada quest lagi untuk dilakukan.\n').
 quest :-
 	state(free),
 	setState(quest),
 	print_quest,
-	write('Which quest will you take?\nInput the quest number to take a quest.\nInput anything else to exit the quest board.\n'),
+	write('Mau pilih quest yang mana?\nInput nomor quest untuk mengambil questnya.\nInput apapun yang lain untuk keluar dari quest board.\n'),
 	read(Query),
 	(
 		integer(Query),
@@ -97,14 +97,14 @@ quest :-
 		retractall(available_quest(_)),
 		asserta(available_quest(NewAvailableQuest)),
 		asserta(active_quest(S,Go,W,Gh,Exp,Gold)),
-		format('You took quest number ~d.\n',[Query]),
-		write('You have quit the quest board.\n'),
+		format('Anda mengambil quest nomor ~d.\n',[Query]),
+		write('Anda telah keluar dari qeust board.\n'),
 		setState(free),
 		!
 	);
 	(
 		Query = quit,
-		write('You have quit the quest board\n'),
+		write('Anda telah keluat dari quest board\n'),
 		setState(free),
 		!
 	).
@@ -120,8 +120,8 @@ cek_completed_five_quests :-
 /* ngereward quest yang udah selesai */
 active_quest_reward :-
 	active_quest(_,_,_,_,Exp,Gold),
-	write('You have completed your current quest!\n'),
-	format('You gained ~d Exp(s) and ~d Gold(s).\n',[Exp,Gold]),
+	write('Anda telah menyelesaikan quest Anda!\n'),
+	format('Anda mendapatkan ~d Exp(s) dan ~d Gold(s).\n',[Exp,Gold]),
 	earnExp(Exp),
 	earnGold(Gold),
 	retractall(active_quest(_,_,_,_,_,_)),
