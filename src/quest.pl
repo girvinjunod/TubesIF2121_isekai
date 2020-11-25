@@ -111,7 +111,6 @@ quest :-
 
 /* ngereward quest yang udah selesai */
 active_quest_reward :-
-	write('yey2\n'),
 	active_quest(_,_,_,_,Exp,Gold),
 	earnExp(Exp),
 	earnGold(Gold),
@@ -166,6 +165,5 @@ update_active_quest(Monster) :-
 			asserta(active_quest(S,Go,W,NewGh,Exp,Gold))
 		)
 	),
-	write('yey\n'),
 	cek_active_quest,
 	!.
