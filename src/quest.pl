@@ -85,7 +85,7 @@ quest :-
 	state(free),
 	setState(quest),
 	print_quest,
-	write('Which quest will you take? Input the quest number or input anything else to exit the quest board.\n'),
+	write('Which quest will you take?\nInput the quest number to take a quest.\Input anything else to exit the quest board.\n'),
 	read(Query),
 	(
 		integer(Query),
