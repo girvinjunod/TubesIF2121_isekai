@@ -181,3 +181,53 @@ levelUp(Lebih, gacha) :-
   (
     asserta(experience(Lebih))
   ).
+
+teleport :-
+  state(not_started), !,
+  write('Permainan belum dimulai, kamu tidak bisa bergerak ke mana-mana.').
+
+teleport :-
+  state(A),
+  A \= free, !,
+  write('Kamu belum bisa berpindah tempat').
+
+teleport :-
+  state(free),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('%                              ~Teleport Menu~                                 %\n'),
+  write('% 1. store                                                                     %\n'),
+  write('% 2. quest                                                                     %\n'),
+  write('% 3. boss                                                                      %\n'),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  nl, nl,
+  write('Kamu mau teleport ke mana? '),
+  read(Tujuan),
+  (
+    (
+      Tujuan = store, !,
+      store_coordinate(X, Y),
+      retractall(player_cell(_)),
+      retractall(player_coordinate(_, _)),
+      asserta(player_cell(store_cell)),
+      asserta(player_coordinate(X, Y))
+    );
+    (
+      Tujuan = quest, !,
+      quest_coordinate(X, Y),
+      retractall(player_cell(_)),
+      retractall(player_coordinate(_, _)),
+      asserta(player_cell(quest_cell)),
+      asserta(player_coordinate(X, Y))
+    );
+    (
+      Tujuan = boss, !,
+      dungeon_boss_coordinate(X, Y),
+      retractall(player_cell(_)),
+      retractall(player_coordinate(_, _)),
+      asserta(player_cell(dungeon_boss_cell)),
+      asserta(player_coordinate(X, Y))
+    );
+    (
+      write('Tidak ada portal di tempat pilihanmu, teleport dibatalkan.')
+    )
+  ).

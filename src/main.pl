@@ -19,6 +19,7 @@ state(not_started).
  * - free
  * - shop
  * - battle
+ * - mati
  */
 
 setState(X) :-

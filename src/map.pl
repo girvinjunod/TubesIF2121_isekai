@@ -67,7 +67,7 @@ map1 :-
 	asserta(dungeon_boss_cell_state(locked)),
 	/* koordinat quest (Q) di map ini */
 	asserta(quest_coordinate(4,8)),
- 	/* koordinat awal player (P) di map ini */
+	/* koordinat awal player (P) di map ini */
 	asserta(player_coordinate(2,2)),
 	asserta(player_cell(kosong)).
 

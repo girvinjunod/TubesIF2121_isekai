@@ -27,8 +27,7 @@ mainMenu :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 status :-
-  active_quest(S,Go,W,Gh,QuestExp,QuestGold),
-  !,
+  active_quest(S,Go,W,Gh,QuestExp,QuestGold), !,
   hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP),
   levelUpCap(LUC), playerClass(PC), gold(Gold), armorequipped(ARMOR), weaponequipped(WEAP),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
@@ -65,20 +64,34 @@ stats :-
 
 help :-
   state(free), !,
-  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
-  write('%                              ~Perintah Permainan~                            %\n'),
-  write('% 1. map           : Menampilkan peta                                          %\n'),
-  write('% 2. status        : Menampilkan kondisimu terkini                             %\n'),
-  write('% 3. w             : Gerak ke utara 1 langkah                                  %\n'),
-  write('% 4. s             : Gerak ke selatan 1 langkah                                %\n'),
-  write('% 5. d             : Gerak ke ke timur 1 langkah                               %\n'),
-  write('% 6. a             : Gerak ke barat 1 langkah                                  %\n'),
-  write('% 7. help          : menampilkan segala bantuan                                %\n'),
-  write('% 8. use(Nama)     : Menggunakan item dengan nama item `Nama`                  %\n'),
-  write('% 9. inventory     : Menuliskan isi inventory                                  %\n'),
-  write('% 10. save         : Menyimpan gim                                             %\n'),
-  write('% 11. exit         : keluar dari gim                                           %\n'),
-  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
+  write('%                                ~Perintah Permainan~                              %\n'),
+  write('% 1. map               : Menampilkan peta                                          %\n'),
+  write('% 2. status            : Menampilkan kondisimu terkini                             %\n'),
+  write('% 3. w                 : Gerak ke utara 1 langkah                                  %\n'),
+  write('% 4. s                 : Gerak ke selatan 1 langkah                                %\n'),
+  write('% 5. d                 : Gerak ke ke timur 1 langkah                               %\n'),
+  write('% 6. a                 : Gerak ke barat 1 langkah                                  %\n'),
+  write('% 7. teleport          : Teleport ke salah satu tempat \'special\' (Q, S, D)       %\n'),
+  write('% 8. help              : menampilkan segala bantuan                                %\n'),
+  write('%                                                                                  %\n'),
+  write('% 9. use(Nama)         : Menggunakan item dengan nama item `Nama`                  %\n'),
+  write('% 10. inventory        : Menuliskan isi inventory                                  %\n'),
+  write('% 10. store            : Membuka menu store (hanya bisa di store (S))              %\n'),
+  write('% 11. sell             : Menjual item di inventory (hanya bisa di store (S))       %\n'),
+  write('% 12. drop(Nama)       : Membuang item dengan nama Nama dari inventory             %\n'),
+  write('% 13. drop(Nama, Q)    : Membuang sekaligus Q item dengan nama Nama dari inventory %\n'),
+  write('% 14. equip(Nama)      : Meng-equip armor atau senjata dari inventory              %\n'),
+  write('% 15. unequip(Nama)    : Melepas armor atau senjata dari badan                     %\n'),
+  write('% 16. gachaEquipment   : Melakukan gacha equipment (harus memiliki kupon gacha)    %\n'),
+  write('% 17. gachaItem        : Melakukan gacha item (harus memiliki kupon gacha)         %\n'),
+  write('%                                                                                  %\n'),
+  write('% 18. quest            : Mengambil quest (hanya bisa di quest (Q))                 %\n'),
+  write('% 18. cek_active_quest : Melihat quest yang sedang diambil                         %\n'),
+  write('%                                                                                  %\n'),
+  write('% 15. save             : Menyimpan gim                                             %\n'),
+  write('% 16. exit             : keluar dari gim                                           %\n'),
+  write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 help :-
   state(battle), !,
@@ -92,7 +105,7 @@ help :-
   write('% 6. help          : Menampilkan segala bantuan                                %\n'),
   write('% 7. status        : Menampilkan status pemain                                 %\n'),
   write('% 8. exit          : Keluar dari gim                                           %\n'),
-  write('% 9. save         : Menyimpan gim                                             %\n'),
+  write('% 9. save          : Menyimpan gim                                             %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 help :-
