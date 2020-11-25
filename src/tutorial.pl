@@ -95,7 +95,7 @@ formulir(X) :-
   write('               * Expurusion, but with gacha\n'),
   write('                   -> Deals 0-9999 damage\n'),
   nl,
-  write('   Masukkan role pilihan: '),
+  write('   Masukkan role pilihan (swordsman/archer/sorcerer):  '),
   read(RoleChosen),
   pilihKelas(RoleChosen),
   nl,

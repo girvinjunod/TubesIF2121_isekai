@@ -25,6 +25,9 @@
  */
 :- dynamic(player_cell/1).
 
+/* dynamuc predicate sel boss locked/unlocked */
+:- dynamic(dungeon_boss_cell_state/1).
+
 /* jenis-jenis map */
 map1 :-
 	/* ini map spek */
@@ -60,6 +63,8 @@ map1 :-
 	asserta(store_coordinate(3,3)),
 	/* koordinat dungeon boss (D) di map ini */
 	asserta(dungeon_boss_coordinate(18,15)),
+	/* lock dungeon boss di awal game */
+	asserta(dungeon_boss_cell_state(locked)),
 	/* koordinat quest (Q) di map ini */
 	asserta(quest_coordinate(4,8)),
  	/* koordinat awal player (P) di map ini */
@@ -90,6 +95,8 @@ map2 :-
 	asserta(store_coordinate(3,3)),
 	/* koordinat dungeon boss (D) di map ini */
 	asserta(dungeon_boss_coordinate(3,2)),
+	/* lock dungeon boss di awal game */
+	asserta(dungeon_boss_cell_state(locked)),
 	/* koordinat quest (Q) di map ini */
 	asserta(quest_coordinate(9,19)),
 	/* koordinat awal player (P) di map ini */
@@ -140,6 +147,21 @@ map :-
 		nl
 	)).
 
+/* unlock dungeon boss cell */
+unlock_dungeon_boss_cell :-
+	retractall(dungeon_boss_cell_state(_)),
+	asserta(dungeon_boss_cell_state(unlocked)),
+	write('Karena jasa Anda mengalahkan para tubes, Anda telah diundang ke Istana Raja Naga Keri!\n'),
+	write('Pintu ke istana terbuka untuk Anda.\n').
+
+/* interact with dungeon boss cell */
+interact_with_dungeon_boss_cell :-
+	dungeon_boss_cell_state(locked),
+	!,
+	write('Istana tertutup untuk orang luar.\n').
+interact_with_dungeon_boss_cell.
+	/* njalanin command encounter boss somehow, WIP */
+
 /* cell-checking util., buat ganti-ganti player_cell */
 cekCell(R,C) :-
 	store_coordinate(R,C),
@@ -155,7 +177,8 @@ cekCell(R,C) :-
 	dungeon_boss_coordinate(R,C),
 	!,
 	retractall(player_cell(_)),
-	asserta(player_cell(dungeon_boss_cell)).
+	asserta(player_cell(dungeon_boss_cell)),
+	interact_with_dungeon_boss_cell.
 cekCell(_,_) :-
 	retractall(player_cell(_)),
 	asserta(player_cell(kosong)),
@@ -168,7 +191,7 @@ w :-
 	NewR is R - 1,
 	fence(NewR,C),
 	!,
-	write('Kamu berusaha berjalan ke atas, tapi kamu menabrak ujung dunia.'), nl.
+	write('Kamu berusaha berjalan ke atas, tapi kamu menabrak pagar.'), nl.
 w :-
 	state(free),
 	player_coordinate(R,C),
@@ -189,7 +212,7 @@ a :-
 	NewC is C - 1,
 	fence(R,NewC),
 	!,
-	write('Kamu berusaha berjalan ke kiri, tapi kamu menabrak ujung dunia.'), nl.
+	write('Kamu berusaha berjalan ke kiri, tapi kamu menabrak pagar.'), nl.
 a :-
 	state(free),
 	player_coordinate(R,C),
@@ -209,7 +232,7 @@ s :-
 	NewR is R + 1,
 	fence(NewR,C),
 	!,
-	write('Kamu berusaha berjalan ke bawah, tapi kamu menabrak ujung dunia.'), nl.
+	write('Kamu berusaha berjalan ke bawah, tapi kamu menabrak pagar.'), nl.
 s :-
 	state(free),
 	player_coordinate(R,C),
@@ -229,7 +252,7 @@ d :-
 	NewC is C + 1,
 	fence(R,NewC),
 	!,
-	write('Kamu berusaha berjalan ke kanan, tapi kamu menabrak ujung dunia.'), nl.
+	write('Kamu berusaha berjalan ke kanan, tapi kamu menabrak pagar.'), nl.
 d :-
 	state(free),
 	player_coordinate(R,C),

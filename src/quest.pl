@@ -85,7 +85,7 @@ quest :-
 	state(free),
 	setState(quest),
 	print_quest,
-	write('Which quest will you take?\nInput the quest number to take a quest.\Input anything else to exit the quest board.\n'),
+	write('Which quest will you take?\nInput the quest number to take a quest.\nInput anything else to exit the quest board.\n'),
 	read(Query),
 	(
 		integer(Query),
@@ -109,6 +109,14 @@ quest :-
 		!
 	).
 
+/* cek udah nyelesaiin 5 quest apa belum */
+cek_completed_five_quests :-
+	available_quest(Q),
+	countList(Q,NbAvailableQuest),
+	NbAvailableQuest = 5,
+	!,
+	unlock_dungeon_boss_cell. /* ada di map.pl */
+
 /* ngereward quest yang udah selesai */
 active_quest_reward :-
 	active_quest(_,_,_,_,Exp,Gold),
@@ -117,6 +125,7 @@ active_quest_reward :-
 	earnExp(Exp),
 	earnGold(Gold),
 	retractall(active_quest(_,_,_,_,_,_)),
+	cek_completed_five_quests,
 	!.
 
 /* ngecek active_quest selesai apa belum */
