@@ -40,8 +40,8 @@ dunia jurusan.
   * Initial Max HP: 800
   * Attack: 50
   * Defense: 150
-* Special Attack: something2 masochist related (will decide on name later)
-  * Deals the amount of damage taken last turn as an attack
+* Special Attack: Lionheart
+  * Deals the amount of current hp as damage
 
 ### Archer
 * Gimmick oriented
@@ -50,7 +50,7 @@ dunia jurusan.
   * Attack: 150
   * Defense: 50
 * Special Attack: Steal!!
-  * Deals little damage, has a chance to gain equipment or item upon use
+  * Deals little damage, has a chance to gain potion or gacha ticket upon use
 
 ### Sorcerer
 * Glass cannon
