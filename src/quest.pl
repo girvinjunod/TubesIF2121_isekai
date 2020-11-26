@@ -36,7 +36,7 @@ remove_available_quest.
 remove_active_quest :-
 	active_quest(_,_,_,_,_,_),
 	!,
-	retractall(available_quest(_,_,_,_,_,_)).
+	retractall(active_quest(_,_,_,_,_,_)).
 remove_active_quest.
 
 generate_quest :-
