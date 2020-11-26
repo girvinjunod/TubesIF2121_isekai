@@ -319,5 +319,5 @@ damagePlayer(Dmg) :-
 		die, !;
 		retractall(hp(_)),
 		asserta(hp(NewHP)),
-		format('Kamu dicakar, menerima ~2f damage.', [BiasDmg]), nl,nl,nl,
+		format('Kamu dicakar, menerima ~2f damage.', [BiasDmg]), nl,nl
 	).
