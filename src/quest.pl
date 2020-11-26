@@ -113,13 +113,13 @@ quest :-
 		asserta(available_quest(NewAvailableQuest)),
 		asserta(active_quest(S,Go,W,Gh,Exp,Gold)),
 		format('Anda mengambil quest nomor ~d.\n',[Query]),
-		write('Anda telah keluar dari qeust board.\n'),
+		write('Anda telah keluar dari quest board.\n'),
 		setState(free),
 		!
 	);
 	(
 		Query = quit,
-		write('Anda telah keluat dari quest board\n'),
+		write('Anda telah keluar dari quest board\n'),
 		setState(free),
 		!
 	).
