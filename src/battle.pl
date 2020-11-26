@@ -231,7 +231,7 @@ special_attack :-
 		(
 			playerClass(sorcerer),
 			write('Ekusupurosion!!!'), nl,
-			acak(0, 999, GachaDmg),
+			acak(1, 10000, GachaDmg),
 			damage_monster(GachaDmg)
 		)
 	),

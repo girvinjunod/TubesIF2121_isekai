@@ -1,4 +1,9 @@
 equip(telanjang) :-
+    weaponequipped(W), armorequipped(A),
+    W = telanjang, !, A = telanjang, !,
+    write('Kamu sudah telanjang').
+
+equip(telanjang) :-
 	retract(weaponequipped(X)),
 	retract(armorequipped(Y)),
 	item_effect(X,_, ATKDulu),
@@ -14,7 +19,6 @@ equip(telanjang) :-
 	asserta(weaponequipped(telanjang)),
 	asserta(armorequipped(telanjang)),
 	write('Anda telah menelanjangkan diri.'), !.
-
 equip(Gear) :-
 	\+item(Gear,_,_),
 	write('Equipment itu tidak ada.'),!.
@@ -36,11 +40,12 @@ equip(Gear) :-
 	asserta(weaponequipped(Gear)),
 	item_effect(Gear,Tipe,Stats),
 	item_effect(Y,_, Dulu),
-	Tipe = attack,
+	Tipe = weapon,
 	attack(ATK),
 	retractall(attack(_)),
 	NewATK is ATK - Dulu + Stats,
 	asserta(attack(NewATK)),
+    removeFromInventory(Gear),
 	write(Gear),write(' telah di-equip.'),!.
 equip(Gear) :-
 	item(Gear,Slot,Job),
@@ -51,11 +56,12 @@ equip(Gear) :-
 	asserta(armorequipped(Gear)),
 	item_effect(Gear,Tipe,Stats),
 	item_effect(Y,_, Dulu),
-	Tipe = defense,
+	Tipe = armor,
 	defense(DEF),
 	retractall(defense(_)),
 	NewDEF is DEF - Dulu + Stats,
 	asserta(defense(NewDEF)),
+    removeFromInventory(Gear),
 	write(Gear),write(' telah di-equip.'),!.
 
 unequip(telanjang) :- write('Sudah telanjang tidak bisa unequip apa-apa lagi :v'), !.
