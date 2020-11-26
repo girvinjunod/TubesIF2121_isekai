@@ -15,6 +15,8 @@ class(swordsman).
 class(archer).
 class(sorcerer).
 
+baseExp(200).
+
 reset :-
   retractall(playerClass(_)),
   retractall(attack(_)),
@@ -34,8 +36,9 @@ pilihKelas(Kelas) :- setStat(Kelas), firstLevel.
 
 firstLevel :-
   maxHP(HP),
+  baseExp(BExp),
   asserta(level(1)),
-  asserta(levelUpCap(1000)),
+  asserta(levelUpCap(BExp)),
   asserta(experience(0)),
   asserta(hp(HP)),
   asserta(gold(0)),
@@ -123,13 +126,14 @@ statsUp :-
 
 levelUp(Lebih) :-
   level(CurLVL),
+  baseExp(BExp),
 
   retractall(experience(_)),
   retractall(level(_)),
   retractall(levelUpCap(_)),
 
   NewLVL is CurLVL + 1,
-  NewLUC is 1000*((CurLVL // 10)+1),
+  NewLUC is BExp*((CurLVL // 10)+1),
 
   asserta(level(NewLVL)),
   asserta(levelUpCap(NewLUC)),
@@ -155,13 +159,14 @@ levelUp(Lebih) :-
 
 levelUp(Lebih, gacha) :-
   level(CurLVL),
+  baseExp(BExp),
 
   retractall(experience(_)),
   retractall(level(_)),
   retractall(levelUpCap(_)),
 
   NewLVL is CurLVL + 1,
-  NewLUC is 1000*((CurLVL // 10)+1),
+  NewLUC is BExp*((CurLVL // 10)+1),
 
   asserta(level(NewLVL)),
   asserta(levelUpCap(NewLUC)),

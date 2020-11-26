@@ -44,7 +44,7 @@ randomize_monster(X, Lvl) :-
 	Atk is 3 * Lvl + 10,
 	Def is 10 * Lvl + 100,
 	XP is 10 * Lvl + 50,
-	Gold is 10 * (Lvl + 2),
+	Gold is 10 * (Lvl + 1),
 	asserta(monster_hp(HP)),
 	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
