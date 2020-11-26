@@ -300,9 +300,167 @@ special_attack :-
 special_attack :-
 	write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl, !.
 
+randomizeFlavorS(X) :-
+  X < 40, !,
+  (
+    (X =:= 0, !, write('Slash'));
+    (X =:= 1, !, write('Multislash'));
+    (X =:= 2, !, write('Power Stab'));
+	(X =:= 3, !, write('Tackle'));
+	(X =:= 4, !, write('Pommel Strike'));
+	(X =:= 5, !, write('Headbutt'));
+	(X =:= 6, !, write('Bladefury'));
+	(X =:= 7, !, write('Excalibur'));
+	(X =:= 8, !, write('Maim'));
+	(X =:= 9, !, write('Lion\'s Song'));
+	(X =:= 10, !, write('Demon Cutter'));
+	(X =:= 11, !, write('Thunder Cross Split Attack'));
+	(X =:= 12, !, write('Slap'));
+	(X =:= 13, !, write('Ora Ora Ora Ora Ora Ora Ora Ora'));
+	(X =:= 14, !, write('Double Edge'));
+	(X =:= 15, !, write('Bash'));
+	(X =:= 16, !, write('Beat Up'));
+	(X =:= 17, !, write('Piledriver'));
+	(X =:= 18, !, write('Elbow Drop'));
+	(X =:= 19, !, write('Sword Dance'));
+	(X =:= 20, !, write('Body Slam'));
+	(X =:= 21, !, write('Flex'));
+	(X =:= 22, !, write('Clothesline'));
+	(X =:= 23, !, write('Unlimited Blade Works'));
+	(X =:= 24, !, write('Perfected Strike'));
+	(X =:= 25, !, write('Rampage'));
+	(X =:= 26, !, write('Warcry'));
+	(X =:= 27, !, write('Intimidate'));
+	(X =:= 28, !, write('Blood Rage'));
+	(X =:= 29, !, write('Uppercut'));
+	(X =:= 30, !, write('Shockwave'));
+	(X =:= 31, !, write('Eviscerate'));
+	(X =:= 32, !, write('Flurry of Blows'));
+	(X =:= 33, !, write('Rushdown'));
+	(X =:= 34, !, write('Kick'));
+	(X =:= 35, !, write('Desolate'));
+	(X =:= 36, !, write('Manifold Strike'));
+	(X =:= 37, !, write('Dragon Twister'));
+	(X =:= 38, !, write('Falcon Punch'));
+	(X =:= 39, !, write('Deathbringer'))).
+
+randomizeFlavorA(X) :-
+  X < 40, !,
+  (
+    (X =:= 0, !, write('Drill Arrow'));
+    (X =:= 1, !, write('Multishot'));
+    (X =:= 2, !, write('Dragon Arrow'));
+	(X =:= 3, !, write('Bonk'));
+	(X =:= 4, !, write('Rocket Launcher'));
+	(X =:= 5, !, write('Laser Beam'));
+	(X =:= 6, !, write('Cupid\'s Arrow'));
+	(X =:= 7, !, write('Focus Fire'));
+	(X =:= 8, !, write('Headshot'));
+	(X =:= 9, !, write('Meteor Arrow'));
+	(X =:= 10, !, write('Assassinate'));
+	(X =:= 11, !, write('Piercing Shot'));
+	(X =:= 12, !, write('Heartseeking Arrow'));
+	(X =:= 13, !, write('Bullet Rain'));
+	(X =:= 14, !, write('Deadeye'));
+	(X =:= 15, !, write('AK-47'));
+	(X =:= 16, !, write('Fan the Hammer'));
+	(X =:= 17, !, write('Vulcan Cannon'));
+	(X =:= 18, !, write('Arrow Rain'));
+	(X =:= 19, !, write('Powershot'));
+	(X =:= 20, !, write('Megashark'));
+	(X =:= 21, !, write('Backstab'));
+	(X =:= 22, !, write('Snipershot'));
+	(X =:= 23, !, write('Shadow Strike'));
+	(X =:= 24, !, write('B.F.G'));
+	(X =:= 25, !, write('Dagger Throw'));
+	(X =:= 26, !, write('Dagger Spray'));
+	(X =:= 27, !, write('Caltrops'));
+	(X =:= 28, !, write('Cloak and Dagger'));
+	(X =:= 29, !, write('Choke'));
+	(X =:= 30, !, write('Cannonball'));
+	(X =:= 31, !, write('Bullseye'));
+	(X =:= 32, !, write('Booby Trap'));
+	(X =:= 33, !, write('Landmine'));
+	(X =:= 34, !, write('Shooting Star'));
+	(X =:= 35, !, write('Wyvern Piercer'));
+	(X =:= 36, !, write('Explosive Arrow'));
+	(X =:= 37, !, write('Shackleshot'));
+	(X =:= 38, !, write('Frost Arrow'));
+	(X =:= 39, !, write('Slingshot'))).
+
+randomizeFlavorM(X) :-
+  X < 40, !,
+  (
+    (X =:= 0, !, write('Fire Ball'));
+    (X =:= 1, !, write('Water Torrent'));
+    (X =:= 2, !, write('Sandstorm'));
+	(X =:= 3, !, write('Meteor'));
+	(X =:= 4, !, write('Black Hole'));
+	(X =:= 5, !, write('Cataclysm'));
+	(X =:= 6, !, write('Frostbite'));
+	(X =:= 7, !, write('Banshee Scream'));
+	(X =:= 8, !, write('Hex'));
+	(X =:= 9, !, write('Curse'));
+	(X =:= 10, !, write('Tornado'));
+	(X =:= 11, !, write('Sharknado'));
+	(X =:= 12, !, write('Earthquake'));
+	(X =:= 13, !, write('Avalanche'));
+	(X =:= 14, !, write('Spooky Scary Skeletons'));
+	(X =:= 15, !, write('Emerald Splash'));
+	(X =:= 16, !, write('King Crimson'));
+	(X =:= 17, !, write('Solar Beam'));
+	(X =:= 18, !, write('Thunderbolt'));
+	(X =:= 19, !, write('Blizzard'));
+	(X =:= 20, !, write('Spatial Rend'));
+	(X =:= 21, !, write('Mana Burn'));
+	(X =:= 22, !, write('Lunar Dance'));
+	(X =:= 23, !, write('Dark Void'));
+	(X =:= 24, !, write('Eruption'));
+	(X =:= 25, !, write('Sacred Fire'));
+	(X =:= 26, !, write('Malaise'));
+	(X =:= 27, !, write('Air Cannon'));
+	(X =:= 28, !, write('Locust Swarm'));
+	(X =:= 29, !, write('Petrify'));
+	(X =:= 30, !, write('Inferno'));
+	(X =:= 31, !, write('Cold Snap'));
+	(X =:= 32, !, write('Ball Lightning'));
+	(X =:= 33, !, write('Tempest Strike'));
+	(X =:= 34, !, write('Ragnarok'));
+	(X =:= 35, !, write('Deus Ex Machina'));
+	(X =:= 36, !, write('Soul Steal'));
+	(X =:= 37, !, write('Abyss Grab'));
+	(X =:= 38, !, write('Decay'));
+	(X =:= 39, !, write('Golem Punch'))).
+	
+gachaFlavorS :-
+  acak(0, 40, R),
+  randomizeFlavorS(R).
+gachaFlavorA :-
+  acak(0, 40, R),
+  randomizeFlavorA(R).	
+gachaFlavorM :-
+  acak(0, 40, R),
+  randomizeFlavorM(R).
+flavor :-
+	(
+		(
+			playerClass(swordsman),
+			gachaFlavorS
+		), !;
+		(
+			playerClass(archer),
+			gachaFlavorA
+		), !;
+		(
+			playerClass(sorcerer),
+			gachaFlavorM
+		)
+	).
+	
+	
 attack :-
 	special_counter,
-	write('Kamu menyerang musuh dengan attack insert nama.\n'),
+	write('Kamu menyerang musuh dengan attack '), flavor, nl,
 	attack(Atk),
 	damage_monster(Atk), !,
 	monster_move, 
