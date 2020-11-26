@@ -491,8 +491,11 @@ flavor :-
 			gachaFlavorM
 		)
 	).
-	
-	
+
+attack :-
+	state(not_started), !,
+	write('Gamenya belom mulai bang, udah attack2 aja.').
+
 attack :-
 	special_counter,
 	write('Kamu menyerang musuh dengan attack '), flavor, nl,

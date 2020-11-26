@@ -66,5 +66,5 @@ finishBoss :-
 	write('"Hah kacau, udah deadline tubes Alstrukdat dong!!!!"\n'),
 	nl,nl,nl,
 	write('------------------THE END------------------\n'),
-	setState(end), !,fail.
+	setState(not_started), !, reset, fail.
 	

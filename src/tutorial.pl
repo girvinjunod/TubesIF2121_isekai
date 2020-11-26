@@ -119,7 +119,8 @@ validFormRole(Role) :-
 	write('Karena ketidakmampuan kamu dalam membaca, kamu dianggap tidak layak'), nl,
 	write('masuk ke dunia tubes. Kamu langsung dibawa ke istana raja naga carry dan'), nl,
 	write('kamu langsung mati di tempat. F.'), nl,
-	write('Kata-kata terakhir yang kamu dengar adalah "Mulailah permainan baru."'), fail, !.
+	write('Kata-kata terakhir yang kamu dengar adalah "Mulailah permainan baru."'),
+	setState(not_started), reset, !, fail.
 
 validFormRole(Role) :-
 	pilihKelas(Role).
