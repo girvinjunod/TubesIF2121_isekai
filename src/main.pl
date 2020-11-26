@@ -20,6 +20,7 @@ state(not_started).
  * - shop
  * - battle
  * - mati
+ * - boss
  */
 
 setState(X) :-

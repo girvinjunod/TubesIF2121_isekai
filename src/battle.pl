@@ -1,6 +1,7 @@
 :- dynamic(current_monster/1).
 :- dynamic(special_cooldown/1).
 :- dynamic(monster_hp/1).
+:- dynamic(monster_maxHP/1).
 :- dynamic(monster_atk/1).
 :- dynamic(monster_def/1).
 :- dynamic(monster_exp/1).
@@ -43,6 +44,7 @@ randomize_monster(X, Lvl) :-
 	Def is 10 * Lvl + 100,
 	XP is 10 * Lvl + 50,
 	asserta(monster_hp(HP)),
+	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
@@ -62,6 +64,7 @@ randomize_monster(X, Lvl) :-
 	Def is 5 * MLvl + 5,
 	XP is 35 * MLvl + 225,
 	asserta(monster_hp(HP)),
+	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
@@ -81,6 +84,7 @@ randomize_monster(X, Lvl) :-
 	Def is 10 * MLvl + 5,
 	XP is 55 * MLvl + 325,
 	asserta(monster_hp(HP)),
+	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
@@ -100,6 +104,7 @@ randomize_monster(_, Lvl) :-
 	Def is 30 * MLvl + 5,
 	XP is 100 * MLvl + 325,
 	asserta(monster_hp(HP)),
+	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
@@ -121,8 +126,7 @@ monster_move :-
 	X < 0.3,
 	T =< 0,
 	monster_special,
-	monster_count_move,
-	!.
+	monster_count_move, !.
 
 monster_move :-
 	monster_atk(X),
@@ -130,6 +134,7 @@ monster_move :-
 	monster_count_move.
 
 monster_special :-
+	write("Hiya monsternya ngambek, terus pake special attack."), nl,
 	monster_atk(atk),
 	dmg is atk * 3,
 	damagePlayer(dmg),
@@ -143,7 +148,7 @@ damage_monster(Dmg) :-
 	NewHP is HP - BiasDmg,
 	retractall(monster_hp(HP)),
 	asserta(monster_hp(NewHP)),
-	write('You dealt '),
+	write('Kamu memberikan '),
 	write(BiasDmg),
 	write(' damage.'), nl,
 	(
@@ -158,10 +163,10 @@ monster_die :-
 	earnExp(XP),
 	update_active_quest(Name),
 	write(Name),
-	write(' has been defeated.'), nl,
-	write('Gained '),
+	write(' telah dikalahkan.'), nl,
+	write('Mendapat '),
 	write(XP),
-	write(' Experience points.'),
+	write(' experience points.'),
 	retractall(current_monster(_)),
 	retractall(monster_hp(_)),
 	retractall(monster_atk(_)),
@@ -209,7 +214,7 @@ steal :-
     (Item = potion)
   ),
   addToInventory(Item),
-  write('Stolen '), write(Item), write(' from monster'), nl.
+  write('Berhasil mencuri '), write(Item), write(' dari monster'), nl.
 
 special_attack :-
 	special_cooldown(0),
@@ -230,27 +235,32 @@ special_attack :-
 		), !;
 		(
 			playerClass(sorcerer),
+			level(Lvl),
 			write('Ekusupurosion!!!'), nl,
-			acak(1, 10000, GachaDmg),
+			BatasAtas is (Lvl*100)+1,
+			acak(1, BatasAtas, GachaDmg),
 			damage_monster(GachaDmg)
 		)
 	),
 	retractall(special_cooldown(_)),
-	asserta(special_cooldown(3)),
-	!.
+	asserta(special_cooldown(3)), !.
 
 special_attack :-
 	write('Special attack masih cooldown...').
 
 attack :-
+    state(battle),
 	special_counter,
 	state(battle),
 	attack(Atk),
 	damage_monster(Atk),
-	monster_move,
-	!.
+	monster_move, 
+	battleStats, !.
 
-attack.
+attack :-
+    state(X),
+    X \= battle,
+    write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl.
 
 damagePlayer(Dmg) :-
 	hp(HP),
@@ -260,11 +270,11 @@ damagePlayer(Dmg) :-
 	NewHP is HP - BiasDmg,
 	(
 		NewHP < 0,
-		write('You died.'), nl,
+		write('Kamu meninggal.'), nl,
 		die, !;
 		retractall(hp(_)),
 		asserta(hp(NewHP)),
-		write('You were scratched, '),
+		write('Kamu dicakar, menerima, '),
 		write(BiasDmg),
 		write(' damage.'), nl
 	).

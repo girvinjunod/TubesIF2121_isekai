@@ -240,5 +240,6 @@ die :-
   retractall(gold(_)),
   retractall(weaponequipped(_)),
   retractall(armorequipped(_)),
+  setState(die),
   write('You died, and as the darkness devours you, you heard the cry for help...'), nl,
   write('Unfortunately, you are unable to move, as your mortal body is torn apart.'), nl.
