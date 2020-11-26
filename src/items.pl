@@ -132,7 +132,7 @@ use(Item) :-
     retractall(attack(_)),
     NewATK is ATK + X,
     asserta(attack(NewATK)),
-    removeFromInventory(Item)
+    removeFromInventory(Item), !
   );
   (
     StatsAffacted = hp, !,
@@ -147,7 +147,7 @@ use(Item) :-
     )),
     retractall(hp(_)),
     asserta(hp(NewHP)),
-    removeFromInventory(Item)
+    removeFromInventory(Item), !
   );
   (
     StatsAffacted = defense, !,
@@ -156,7 +156,7 @@ use(Item) :-
     NewDEF is DEF + X,
     asserta(defense(NewDEF)),
     removeFromInventory(Item)
-  )).
+  )), !.
 
 drop(X) :-
   removeFromInventory(X).

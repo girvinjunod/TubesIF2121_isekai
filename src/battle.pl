@@ -5,6 +5,7 @@
 :- dynamic(monster_atk/1).
 :- dynamic(monster_def/1).
 :- dynamic(monster_exp/1).
+:- dynamic(monster_gold/1).
 :- dynamic(monster_turn/1).
 :- dynamic(monster_lvl/1).
 
@@ -43,12 +44,14 @@ randomize_monster(X, Lvl) :-
 	Atk is 3 * Lvl + 10,
 	Def is 10 * Lvl + 100,
 	XP is 10 * Lvl + 50,
+	Gold is 10 * (Lvl + 2),
 	asserta(monster_hp(HP)),
 	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
 	asserta(monster_lvl(Lvl)),
+	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
 	X < 0.8,
@@ -63,12 +66,14 @@ randomize_monster(X, Lvl) :-
 	Atk is 10 * MLvl + 15,
 	Def is 5 * MLvl + 5,
 	XP is 35 * MLvl + 225,
+	Gold is 10 * (Lvl + 2),
 	asserta(monster_hp(HP)),
 	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
 	asserta(monster_lvl(MLvl)),
+	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
 	X < 0.99,
@@ -83,12 +88,14 @@ randomize_monster(X, Lvl) :-
 	Atk is 15 * MLvl + 20,
 	Def is 10 * MLvl + 5,
 	XP is 55 * MLvl + 325,
+	Gold is 10 * (Lvl + 2),
 	asserta(monster_hp(HP)),
 	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
 	asserta(monster_lvl(MLvl)),
+	asserta(monster_gold(Gold)),
 	!.
 
 randomize_monster(_, Lvl) :-
@@ -103,12 +110,14 @@ randomize_monster(_, Lvl) :-
 	Atk is 20 * MLvl + 2,
 	Def is 30 * MLvl + 5,
 	XP is 100 * MLvl + 325,
+	Gold is 10 * (Lvl + 2),
 	asserta(monster_hp(HP)),
 	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
-	asserta(monster_lvl(MLvl)).
+	asserta(monster_lvl(MLvl)),
+	asserta(monster_gold(Gold)).
 
 monster_count_move :-
 	monster_turn(T),
@@ -131,13 +140,15 @@ monster_move :-
 monster_move :-
 	monster_atk(X),
 	damagePlayer(X),
-	monster_count_move.
+	monster_count_move, !.
+
+monster_move.
 
 monster_special :-
-	write("Hiya monsternya ngambek, terus pake special attack."), nl,
-	monster_atk(atk),
-	dmg is atk * 3,
-	damagePlayer(dmg),
+	write('Hiya monsternya ngambek, terus pake special attack.'), nl,
+	monster_atk(Atk),
+	Dmg is Atk * 3,
+	damagePlayer(Dmg),
 	asserta(monster_turn(3)).
 
 damage_monster(Dmg) :-
@@ -148,9 +159,7 @@ damage_monster(Dmg) :-
 	NewHP is HP - BiasDmg,
 	retractall(monster_hp(HP)),
 	asserta(monster_hp(NewHP)),
-	write('Kamu memberikan '),
-	write(BiasDmg),
-	write(' damage.'), nl,
+	format('Kamu memberikan ~2f damage.', [BiasDmg]), nl,
 	(
 		NewHP =< 0,
 		monster_die;
@@ -160,20 +169,23 @@ damage_monster(Dmg) :-
 monster_die :-
 	current_monster(Name),
 	monster_exp(XP),
+	monster_gold(Gold),
 	earnExp(XP),
+	earnGold(Gold),
 	update_active_quest(Name),
 	write(Name),
 	write(' telah dikalahkan.'), nl,
 	write('Mendapat '),
 	write(XP),
-	write(' experience points.'),
+	write(' experience points.'), nl,
+	format('Kamu juga mendapatkan ~w gold.', [Gold]),
 	retractall(current_monster(_)),
 	retractall(monster_hp(_)),
 	retractall(monster_atk(_)),
 	retractall(monster_def(_)),
 	retractall(monster_exp(_)),
-	setState(free),
-	!.
+	retractall(monster_gold(_)),
+	setState(free), !.
 
 kabur :-
 	state(battle),
@@ -187,7 +199,9 @@ kabur :-
 	(
 		(
 			state(battle),
-			write('Kamu gagal kabur :\'(.'), !
+			write('Kamu gagal kabur :\'(.'), nl,
+			monster_move,
+			battleStats, !
 		);
 		(
 			write('Kamu kan lagi ga battle, mau kabur dari mana? :(.'), !
@@ -206,17 +220,18 @@ special_counter.
 steal :-
   acak(0, 100, R),
   (
-    (
-      R < 35,
-      (R < 15, !, Item = kupon_gacha_equipment);
-      (R < 35, !, Item = kupon_gacha_item)
-    );
-    (Item = potion)
+	(
+	  R < 35,
+	  (R < 15, !, Item = kupon_gacha_equipment);
+	  (R < 35, !, Item = kupon_gacha_item)
+	);
+	(Item = potion)
   ),
   addToInventory(Item),
   write('Berhasil mencuri '), write(Item), write(' dari monster'), nl.
 
 special_attack :-
+	state(battle),
 	special_cooldown(0),
 	(
 		(
@@ -237,19 +252,27 @@ special_attack :-
 			playerClass(sorcerer),
 			level(Lvl),
 			write('Ekusupurosion!!!'), nl,
-			BatasAtas is (Lvl*100)+1,
+			BatasAtas is (Lvl*1000)+1,
 			acak(1, BatasAtas, GachaDmg),
 			damage_monster(GachaDmg)
 		)
 	),
 	retractall(special_cooldown(_)),
-	asserta(special_cooldown(3)), !.
+	asserta(special_cooldown(3)),
+	monster_move,
+	battleStats, !.
 
 special_attack :-
-	write('Special attack masih cooldown...').
+	state(battle),
+	write('Special attack masih cooldown...'), !.
+
+special_attack :-
+	state(X),
+	X \= battle,
+	write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl, !.
 
 attack :-
-    state(battle),
+	state(battle),
 	special_counter,
 	state(battle),
 	attack(Atk),
@@ -258,9 +281,9 @@ attack :-
 	battleStats, !.
 
 attack :-
-    state(X),
-    X \= battle,
-    write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl.
+	state(X),
+	X \= battle,
+	write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl, !.
 
 damagePlayer(Dmg) :-
 	hp(HP),
@@ -274,7 +297,5 @@ damagePlayer(Dmg) :-
 		die, !;
 		retractall(hp(_)),
 		asserta(hp(NewHP)),
-		write('Kamu dicakar, menerima, '),
-		write(BiasDmg),
-		write(' damage.'), nl
+		format('Kamu dicakar, menerima ~2f damage.', [BiasDmg]), nl
 	).

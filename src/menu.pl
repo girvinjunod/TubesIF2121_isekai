@@ -32,7 +32,7 @@ status :-
   levelUpCap(LUC), playerClass(PC), gold(Gold), armorequipped(ARMOR), weaponequipped(WEAP),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   format('                                   Status ~w                                \n', [NAME]),
-  format('  HP          : ~w/~w', [HP, MaxHP]), nl,
+  format('  HP          : ~2f/~w', [HP, MaxHP]), nl,
   format('  Attack      : ~w', [ATK]), nl,
   format('  Defense     : ~w', [DEF]), nl,
   format('  Weapon      : ~w', [WEAP]), nl,
@@ -48,7 +48,7 @@ status :-
   levelUpCap(LUC), playerClass(PC), gold(Gold), armorequipped(ARMOR), weaponequipped(WEAP),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   format('                                   Status ~w                                \n', [NAME]),
-  format('  HP          : ~w/~w', [HP, MaxHP]), nl,
+  format('  HP          : ~2f/~w', [HP, MaxHP]), nl,
   format('  Attack      : ~w', [ATK]), nl,
   format('  Defense     : ~w', [DEF]), nl,
   format('  Weapon      : ~w', [WEAP]), nl,
@@ -157,7 +157,7 @@ enemy :-
   current_monster(NAME),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   format('                                   Status ~w                                \n', [NAME]),
-  format('  HP          : ~w/~w', [HP, MaxHP]), nl,
+  format('  HP          : ~2f/~w', [HP, MaxHP]), nl,
   format('  Attack      : ~w', [ATK]), nl,
   format('  Defense     : ~w', [DEF]), nl,
   format('  Level       : ~w', [LVL]), nl,
@@ -165,30 +165,32 @@ enemy :-
 
 battleStats :-
   (state(battle); state(boss)), !,
-  hp(M_HP), monster_maxHP(M_MaxHP),
+  monster_hp(M_HP), monster_maxHP(M_MaxHP),
   current_monster(M_NAME), monster_lvl(M_LVL), name(P_NAME), hp(P_HP),
   maxHP(P_MaxHP), level(P_LVL), weaponequipped(WEAP), armorequipped(ARMOR),
   weaponequipped(WEAP), special_cooldown(SPC_COOL),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
    write('                                   Battle\n'),
-  format('  Enemy (~w)', [M_NAME]),
-  format('  HP          : ~w/~w', [M_HP, M_MaxHP]), nl,
+  format('  Enemy (~w)', [M_NAME]), nl,
+  format('  HP          : ~2f/~w', [M_HP, M_MaxHP]), nl,
   format('  Level       : ~w', [M_LVL]), nl,
    write('---------------------------------------------------------------------------------\n'),
   format('  ~w\n', [P_NAME]),
-  format('  HP          : ~w/~w', [P_HP, P_MaxHP]), nl,
+  format('  HP          : ~2f/~w', [P_HP, P_MaxHP]), nl,
   format('  Weapon      : ~w', [WEAP]), nl,
   format('  Armor       : ~w', [ARMOR]), nl,
   format('  Level       : ~w', [P_LVL]), nl,
   (
     (
       SPC_COOL =:= 0,
-      write('  Sp. attack: bisa digunakan\n'), !
+      write('  Sp. attack  : bisa digunakan'), !
     );
     (
-      format('  Sp. attack: ~w turn tersisa sampai bisa digunakan.', [SPC_COOL])
+      format('  Sp. attack  : ~w turn tersisa sampai bisa digunakan.', [SPC_COOL])
     )
-  ),
+  ), nl,
    write('---------------------------------------------------------------------------------\n'),
    write('  Gunakan command `enemy` untuk stats lengkap musuh\n  dan `stats` untuk stats lengkap kamu\n'),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
+
+battleStats.

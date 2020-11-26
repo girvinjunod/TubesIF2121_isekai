@@ -15,11 +15,11 @@ class(swordsman).
 class(archer).
 class(sorcerer).
 
-pilihKelas(_) :- playerClass(_), !.
-pilihKelas(Kelas) :- setStat(Kelas), firstLevel.
-
-firstLevel :-
-  maxHP(HP),
+reset :-
+  retractall(playerClass(_)),
+  retractall(attack(_)),
+  retractall(defense(_)),
+  retractall(maxHP(_)),
   retractall(level(_)),
   retractall(levelUpCap(_)),
   retractall(experience(_)),
@@ -27,6 +27,13 @@ firstLevel :-
   retractall(gold(_)),
   retractall(weaponequipped(_)),
   retractall(armorequipped(_)),
+  retractall(name(_)).
+
+pilihKelas(_) :- playerClass(_), !.
+pilihKelas(Kelas) :- setStat(Kelas), firstLevel.
+
+firstLevel :-
+  maxHP(HP),
   asserta(level(1)),
   asserta(levelUpCap(1000)),
   asserta(experience(0)),
@@ -36,37 +43,24 @@ firstLevel :-
   asserta(armorequipped(telanjang)).
 
 setStat(swordsman) :-
-  retractall(playerClass(_)),
-  retractall(attack(_)),
-  retractall(defense(_)),
-  retractall(maxHP(_)),
   asserta(playerClass(swordsman)),
   asserta(attack(50)),
   asserta(defense(150)),
   asserta(maxHP(800)),!.
 
 setStat(archer) :-
-  retractall(playerClass(_)),
-  retractall(attack(_)),
-  retractall(defense(_)),
-  retractall(maxHP(_)),
   asserta(playerClass(archer)),
   asserta(attack(150)),
   asserta(defense(50)),
   asserta(maxHP(500)),!.
 
 setStat(sorcerer) :-
-  retractall(playerClass(_)),
-  retractall(attack(_)),
-  retractall(defense(_)),
-  retractall(maxHP(_)),
   asserta(playerClass(sorcerer)),
   asserta(attack(200)),
   asserta(defense(50)),
   asserta(maxHP(400)),!.
 
 setName(X) :-
-  retractall(name(_)),
   asserta(name(X)).
 
 earnExp(X) :-

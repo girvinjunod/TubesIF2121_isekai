@@ -62,6 +62,7 @@ start :-
   )).
 
 newGame :-
+  reset,
   setState(tutorial),
   randomize_map,
   generate_quest,
