@@ -163,11 +163,11 @@ battleStats :-
   weaponequipped(WEAP), special_cooldown(SPC_COOL),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
    write('                                   Battle\n'),
-  format('  Enemy (~w)', [M_NAME]), nl,
+  format('  ~w (Enemy)', [M_NAME]), nl,
   format('  HP          : ~2f/~w', [M_HP, M_MaxHP]), nl,
   format('  Level       : ~w', [M_LVL]), nl,
    write('---------------------------------------------------------------------------------\n'),
-  format('  ~w\n', [P_NAME]),
+  format('  ~w (Player)\n', [P_NAME]),
   format('  HP          : ~2f/~w', [P_HP, P_MaxHP]), nl,
   format('  Weapon      : ~w', [WEAP]), nl,
   format('  Armor       : ~w', [ARMOR]), nl,
@@ -183,6 +183,6 @@ battleStats :-
   ), nl,
    write('---------------------------------------------------------------------------------\n'),
    write('  Gunakan command `enemy` untuk stats lengkap musuh\n  dan `stats` untuk stats lengkap kamu\n'),
-   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),nl,nl.
+   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),nl.
 
 battleStats.

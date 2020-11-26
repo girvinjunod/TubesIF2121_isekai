@@ -162,7 +162,7 @@ damage_monster(Dmg) :-
 	retractall(monster_hp(HP)),
 	asserta(monster_hp(NewHP)),
 	nl,
-	format('Kamu memberikan ~2f damage.', [BiasDmg]), nl,
+	format('Kamu memberikan ~2f damage ke musuh.', [BiasDmg]), nl,
 	(
 		NewHP =< 0,
 		monster_die;
@@ -263,6 +263,7 @@ special_attack :-
 	(
 		(
 			playerClass(swordsman),
+			write('Kamu menggunakan special attack.\n'),nl,
 			write('Lionheart!!!'), nl,
 			hp(Dmg),
 			damage_monster(Dmg)
@@ -270,6 +271,7 @@ special_attack :-
 		(
 			playerClass(archer),
 			attack(Atk),
+			write('Kamu menggunakan special attack.\n'),nl,
 			write('Steal!!!'), nl,
 			BiasAtk is Atk * 0.5,
 			damage_monster(BiasAtk),
@@ -278,6 +280,7 @@ special_attack :-
 		(
 			playerClass(sorcerer),
 			level(Lvl),
+			write('Kamu menggunakan special attack.\n'), nl,
 			write('Ekusupurosion!!!'), nl,
 			BatasAtas is (Lvl*1000)+1,
 			acak(1, BatasAtas, GachaDmg),
@@ -299,6 +302,7 @@ special_attack :-
 
 attack :-
 	special_counter,
+	write('Kamu menyerang musuh dengan attack insert nama.\n'),
 	attack(Atk),
 	damage_monster(Atk), !,
 	monster_move, 
@@ -319,5 +323,5 @@ damagePlayer(Dmg) :-
 		die, !;
 		retractall(hp(_)),
 		asserta(hp(NewHP)),
-		format('Kamu dicakar, menerima ~2f damage.', [BiasDmg]), nl,nl
+		format('Kamu diserang, menerima ~2f damage.', [BiasDmg]), nl,nl
 	).

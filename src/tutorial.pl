@@ -105,7 +105,7 @@ formulir(X) :-
   write('               * Defense        : 50\n'),
   write('            - Special Attack:\n'),
   write('               * Expurusion, but with gacha\n'),
-  write('                   -> Memberi damage sebesar 0-9999\n'),
+  write('                   -> Memberi damage bernilai gacha.\n'),
   nl,
   write('   Masukkan role pilihan (swordsman/archer/sorcerer):  '),
   read(RoleChosen),
