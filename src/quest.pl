@@ -27,15 +27,22 @@ add_quest(Tuple) :-
 	addToList(Tuple,OldAvailableQuest,NewAvailableQuest),
 	asserta(available_quest(NewAvailableQuest)).
 
-remove_quest :-
+remove_available_quest :-
 	available_quest(_),
 	!,
 	retractall(available_quest(_)).
-remove_quest.
+remove_available_quest.
+
+remove_active_quest :-
+	active_quest(_,_,_,_,_,_),
+	!,
+	retractall(available_quest(_,_,_,_,_,_)).
+remove_active_quest.
 
 generate_quest :-
 	/* hapus available_quest kalo ada */
-	remove_quest,
+	remove_available_quest,
+	remove_active_quest,
 	/* quest spam satu monster */
 	add_quest([5,0,0,0,150,150]),
 	add_quest([0,5,0,0,200,200]),
