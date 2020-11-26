@@ -189,14 +189,47 @@ use(Item) :-
     asserta(defense(NewDEF)),
     removeFromInventory(Item)
   )), !.
+drop(_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 
+drop(Gear) :-
+	\+(item(Gear,_,_)),
+	write('Barang itu tidak ada.\n'), !.
+drop(Gear) :-
+	countItemInInvetory(Gear, GearCount),
+	GearCount =:= 0, !,
+	write('Kamu tidak memiliki barang itu.\n'), !.
+	
 drop(X) :-
-  removeFromInventory(X).
+  removeFromInventory(X),
+  write('Kamu telah drop '), write(X),!.
+drop(_,_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
+  
+drop(Gear,_) :-
+	\+(item(Gear,_,_)),
+	write('Barang itu tidak ada.\n'), !.
+	
+drop(Gear,_) :-
+	countItemInInvetory(Gear, GearCount),
+	GearCount =:= 0, !,
+	write('Kamu tidak memiliki barang itu.\n'), !.
 
+drop(Gear,Count) :-
+	countItemInInvetory(Gear, GearCount),
+	GearCount < Count, !,
+	write('Kamu tidak memiliki '),write(Count), write(' barang itu.\n'), !.
+	
 drop(X, 1) :-
-  removeFromInventory(X).
+  removeFromInventory(X),
+  write('Kamu telah drop '), write(X),!.
 
 drop(X, Cnt) :-
   removeFromInventory(X),
   NewCnt is Cnt-1,
-  drop(X, NewCnt).
+  drop(X, NewCnt),
+  write('Kamu telah drop '),write(Cnt), write(X),!.

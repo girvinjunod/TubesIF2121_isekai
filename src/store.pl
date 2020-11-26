@@ -202,10 +202,19 @@ randomizeWeapon(X, Item) :-
     (Y =:= 1, !, Item = busur_panah_dan_jangka_1);
     (Y =:= 0, !, Item = magic_stick_1)
   ).
+gachaWeapon(_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 
 gachaWeapon(Item) :-
   acak(0, 100, R),
   randomizeWeapon(R, Item).
+ 
+gachaEquipment(_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 
 gachaEquipment :-
   countItemInInvetory(kupon_gacha_equipment, Cnt),
@@ -285,7 +294,8 @@ steal :-
 	randomize_monster(shopkeeper),
 	setState(battle),
 	retractall(special_cooldown(_)),
-	asserta(special_cooldown(0)),
-	write('Anda tertangkap basah mencoba untuk mencuri.\n'),
+	asserta(special_cooldown(0)),nl,
+	write('Anda tertangkap basah mencoba untuk mencuri.\n'),nl,
+	write('Sang shopkeeper mencegat Anda yang mencoba kabur dan battle pun dimulai.\n'),
 	nl,nl,
 	write('-----------------------------------------------------SECRET BOSS FIGHT!!-----------------------------------------------------\n'),nl,nl.

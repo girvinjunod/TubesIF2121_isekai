@@ -138,6 +138,11 @@ printCell(_,_) :-
 	write('-').
 
 map :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
+
+map :-
 	nRow(R),
 	nCol(C),
 	forall(between(1,R,I),(

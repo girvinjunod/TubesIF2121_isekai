@@ -283,6 +283,10 @@ kabur :-
 	write('Kamu gagal kabur, Raja Naga Keri menghadang jalanmu.\n'),
 	write('Semangat!!!.\n'), !.
 kabur :-
+	current_monster('Shopkeeper'),
+	write('Kamu gagal kabur, kamu tidak bisa lari dari keadilan.\n'),
+	write('Tanggung jawab atas perbuatanmu!!.\n'), !.
+kabur :-
 	state(battle),
 	%random(X),
 	acak(X),
@@ -324,6 +328,10 @@ maling :-
   ),
   addToInventory(Item),
   write('Berhasil mencuri '), write(Item), write(' dari monster'), nl.
+  
+special_attack :-
+	state(not_started), !,
+	write('Gamenya belom mulai bang, udah attack2 aja.').
 
 special_attack :-
 	special_cooldown(0),
@@ -551,7 +559,8 @@ damagePlayer(Dmg) :-
 	NewHP is HP - BiasDmg,
 	(
 		NewHP < 0,
-		write('Anda meninggal.'), nl, nl,
+		format('Kamu diserang, menerima ~2f damage.', [BiasDmg]), nl,nl,
+		write('Kamu tewas.'), nl, nl,
 		die, !;
 		retractall(hp(_)),
 		asserta(hp(NewHP)),

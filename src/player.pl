@@ -245,8 +245,8 @@ die :-
 	retractall(weaponequipped(_)),
 	retractall(armorequipped(_)),
 	setState(not_started),
-	write('Anda terjatuh di tengah pertempuran, seiring Anda ditelan kegelapan, Anda melihat sang shopkeeper tersenyum.'), nl,
-	write('Anda mencoba untuk bergerak namun tidak bisa, karena Anda sudah tewas...'), nl,
+	write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu melihat sang shopkeeper tersenyum.'), nl,
+	write('Kamu mencoba untuk bergerak namun tidak bisa, karena kamu sudah tewas...'), nl,
 	nl,nl,nl,
 	write('------------------------------------------------------JUSTICE IS SERVED------------------------------------------------------\n'),
 	reset, !.
@@ -261,8 +261,8 @@ die :-
   retractall(weaponequipped(_)),
   retractall(armorequipped(_)),
   setState(not_started),
-  write('Anda terjatuh di tengah pertempuran, seiring Anda ditelan kegelapan, Anda mendengar teriakan minta tolong...'), nl,
-  write('Sayangnya, Anda tidak dapat bergerak, karena Anda sudah tewas...'), nl,
+  write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu mendengar teriakan minta tolong...'), nl,
+  write('Sayangnya, kamu tidak dapat bergerak, karena kamu sudah tewas...'), nl,
   nl,nl,nl,
   write('------------------------------------------------------GAME OVER------------------------------------------------------\n'),
   reset, !.
