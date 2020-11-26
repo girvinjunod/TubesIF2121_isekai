@@ -28,7 +28,7 @@ store :- % Player di store
   (
     ( % Kasus item yg dibeli ga ada
       \+hargaItem(Item, Harga), !,
-      write('Kami tidak menjual item itu :(.'), nl
+      write('Kami tidak menjual item itu :('), nl
     );
     write('Berapa banyak? '),
     read(Qty),
@@ -67,7 +67,7 @@ sell :- % Player tidak memiliki item
   Cell = store_cell,
   inventory(I),
   I = [], !,
-  write('Kamu tidak memiliki item yang dapat dijual :(.'), nl.
+  write('Kamu tidak memiliki item yang dapat dijual :('), nl.
 
 sell :- % Player di store
   state(free),

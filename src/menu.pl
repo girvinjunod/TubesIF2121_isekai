@@ -145,7 +145,7 @@ shop :-
   store.
 
 enemy :-
-  hp(HP), monster_maxHP(MaxHP), monster_atk(ATK), monster_def(DEF), monster_lvl(LVL),
+  monster_hp(HP), monster_maxHP(MaxHP), monster_atk(ATK), monster_def(DEF), monster_lvl(LVL),
   current_monster(NAME),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   format('                                   Status ~w                                \n', [NAME]),
