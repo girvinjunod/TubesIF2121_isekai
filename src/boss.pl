@@ -1,5 +1,4 @@
 boss(X) :-
-	write('ini abis cukup quest selesai buat unlock jalan ke final boss\n'),
 	nl,
 	write('Mendengar banyaknya tubes yang telah diselesaikan '),
 	write(X),
@@ -32,7 +31,14 @@ boss(X) :-
 	write('"Hah apa maksud lu nolak duel, ga bisa gitu dong. Pokoknya kita duel sekarang!!"\n'),
 	nl,
 	write('-------------BOSS BATTLE BEGINS!!!----------\n'),
-	nl,
+	nl, battleBoss.
+
+	
+battleBoss :-
+	randomize_monster(boss),
+	setState(battle),
+	asserta(special_cooldown(0)).
+finishBoss :-
 	write('----------------BOSS DEFEATED----------------\n'),
 	nl,nl,nl,
 	write('Dengan Raja Naga Keri terkalahkan, tidak ada lagi yang menghalangi '),
@@ -59,5 +65,6 @@ boss(X) :-
 	nl,
 	write('"Hah kacau, udah deadline tubes Alstrukdat dong!!!!"\n'),
 	nl,nl,nl,
-	write('------------------THE END------------------\n').
+	write('------------------THE END------------------\n'),
+	setState(end), !,fail.
 	

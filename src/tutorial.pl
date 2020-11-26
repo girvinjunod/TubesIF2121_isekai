@@ -129,7 +129,7 @@ finishTutorial :-
 	name(NAME),
     nl, nl, nl,
 	write('---------------------------------------------------------------------------\n'), nl, nl, nl,
-    write('Dengan selesainya tutorial battle ini\n Paus Asdos pun langsung mengeluarkan '),
+    write('Dengan selesainya tutorial battle ini\nPaus Asdos pun langsung mengeluarkan '),
     write(NAME),
     write(' ke dunia Jurusan yang kejam.\n'),
     nl,nl,nl,nl,
@@ -146,3 +146,5 @@ battleTutorial :-
   write('Untuk membantu kamu dalam melawan tubes Alstrukdat, kamu diberikan 5 potion dan starting equipment.\n'),nl,
   write('Equip gunakan perintah equip(Nama_item)\n'),nl,
   getStartingItem.
+	
+

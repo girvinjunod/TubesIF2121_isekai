@@ -153,10 +153,10 @@ enemy :-
   format('  Attack      : ~w', [ATK]), nl,
   format('  Defense     : ~w', [DEF]), nl,
   format('  Level       : ~w', [LVL]), nl,
-   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
+   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'), !.
 
 battleStats :-
-  (state(battle); state(boss); state(tutorial)), !,
+  (state(battle); state(tutorial)), !,
   monster_hp(M_HP), monster_maxHP(M_MaxHP),
   current_monster(M_NAME), monster_lvl(M_LVL), name(P_NAME), hp(P_HP),
   maxHP(P_MaxHP), level(P_LVL), weaponequipped(WEAP), armorequipped(ARMOR),

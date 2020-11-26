@@ -158,7 +158,7 @@ unlock_dungeon_boss_cell :-
 interact_with_dungeon_boss_cell :-
 	dungeon_boss_cell_state(locked),
 	!,
-	write('Istana tertutup untuk orang luar.\n').
+	write('Istana tertutup untuk orang luar. Anda tidak bisa masuk istana.\n').
 interact_with_dungeon_boss_cell.
 	/* njalanin command encounter boss somehow, WIP */
 
@@ -198,7 +198,7 @@ w :-
 	NewR is R - 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)), !,
-	write('You moved north.'), nl,
+	write('Kamu telah bergerak ke utara.'), nl,
 	cekCell(NewR,C).
 
 w :-
@@ -219,7 +219,7 @@ a :-
 	NewC is C - 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
-	write('You moved west.'), nl,
+	write('Kamu telah bergerak ke barat.'), nl,
 	cekCell(R,NewC).
 a :-
 	state(X),
@@ -239,7 +239,7 @@ s :-
 	NewR is R + 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(NewR,C)), !,
-	write('You moved south.'), nl,
+	write('Kamu telah bergerak ke selatan.'), nl,
 	cekCell(NewR,C).
 s :-
 	state(X),
@@ -259,7 +259,7 @@ d :-
 	NewC is C + 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
-	write('You moved east.'), nl,
+	write('Kamu telah bergerak ke kanan.'), nl,
 	cekCell(R,NewC).
 d :-
 	state(X),

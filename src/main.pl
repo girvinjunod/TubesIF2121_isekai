@@ -9,6 +9,7 @@
 :- include('store.pl').
 :- include('equipment.pl').
 :- include('quest.pl').
+:- include('boss.pl').
 
 :- dynamic(state/1).
 
@@ -21,6 +22,7 @@ state(not_started).
  * - mati
  * - boss
  * - tutorial
+ * - end
  */
 
 setState(X) :-

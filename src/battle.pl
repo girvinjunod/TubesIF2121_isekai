@@ -41,7 +41,7 @@ monster_encounter.
 randomize_monster(X, Lvl) :-
 	X < 0.5,
 	setState(battle),
-	asserta(current_monster('slime')),
+	asserta(current_monster('Slime')),
 	HP is 30 * Lvl + 50,
 	Atk is 3 * Lvl + 10,
 	Def is 10 * Lvl + 100,
@@ -58,7 +58,7 @@ randomize_monster(X, Lvl) :-
 randomize_monster(X, Lvl) :-
 	X < 0.8,
 	setState(battle),
-	asserta(current_monster('goblin')),
+	asserta(current_monster('Goblin')),
 	(
 		Lvl < 10, MLvl is 10;
 		Lvl > 30, MLvl is 30;
@@ -80,7 +80,7 @@ randomize_monster(X, Lvl) :-
 randomize_monster(X, Lvl) :-
 	X < 0.99,
 	setState(battle),
-	asserta(current_monster('wolf')),
+	asserta(current_monster('Wolf')),
 	(
 		Lvl < 15, MLvl is 15;
 		Lvl > 45, MLvl is 45;
@@ -102,7 +102,7 @@ randomize_monster(X, Lvl) :-
 
 randomize_monster(_, Lvl) :-
 	setState(battle),
-	asserta(current_monster('ghost')),
+	asserta(current_monster('Ghost')),
 	(
 		Lvl < 30, MLvl is 30;
 		Lvl > 70; MLvl is 70;
@@ -120,6 +120,17 @@ randomize_monster(_, Lvl) :-
 	asserta(monster_exp(XP)),
 	asserta(monster_lvl(MLvl)),
 	asserta(monster_gold(Gold)).
+
+randomize_monster(boss) :-
+	setState(battle),
+	asserta(current_monster('Raja Naga Keri')),
+	asserta(monster_hp(4200)),
+	asserta(monster_maxHP(4200)),
+	asserta(monster_atk(420)),
+	asserta(monster_def(420)),
+	asserta(monster_exp(0)),
+	asserta(monster_lvl(69)),
+	asserta(monster_gold(9999)).
 
 monster_count_move :-
 	monster_turn(T),
@@ -168,6 +179,18 @@ damage_monster(Dmg) :-
 		monster_die;
 		NewHP > 0
 	),nl.
+monster_die :-
+	current_monster('Raja Naga Keri'),
+	nl,
+	retractall(current_monster(_)),
+	retractall(monster_hp(_)),
+	retractall(monster_atk(_)),
+	retractall(monster_def(_)),
+	retractall(monster_exp(_)),
+	retractall(monster_gold(_)),
+    retractall(monster_turn(_)),
+	setState(free),
+    finishBoss, !.
 
 monster_die :-
     state(tutorial),
@@ -194,6 +217,7 @@ monster_die :-
 	setState(free),
     finishTutorial, !.
 
+
 monster_die :-
 	current_monster(Name),
 	monster_exp(XP),
@@ -216,7 +240,13 @@ monster_die :-
 	retractall(monster_gold(_)),
     retractall(monster_turn(_)),
 	setState(free), !.
-
+kabur :-
+	state(tutorial),
+	write('Masa tutorial udah kabur aja.\n'), !.
+kabur :-
+	current_monster('Raja Naga Keri'),
+	write('Kamu gagal kabur, Raja Naga Keri menghadang jalanmu.\n'),
+	write('Semangat!!!.\n'), !.
 kabur :-
 	state(battle),
 	%random(X),
@@ -465,9 +495,9 @@ flavor :-
 	
 attack :-
 	special_counter,
+	write('Kamu menyerang musuh dengan attack '), flavor, nl,
 	attack(Atk),
 	damage_monster(Atk), !,
-	write('Kamu menyerang musuh dengan attack '), flavor, nl,
 	monster_move, 
 	battleStats, !.
 
