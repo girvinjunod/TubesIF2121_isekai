@@ -29,7 +29,8 @@ reset :-
   retractall(gold(_)),
   retractall(weaponequipped(_)),
   retractall(armorequipped(_)),
-  retractall(name(_)).
+  retractall(name(_)),
+  retractall(active_quest(_,_,_,_,_,_)).
 
 pilihKelas(_) :- playerClass(_), !.
 pilihKelas(Kelas) :- setStat(Kelas), firstLevel.
@@ -47,7 +48,7 @@ firstLevel :-
 
 setStat(swordsman) :-
   asserta(playerClass(swordsman)),
-  asserta(attack(50)),
+  asserta(attack(75)),
   asserta(defense(150)),
   asserta(maxHP(800)),!.
 
