@@ -103,28 +103,28 @@ item_effect(pedang_2, weapon, 60).
 item_effect(armor_2, armor, 100).
 
 % Ultra Rare: (12%)
-item_effect(pedang_3, weapon, 90).
-item_effect(armor_3, armor, 150).
-item_effect(busur_panah_dan_jangka_3, weapon, 150).
-item_effect(jaket_3, armor, 60).
-item_effect(magic_stick_3, weapon, 180).
-item_effect(kaos_3, armor, 30).
+item_effect(pedang_3, weapon, 150).
+item_effect(armor_3, armor, 250).
+item_effect(busur_panah_dan_jangka_3, weapon, 250).
+item_effect(jaket_3, armor, 100).
+item_effect(magic_stick_3, weapon, 250).
+item_effect(kaos_3, armor, 50).
 
 % SR: (5%)
-item_effect(pedang_4, weapon, 120).
-item_effect(armor_4, armor, 200).
-item_effect(busur_panah_dan_jangka_4, weapon, 200).
-item_effect(jaket_4, armor, 80).
-item_effect(magic_stick_4, weapon, 240).
-item_effect(kaos_4, armor, 40).
+item_effect(pedang_4, weapon, 240).
+item_effect(armor_4, armor, 400).
+item_effect(busur_panah_dan_jangka_4, weapon, 400).
+item_effect(jaket_4, armor, 160).
+item_effect(magic_stick_4, weapon, 480).
+item_effect(kaos_4, armor, 80).
 
 % SSR: (3%)
-item_effect(pedang_5, weapon, 150).
-item_effect(armor_5, armor, 250).
-item_effect(busur_panah_dan_jangka_5, weapon, 250).
-item_effect(jaket_5, armor, 100).
-item_effect(magic_stick_5, weapon, 300).
-item_effect(kaos_5, armor, 50).
+item_effect(pedang_5, weapon, 450).
+item_effect(armor_5, armor, 750).
+item_effect(busur_panah_dan_jangka_5, weapon, 750).
+item_effect(jaket_5, armor, 300).
+item_effect(magic_stick_5, weapon, 900).
+item_effect(kaos_5, armor, 150).
 
 /* Penggunaan item */
 use(_) :-
