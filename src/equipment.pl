@@ -1,11 +1,11 @@
 equip(_) :-
   state(S),
   S = not_started, !,
-  write('Permainan belum dimulai.').
+  write('Permainan belum dimulai.\n').
 equip(telanjang) :-
 	weaponequipped(telanjang), !,
 	armorequipped(telanjang), !,
-	write('Kamu sudah telanjang').
+	write('Kamu sudah telanjang\n').
 equip(telanjang) :-
 	retract(weaponequipped(X)),
 	retract(armorequipped(Y)),
@@ -22,19 +22,19 @@ equip(telanjang) :-
 	asserta(defense(NewDEF)),
 	asserta(weaponequipped(telanjang)),
 	asserta(armorequipped(telanjang)),
-	write('Anda telah menelanjangkan diri.'), !.
+	write('Anda telah menelanjangkan diri.\n'), !.
 equip(Gear) :-
 	\+item(Gear,_,_),
-	write('Equipment itu tidak ada.'),!.
+	write('Equipment itu tidak ada.\n'),!.
 equip(Gear) :-
 	countItemInInvetory(Gear, GearCount),
 	GearCount =:= 0, !,
-	write('Kamu tidak memiliki equipment itu.'), !.
+	write('Kamu tidak memiliki equipment itu.\n'), !.
 equip(Gear) :-
 	item(Gear,_,Job),
 	playerClass(X),
 	Job \= X,
-	write('Equipment tidak cocok dengan job Anda.'),!.
+	write('Equipment tidak cocok dengan job Anda.\n'),!.
 equip(Gear) :-
 	item(Gear,Slot,Job),
 	playerClass(X),
@@ -50,7 +50,7 @@ equip(Gear) :-
 	NewATK is ATK - Dulu + Stats,
 	asserta(attack(NewATK)),
 	removeFromInventory(Gear),
-	write(Gear),write(' telah di-equip.'),!.
+	write(Gear),write(' telah di-equip.\n'),!.
 equip(Gear) :-
 	item(Gear,Slot,Job),
 	playerClass(X),
@@ -66,25 +66,25 @@ equip(Gear) :-
 	NewDEF is DEF - Dulu + Stats,
 	asserta(defense(NewDEF)),
 	removeFromInventory(Gear),
-	write(Gear),write(' telah di-equip.'),!.
+	write(Gear),write(' telah di-equip.\n'),!.
 
 unequip(_) :-
   state(S),
   S = not_started, !,
-  write('Permainan belum dimulai.').
+  write('Permainan belum dimulai.\n').
 unequip(telanjang) :-
 	(weaponequipped(telanjang)
 	;armorequipped(telanjang)),
-	write('Sudah telanjang tidak bisa unequip apa-apa lagi :v'), !.
+	write('Sudah telanjang tidak bisa unequip apa-apa lagi :v\n'), !.
 unequip(Gear) :-
 	\+(item(Gear,_,_)),
-	write('Equipment itu tidak ada.'), !.
+	write('Equipment itu tidak ada.\n'), !.
 unequip(Gear) :-
 	item(Gear,Slot,_),
 	Slot = weapon,
 	weaponequipped(X),
 	X \= Gear, !,
-	write('Kamu tidak sedang memakai equipment itu.').
+	write('Kamu tidak sedang memakai equipment itu.\n').
 unequip(Gear) :-
 	item(Gear,Slot,_),
 	Slot = weapon,
@@ -98,13 +98,13 @@ unequip(Gear) :-
 	asserta(attack(NewATK)),
 	asserta(weaponequipped(telanjang)),
 	addToInventory(Gear),
-	write(Gear), write(' telah di-unequip.'), !.
+	write(Gear), write(' telah di-unequip.\n'), !.
 unequip(Gear) :-
 	item(Gear,Slot,_),
 	Slot = armor,
 	armorequipped(X),
 	X \= Gear, !,
-	write('Kamu tidak sedang memakai equipment itu.').
+	write('Kamu tidak sedang memakai equipment itu.\n').
 unequip(Gear) :-
 	item(Gear,Slot,_),
 	Slot = armor,
@@ -118,4 +118,4 @@ unequip(Gear) :-
 	asserta(defense(NewDEF)),
 	asserta(armorequipped(telanjang)),
 	addToInventory(Gear),
-	write(Gear), write(' telah di-unequip.'), !.
+	write(Gear), write(' telah di-unequip.\n'), !.

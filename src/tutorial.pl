@@ -129,7 +129,7 @@ finishTutorial :-
 	name(NAME),
     nl, nl, nl,
 	write('---------------------------------------------------------------------------\n'), nl, nl, nl,
-    write('Dengan selesainya tutorial battle ini Paus Asdos pun langsung mengeluarkan '),
+    write('Dengan selesainya tutorial battle ini\n Paus Asdos pun langsung mengeluarkan '),
     write(NAME),
     write(' ke dunia Jurusan yang kejam.\n'),
     nl,nl,nl,nl,

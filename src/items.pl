@@ -73,9 +73,9 @@ item(kaos_5, armor, sorcerer).
 item_effect(telanjang, weapon, 0).
 item_effect(telanjang, armor, 0).
 
-item_effect(potion, hp, 10).
-item_effect(steroids, attack, 10).
-item_effect(skincare, defense, 10).
+item_effect(potion, hp, 100).
+item_effect(steroids, attack, 50).
+item_effect(skincare, defense, 50).
 item_effect(kupon_gacha_equipment, -, -).
 item_effect(kupon_gacha_item, -, -).
 
