@@ -201,7 +201,8 @@ monster_die :-
 	retractall(monster_gold(_)),
     retractall(monster_turn(_)),
 	setState(free),
-    finishBoss, !.
+	name(X),
+    finishBoss(X), !.
 	
 monster_die :-
 	state(battle),

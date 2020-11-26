@@ -39,12 +39,12 @@ battleBoss :-
 	setState(battle),
 	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)).
-finishBoss :-
+finishBoss(X) :-
 	write('----------------BOSS DEFEATED----------------\n'),
 	nl,nl,nl,
 	write('Dengan Raja Naga Keri terkalahkan, tidak ada lagi yang menghalangi '),
 	write(X),
-	write('untuk kembali ke dunianya melewati portal menuju dunianya yang ada di istana.\n'),
+	write(' untuk kembali ke dunianya melewati portal menuju dunianya yang ada di istana.\n'),
 	write('Sebelum ia pergi, ia pun menggunakan sistem pengumuman di istana untuk mengirimkan surat pengumuman ke seluruh penduduk jurusan.\n'),
 	nl,
 	write('Di sana dia menuliskan bahwa meskipun badai tubes telah lewat, tubes2 akan tetap ada.\n'),
