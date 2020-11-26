@@ -132,6 +132,17 @@ randomize_monster(boss) :-
 	asserta(monster_lvl(69)),
 	asserta(monster_gold(9999)).
 
+randomize_monster(shopkeeper) :-
+	setState(battle),
+	asserta(current_monster('Shopkeeper')),
+	asserta(monster_hp(9999)),
+	asserta(monster_maxHP(9999)),
+	asserta(monster_atk(500)),
+	asserta(monster_def(500)),
+	asserta(monster_exp(5000)),
+	asserta(monster_lvl(99)),
+	asserta(monster_gold(9999)).
+
 monster_count_move :-
 	monster_turn(T),
 	T > 0,
@@ -191,6 +202,29 @@ monster_die :-
     retractall(monster_turn(_)),
 	setState(free),
     finishBoss, !.
+	
+monster_die :-
+	state(battle),
+	current_monster('Shopkeeper'),
+	monster_exp(XP),
+	monster_gold(Gold),
+	earnExp(XP),
+	earnGold(Gold),
+	nl,
+	write('Shopkeeper'),
+	write(' telah dikalahkan.'), nl,nl,
+	write('Mendapat '),
+	write(XP),
+	write(' experience points.'), nl,
+	format('Kamu juga mendapatkan ~w gold.', [Gold]),nl,
+	retractall(current_monster(_)),
+	retractall(monster_hp(_)),
+	retractall(monster_atk(_)),
+	retractall(monster_def(_)),
+	retractall(monster_exp(_)),
+	retractall(monster_gold(_)),
+	retractall(monster_turn(_)),
+	setState(free), !.
 
 monster_die :-
     state(tutorial),
@@ -277,7 +311,7 @@ special_counter :-
 
 special_counter.
 
-steal :-
+maling :-
   acak(0, 100, R),
   (
 	(
@@ -307,7 +341,7 @@ special_attack :-
 			write('Steal!!!'), nl,
 			BiasAtk is Atk * 0.5,
 			damage_monster(BiasAtk),
-			steal
+			maling
 		), !;
 		(
 			playerClass(sorcerer),

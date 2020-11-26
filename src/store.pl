@@ -21,6 +21,13 @@ store :- % Player di store
   write('% 1. potion (50 gold)                                                          %\n'),
   write('% 2. kupon_gacha_item (70 gold)                                                %\n'),
   write('% 3. kupon_gacha_equipment (90 gold)                                           %\n'),
+  write('%                                                                              %\n'),
+  write('%                Kami juga menerima penjualan item dan equipment               %\n'),
+  write('%                                                                              %\n'),
+  write('%                                                                              %\n'),
+  write('%                     Dilarang mencuri(steal) di toko ini                      %\n'),
+  write('%               Jika Anda mencuri, Anda akan merasakan akibatnya.              %\n'),
+  write('%                                                                              %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   nl,
   write('Masukkan nama item yang mau kamu beli: '),
@@ -251,3 +258,11 @@ gachaItem :-
   ),
   addToInventory(Item),
   format('Selamat, kamu mendapatkan: ~w dari gacha! :D', [Item]), nl.
+
+steal :-
+	randomize_monster(shopkeeper),
+	setState(battle),
+	asserta(special_cooldown(0)),
+	write('Anda tertangkap basah mencoba untuk mencuri.\n'),
+	nl,nl,
+	write('-----------------------------------------------------SECRET BOSS FIGHT!!-----------------------------------------------------\n'),nl,nl.

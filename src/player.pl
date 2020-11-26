@@ -235,6 +235,23 @@ teleport :-
     )
   ).
 die :-
+	current_monster('Shopkeeper'),
+	retractall(maxHP(_)),
+	retractall(level(_)),
+	retractall(levelUpCap(_)),
+	retractall(experience(_)),
+	retractall(hp(_)),
+	retractall(gold(_)),
+	retractall(weaponequipped(_)),
+	retractall(armorequipped(_)),
+	setState(not_started),
+	write('Anda terjatuh di tengah pertempuran, seiring Anda ditelan kegelapan, Anda melihat sang shopkeeper tersenyum.'), nl,
+	write('Anda mencoba untuk bergerak namun tidak bisa, karena Anda sudah tewas...'), nl,
+	nl,nl,nl,
+	write('------------------------------------------------------JUSTICE IS SERVED------------------------------------------------------\n'),
+	reset, !.
+
+die :-
   retractall(maxHP(_)),
   retractall(level(_)),
   retractall(levelUpCap(_)),
