@@ -203,28 +203,31 @@ teleport :-
   read(Tujuan),
   (
     (
-      Tujuan = store, !,
+      (Tujuan = store; Tujuan = 1), !,
       store_coordinate(X, Y),
       retractall(player_cell(_)),
       retractall(player_coordinate(_, _)),
       asserta(player_cell(store_cell)),
-      asserta(player_coordinate(X, Y))
+      asserta(player_coordinate(X, Y)),
+      write('Kamu berhasil teleport ke store')
     );
     (
-      Tujuan = quest, !,
+      (Tujuan = quest; Tujuan = 2), !,
       quest_coordinate(X, Y),
       retractall(player_cell(_)),
       retractall(player_coordinate(_, _)),
       asserta(player_cell(quest_cell)),
-      asserta(player_coordinate(X, Y))
+      asserta(player_coordinate(X, Y)),
+      write('Kamu berhasil teleport ke quest')
     );
     (
-      Tujuan = boss, !,
+      (Tujuan = boss; Tujuan = 3), !,
       dungeon_boss_coordinate(X, Y),
       retractall(player_cell(_)),
       retractall(player_coordinate(_, _)),
       asserta(player_cell(dungeon_boss_cell)),
-      asserta(player_coordinate(X, Y))
+      asserta(player_coordinate(X, Y)),
+      write('Kamu berhasil teleport ke boss')
     );
     (
       write('Tidak ada portal di tempat pilihanmu, teleport dibatalkan.')

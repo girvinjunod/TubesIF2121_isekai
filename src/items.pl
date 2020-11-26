@@ -11,9 +11,6 @@ hargaItem(potion, 50).
 hargaItem(kupon_gacha_item, 70).
 hargaItem(kupon_gacha_equipment, 90).
 
-hargaItemm(_, weapon, 45).
-hargaItemm(_, armor, 45).
-
 /* list item equip
 format: (nama, tipe, role) */
 
