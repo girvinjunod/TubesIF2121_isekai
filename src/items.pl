@@ -77,7 +77,7 @@ item_effect(telanjang, weapon, 0).
 item_effect(telanjang, armor, 0).
 
 item_effect(potion, hp, 10).
-item_effect(steroids, weapon, 10).
+item_effect(steroids, attack, 10).
 item_effect(skincare, defense, 10).
 item_effect(kupon_gacha_equipment, -, -).
 item_effect(kupon_gacha_item, -, -).
@@ -147,6 +147,7 @@ use(Item) :-
     attack(ATK),
     retractall(attack(_)),
     NewATK is ATK + X,
+    write('Berhasil menggunakan steroids, sekarang kamu tambah buff dan serangan mu semakin keras.'),
     asserta(attack(NewATK)),
     removeFromInventory(Item), !
   );
@@ -161,6 +162,7 @@ use(Item) :-
     (
       NewHP is Max
     )),
+    write('Berhasil berobat dengan potion.'),
     retractall(hp(_)),
     asserta(hp(NewHP)),
     removeFromInventory(Item), !
@@ -170,6 +172,7 @@ use(Item) :-
     defense(DEF),
     retractall(defense(_)),
     NewDEF is DEF + X,
+    write('Berhasil menggunakan skincare, sekarang kamu semakin kebal terhadap serangan (dan enak diliat).'),
     asserta(defense(NewDEF)),
     removeFromInventory(Item)
   )), !.
