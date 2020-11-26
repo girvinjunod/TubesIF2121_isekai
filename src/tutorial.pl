@@ -120,6 +120,8 @@ validFormRole(Role) :-
 	write('masuk ke dunia tubes. Kamu langsung dibawa ke istana raja naga carry dan'), nl,
 	write('kamu langsung mati di tempat. F.'), nl,
 	write('Kata-kata terakhir yang kamu dengar adalah "Mulailah permainan baru."'),
+	nl,nl,nl,
+	write('------------------------------------------------------GAME OVER------------------------------------------------------\n'),
 	setState(not_started), reset, !, fail.
 
 validFormRole(Role) :-

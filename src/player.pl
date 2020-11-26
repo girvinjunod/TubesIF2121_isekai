@@ -244,5 +244,8 @@ die :-
   retractall(weaponequipped(_)),
   retractall(armorequipped(_)),
   setState(not_started),
-  write('You died, and as the darkness devours you, you heard the cry for help...'), nl,
-  write('Unfortunately, you are unable to move, as your mortal body is torn apart.'), nl, reset, !.
+  write('Anda terjatuh di tengah pertempuran, seiring Anda ditelan kegelapan, Anda mendengar teriakan minta tolong...'), nl,
+  write('Sayangnya, Anda tidak dapat bergerak, karena Anda sudah tewas...'), nl,
+  nl,nl,nl,
+  write('------------------------------------------------------GAME OVER------------------------------------------------------\n'),
+  reset, !.
