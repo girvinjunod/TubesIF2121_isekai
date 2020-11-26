@@ -167,6 +167,29 @@ damage_monster(Dmg) :-
 	).
 
 monster_die :-
+    state(tutorial),
+	current_monster(Name),
+	monster_exp(XP),
+	monster_gold(Gold),
+	earnExp(XP),
+	earnGold(Gold),
+	update_active_quest(Name),
+	write(Name),
+	write(' telah dikalahkan.'), nl,
+	write('Mendapat '),
+	write(XP),
+	write(' experience points.'), nl,
+	format('Kamu juga mendapatkan ~w gold.', [Gold]),
+	retractall(current_monster(_)),
+	retractall(monster_hp(_)),
+	retractall(monster_atk(_)),
+	retractall(monster_def(_)),
+	retractall(monster_exp(_)),
+	retractall(monster_gold(_)),
+	setState(free),
+    finishTutorial, !.
+
+monster_die :-
 	current_monster(Name),
 	monster_exp(XP),
 	monster_gold(Gold),
@@ -231,7 +254,6 @@ steal :-
   write('Berhasil mencuri '), write(Item), write(' dari monster'), nl.
 
 special_attack :-
-	state(battle),
 	special_cooldown(0),
 	(
 		(
@@ -263,26 +285,21 @@ special_attack :-
 	battleStats, !.
 
 special_attack :-
-	state(battle),
+    special_cooldown(CD),
+    CD > 0,
 	write('Special attack masih cooldown...'), !.
 
 special_attack :-
-	state(X),
-	X \= battle,
 	write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl, !.
 
 attack :-
-	state(battle),
 	special_counter,
-	state(battle),
 	attack(Atk),
-	damage_monster(Atk),
+	damage_monster(Atk), !,
 	monster_move, 
 	battleStats, !.
 
 attack :-
-	state(X),
-	X \= battle,
 	write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl, !.
 
 damagePlayer(Dmg) :-

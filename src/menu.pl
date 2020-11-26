@@ -102,7 +102,7 @@ help :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 help :-
-  state(battle), !,
+  ( state(battle); state(tutorial); state(boss) ), !,
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   write('%                              ~Perintah Battle~                               %\n'),
   write('% 1. attack        : Serang monster                                            %\n'),
@@ -164,7 +164,7 @@ enemy :-
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
 
 battleStats :-
-  (state(battle); state(boss)), !,
+  (state(battle); state(boss); state(tutorial)), !,
   monster_hp(M_HP), monster_maxHP(M_MaxHP),
   current_monster(M_NAME), monster_lvl(M_LVL), name(P_NAME), hp(P_HP),
   maxHP(P_MaxHP), level(P_LVL), weaponequipped(WEAP), armorequipped(ARMOR),
@@ -192,5 +192,3 @@ battleStats :-
    write('---------------------------------------------------------------------------------\n'),
    write('  Gunakan command `enemy` untuk stats lengkap musuh\n  dan `stats` untuk stats lengkap kamu\n'),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
-
-battleStats.

@@ -7,7 +7,7 @@ tpb(X) :-
     nl,
     write(X),
     write(' pun terbangun di sebuah gedung bernama TPB. Ia menyadari bahwa ia tidak ada pakaian apa2 dan tidak ada barang apa2.\n'),
-	write('Lalu tiba2 datang seseorang yang dikenal dengan sebutan Paus Asdos menyambut dia.\n'),
+    write('Lalu tiba2 datang seseorang yang dikenal dengan sebutan Paus Asdos menyambut dia.\n'),
     write('Paus Asdos mengatakan bahwa '),
     write(X),
     write(' telah disummon ke dunia lain untuk membantu dunia "Jurusan" untuk membantu masyarakatnya melawan wabah monster tubes.\n'),
@@ -20,7 +20,7 @@ tpb(X) :-
     write(X),
     write(' mengisi formulir jobnya, Paus Asdos pun memberikan equipment sesuai job yang dipilih kepadanya dan menyuruhnya untuk memakainya.\n'),
     nl,
-	write('Lalu Paus Asdos pun melanjutkan eksposisinya.\n'),
+    write('Lalu Paus Asdos pun melanjutkan eksposisinya.\n'),
     write('Ia bilang bahwa di dunia ini dewa-dewi Dosen telah memberikan anugerah kepada manusia dalam bentuk tubes.\n'),
     write('Dengan menyelesaikan tubes seseorang akan dapat menerima EXP points dan bisa level up, menjadi lebih hebat dari sebelumnya.\n'),
     nl,
@@ -36,22 +36,34 @@ tpb(X) :-
     nl,
     write('Anda sebagai mahasiswa IF ITB pastinya sudah terbiasa dan jago dalam mengalahkan tubes.\n'),
     write('Oleh karena itu, tolonglah kami oh pejuang IF ITB, selamatkan kami dari badai tubes ini, hentikan Raja Naga Keri yang marah2, dan selamatkan dunia ini.\n'),
-	write('Btw, portal balik ke dunia Anda hanya ada di istana Raja Naga Keri jadi semangat!\n'),
+    write('Btw, portal balik ke dunia Anda hanya ada di istana Raja Naga Keri jadi semangat!\n'),
     nl,
     write('Paus Asdos pun tidak menunggu respon '),
     write(X),
     write(' dan langsung menganggap '),
     write(X),
     write(' setuju.\n'),
-    write('Ia pun langsung diterjunkan ke tutorial battle melawan sebuah tubes Alstrukdat yang telah berubah menjadi goblin.\n'),
+    write('Ia pun langsung diterjunkan ke tutorial battle melawan sebuah tubes Alstrukdat yang telah berubah menjadi slime.\n'),
     nl,
-    battleTutorial(X),
-    nl,
-    write('Dengan selesainya tutorial battle ini Paus Asdos pun langsung mengeluarkan '),
-    write(X),
-    write(' ke dunia Jurusan yang kejam.\n'),
-    nl,nl,
-    write('ADVENTURE START').
+    battleTutorial.
+
+getStartingItem :-
+    playerClass(swordsman), !,
+    addToInventory(pedang_0),
+    addToInventory(armor_0),
+	write('Kamu mendapatkan pedang_0 dan armor_0.\n').
+
+getStartingItem :-
+    playerClass(archer), !,
+    addToInventory(busur_panah_dan_jangka_0),
+    addToInventory(jaket_0),
+	write('Kamu mendapatkan busur_panah_dan_jangka_0 dan jaket_0.\n').
+
+getStartingItem :-
+    playerClass(sorcerer), !,
+    addToInventory(magic_stick_0),
+    addToInventory(kaos_0),
+	write('Kamu mendapatkan magic_stick_0 dan kaos_0.\n').
 
 formulir(X) :-
   write(' ----------------------------------------------------\n'),
@@ -97,10 +109,40 @@ formulir(X) :-
   nl,
   write('   Masukkan role pilihan (swordsman/archer/sorcerer):  '),
   read(RoleChosen),
-  pilihKelas(RoleChosen),
   nl,
-  write(' ----------------------------------------------------\n'), nl.
+  write(' ----------------------------------------------------\n'), nl,
+  validFormRole(RoleChosen).
 
-battleTutorial(X) :-
+validFormRole(Role) :-
+	Role \= sorcerer, Role \= archer, Role \= swordsman, !,
+	write('Hiya ga bisa baca ya.'), nl,
+	write('Karena ketidakmampuan kamu dalam membaca, kamu dianggap tidak layak'), nl,
+	write('masuk ke dunia tubes. Kamu langsung dibawa ke istana raja naga carry dan'), nl,
+	write('kamu langsung mati di tempat. F.'), nl,
+	write('Kata-kata terakhir yang kamu dengar adalah "Mulailah permainan baru."'), fail, !.
+
+validFormRole(Role) :-
+	pilihKelas(Role).
+
+
+finishTutorial :-
+	name(NAME),
+    nl,
+	write('-----------------------------------------------------\n'), nl,
+    write('Dengan selesainya tutorial battle ini Paus Asdos pun langsung mengeluarkan '),
+    write(NAME),
+    write(' ke dunia Jurusan yang kejam.\n'),
+    nl,nl,
+    write('ADVENTURE START'), nl,
+	retractall(special_cooldown(_)),
+	setState(free).
+
+battleTutorial :-
+  randomize_monster(0.3, 1),
   setState(tutorial),
-  format('hia ~w battle ceunah', [X]), nl.
+  asserta(special_cooldown(0)),
+  battleStats,
+  help, nl,
+  write('Untuk membantu kamu dalam melawan tubes Alstrukdat, kamu diberikan beberapa item.\n'),
+  write('Equip gunakan perintah equip(Nama_item)\n'),
+  getStartingItem.

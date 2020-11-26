@@ -11,6 +11,9 @@ hargaItem(potion, 50).
 hargaItem(kupon_gacha_item, 70).
 hargaItem(kupon_gacha_equipment, 90).
 
+hargaItemm(_, weapon, 45).
+hargaItemm(_, armor, 45).
+
 /* list item equip
 format: (nama, tipe, role) */
 
@@ -21,6 +24,8 @@ item(telanjang, armor, swordsman).
 item(telanjang, armor, archer).
 item(telanjang, armor, sorcerer).
 
+item(pedang_0, weapon, swordsman).
+item(armor_0, armor, swordsman).
 item(pedang_1, weapon, swordsman).
 item(armor_1, armor, swordsman).
 item(pedang_2, weapon, swordsman).
@@ -32,6 +37,8 @@ item(armor_4, armor, swordsman).
 item(pedang_5, weapon, swordsman).
 item(armor_5, armor, swordsman).
 
+item(busur_panah_dan_jangka_0, weapon, archer).
+item(jaket_0, armor, archer).
 item(busur_panah_dan_jangka_1, weapon, archer).
 item(jaket_1, armor, archer).
 item(busur_panah_dan_jangka_2, weapon, archer).
@@ -43,6 +50,8 @@ item(jaket_4, armor, archer).
 item(busur_panah_dan_jangka_5, weapon, archer).
 item(jaket_5, armor, archer).
 
+item(magic_stick_0, weapon, sorcerer).
+item(kaos_0, armor, sorcerer).
 item(magic_stick_1, weapon, sorcerer).
 item(kaos_1, armor, sorcerer).
 item(magic_stick_2, weapon, sorcerer).
@@ -72,6 +81,13 @@ item_effect(steroids, weapon, 10).
 item_effect(skincare, defense, 10).
 item_effect(kupon_gacha_equipment, -, -).
 item_effect(kupon_gacha_item, -, -).
+
+item_effect(magic_stick_0, weapon, 30).
+item_effect(kaos_0, armor, 5).
+item_effect(busur_panah_dan_jangka_0, weapon, 25).
+item_effect(jaket_0, armor, 10).
+item_effect(pedang_0, weapon, 15).
+item_effect(armor_0, armor, 25).
 
 % Common: (50%)
 item_effect(magic_stick_1, weapon, 60).

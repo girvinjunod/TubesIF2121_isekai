@@ -14,13 +14,13 @@
 
 state(not_started).
 /* Kemungkinan states:
- * - tutorial
  * - not_started
  * - free
  * - shop
  * - battle
  * - mati
  * - boss
+ * - tutorial
  */
 
 setState(X) :-
@@ -69,8 +69,7 @@ newGame :-
   write('Siapa namamu, Petualang? '),
   read(NamaPemain),
   setName(NamaPemain),
-  tpb(NamaPemain),
-  setState(free).
+  tpb(NamaPemain).
 
 loadGame :-
   write('Fitur belum diimplementasikan :('), nl.
