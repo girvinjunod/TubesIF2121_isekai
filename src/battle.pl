@@ -190,6 +190,7 @@ monster_die :-
 	retractall(monster_def(_)),
 	retractall(monster_exp(_)),
 	retractall(monster_gold(_)),
+    retractall(monster_turn(_)),
 	setState(free),
     finishTutorial, !.
 
@@ -213,6 +214,7 @@ monster_die :-
 	retractall(monster_def(_)),
 	retractall(monster_exp(_)),
 	retractall(monster_gold(_)),
+    retractall(monster_turn(_)),
 	setState(free), !.
 
 kabur :-
@@ -296,6 +298,9 @@ special_attack :-
     special_cooldown(CD),
     CD > 0,
 	write('Special attack masih cooldown...'), !.
+
+special_attack :-
+    special_cooldown(_).
 
 special_attack :-
 	write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl, !.
@@ -460,9 +465,9 @@ flavor :-
 	
 attack :-
 	special_counter,
-	write('Kamu menyerang musuh dengan attack '), flavor, nl,
 	attack(Atk),
 	damage_monster(Atk), !,
+	write('Kamu menyerang musuh dengan attack '), flavor, nl,
 	monster_move, 
 	battleStats, !.
 

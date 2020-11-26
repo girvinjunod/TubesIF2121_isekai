@@ -146,12 +146,13 @@ active_quest_reward :-
 /* ngecek active_quest selesai apa belum */
 cek_active_quest :-
 	active_quest(S,Go,W,Gh,_,_),
-	!,
 	S = 0,
 	Go = 0,
 	W = 0,
 	Gh = 0,
 	active_quest_reward, !.
+
+cek_active_quest.
 
 /* update active quest abis battle */
 update_active_quest(Monster) :-
