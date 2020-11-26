@@ -157,7 +157,6 @@ cek_active_quest.
 /* update active quest abis battle */
 update_active_quest(Monster) :-
 	active_quest(S,Go,W,Gh,Exp,Gold),
-	!,
 	(
 		(
 			Monster = 'slime',

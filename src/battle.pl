@@ -41,7 +41,7 @@ monster_encounter.
 randomize_monster(X, Lvl) :-
 	X < 0.5,
 	setState(battle),
-	asserta(current_monster('Slime')),
+	asserta(current_monster('slime')),
 	HP is 30 * Lvl + 50,
 	Atk is 3 * Lvl + 10,
 	Def is 10 * Lvl + 100,
@@ -58,7 +58,7 @@ randomize_monster(X, Lvl) :-
 randomize_monster(X, Lvl) :-
 	X < 0.8,
 	setState(battle),
-	asserta(current_monster('Goblin')),
+	asserta(current_monster('goblin')),
 	(
 		Lvl < 10, MLvl is 10;
 		Lvl > 30, MLvl is 30;
@@ -80,7 +80,7 @@ randomize_monster(X, Lvl) :-
 randomize_monster(X, Lvl) :-
 	X < 0.99,
 	setState(battle),
-	asserta(current_monster('Wolf')),
+	asserta(current_monster('wolf')),
 	(
 		Lvl < 15, MLvl is 15;
 		Lvl > 45, MLvl is 45;
@@ -102,7 +102,7 @@ randomize_monster(X, Lvl) :-
 
 randomize_monster(_, Lvl) :-
 	setState(battle),
-	asserta(current_monster('Ghost')),
+	asserta(current_monster('ghost')),
 	(
 		Lvl < 30, MLvl is 30;
 		Lvl > 70; MLvl is 70;
@@ -238,7 +238,7 @@ monster_die :-
 	retractall(monster_def(_)),
 	retractall(monster_exp(_)),
 	retractall(monster_gold(_)),
-    retractall(monster_turn(_)),
+   retractall(monster_turn(_)),
 	setState(free), !.
 kabur :-
 	state(tutorial),
@@ -497,6 +497,7 @@ attack :-
 	write('Gamenya belom mulai bang, udah attack2 aja.').
 
 attack :-
+	(state(battle); state(tutorial)), !,
 	special_counter,
 	write('Kamu menyerang musuh dengan attack '), flavor, nl,
 	attack(Atk),

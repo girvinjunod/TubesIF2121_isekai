@@ -191,7 +191,7 @@ w :-
 	NewR is R - 1,
 	fence(NewR,C),
 	!,
-	write('Kamu berusaha berjalan ke atas, tapi kamu menabrak pagar.'), nl.
+	write('Kamu berusaha berjalan ke utara, tapi kamu menabrak pagar.'), nl.
 w :-
 	state(free),
 	player_coordinate(R,C),
@@ -212,7 +212,7 @@ a :-
 	NewC is C - 1,
 	fence(R,NewC),
 	!,
-	write('Kamu berusaha berjalan ke kiri, tapi kamu menabrak pagar.'), nl.
+	write('Kamu berusaha berjalan ke barat, tapi kamu menabrak pagar.'), nl.
 a :-
 	state(free),
 	player_coordinate(R,C),
@@ -232,7 +232,7 @@ s :-
 	NewR is R + 1,
 	fence(NewR,C),
 	!,
-	write('Kamu berusaha berjalan ke bawah, tapi kamu menabrak pagar.'), nl.
+	write('Kamu berusaha berjalan ke selatan, tapi kamu menabrak pagar.'), nl.
 s :-
 	state(free),
 	player_coordinate(R,C),
@@ -252,14 +252,14 @@ d :-
 	NewC is C + 1,
 	fence(R,NewC),
 	!,
-	write('Kamu berusaha berjalan ke kanan, tapi kamu menabrak pagar.'), nl.
+	write('Kamu berusaha berjalan ke timur, tapi kamu menabrak pagar.'), nl.
 d :-
 	state(free),
 	player_coordinate(R,C),
 	NewC is C + 1,
 	retractall(player_coordinate(_,_)),
 	asserta(player_coordinate(R,NewC)), !,
-	write('Kamu telah bergerak ke kanan.'), nl,
+	write('Kamu telah bergerak ke timur.'), nl,
 	cekCell(R,NewC).
 d :-
 	state(X),
