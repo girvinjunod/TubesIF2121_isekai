@@ -39,7 +39,8 @@ battleBoss :-
 	setState(battle),
 	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)).
-finishBoss(X) :-
+finishBoss :-
+	name(X),
 	write('----------------BOSS DEFEATED----------------\n'),
 	nl,nl,nl,
 	write('Dengan Raja Naga Keri terkalahkan, tidak ada lagi yang menghalangi '),

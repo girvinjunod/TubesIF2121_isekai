@@ -159,7 +159,9 @@ interact_with_dungeon_boss_cell :-
 	dungeon_boss_cell_state(locked),
 	!,
 	write('Istana tertutup untuk orang luar. Anda tidak bisa masuk istana.\n').
-interact_with_dungeon_boss_cell.
+interact_with_dungeon_boss_cell :-
+	name(X),
+	boss(X).
 	/* njalanin command encounter boss somehow, WIP */
 
 /* cell-checking util., buat ganti-ganti player_cell */
