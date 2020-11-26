@@ -550,7 +550,7 @@ damagePlayer(Dmg) :-
 	NewHP is HP - BiasDmg,
 	(
 		NewHP < 0,
-		write('Kamu meninggal.'), nl,
+		write('Anda meninggal.'), nl, nl,
 		die, !;
 		retractall(hp(_)),
 		asserta(hp(NewHP)),

@@ -226,13 +226,20 @@ gachaEquipment :-
     (R =:= 1, !, gachaWeapon(Item))
   ),
   addToInventory(Item),
-  format('Selamat, kamu mendapatkan: ~w dari gacha! :D', [Item]), nl.
+  format('Selamat, kamu mendapatkan ~w dari gacha! :D', [Item]), nl.
 
 /*
 * drop chancenya (dri gacha)
-* potion: 75%
-* skincare: 13%
-* steroids: 12%
+* potion: 50%
+* skincare: 15%
+* steroids: 15%
+* adrenalin: 6 %
+* elixir: 2%
+* spicy_chili: 5 %
+* holy_water: 5 %
+* dragon's tears: 1 %
+* devil_fruit: 1 %
+*
 */
 gachaItem :-
   countItemInInvetory(kupon_gacha_item, Cnt),
@@ -250,9 +257,15 @@ gachaItem :-
   acak(0, 100, R),
   (
     (
-      R < 25,
-      (R < 13, !, Item = skincare);
-      (R < 25, !, Item = steroids)
+      R > 49,
+      (R > 98 ,!, Item = devil_fruit);
+	  (R > 97 ,!, Item = dragons_tears);
+	  (R > 95 ,!, Item = elixir);
+	  (R > 90 ,!, Item = holy_water);
+	  (R > 85 ,!, Item = spicy_chili);
+	  (R > 79 ,!, Item = adrenalin);
+	  (R > 64 ,!, Item = skincare);
+      (R > 49, !, Item = steroids)
     );
     (Item = potion)
   ),
