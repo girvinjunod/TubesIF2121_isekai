@@ -262,6 +262,7 @@ gachaItem :-
 steal :-
 	randomize_monster(shopkeeper),
 	setState(battle),
+	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)),
 	write('Anda tertangkap basah mencoba untuk mencuri.\n'),
 	nl,nl,

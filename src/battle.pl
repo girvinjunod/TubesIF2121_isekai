@@ -110,7 +110,7 @@ randomize_monster(_, Lvl) :-
 	),
 	HP is 40 * MLvl + 150,
 	Atk is 20 * MLvl + 2,
-	Def is 30 * MLvl + 5,
+	Def is 20 * MLvl + 5,
 	XP is 100 * MLvl + 325,
 	Gold is 10 * (Lvl + 2),
 	asserta(monster_hp(HP)),
@@ -127,7 +127,7 @@ randomize_monster(boss) :-
 	asserta(monster_hp(4200)),
 	asserta(monster_maxHP(4200)),
 	asserta(monster_atk(420)),
-	asserta(monster_def(420)),
+	asserta(monster_def(200)),
 	asserta(monster_exp(0)),
 	asserta(monster_lvl(69)),
 	asserta(monster_gold(9999)).
@@ -137,10 +137,10 @@ randomize_monster(shopkeeper) :-
 	asserta(current_monster('Shopkeeper')),
 	asserta(monster_hp(9999)),
 	asserta(monster_maxHP(9999)),
-	asserta(monster_atk(500)),
+	asserta(monster_atk(2000)),
 	asserta(monster_def(500)),
-	asserta(monster_exp(5000)),
-	asserta(monster_lvl(99)),
+	asserta(monster_exp(9999)),
+	asserta(monster_lvl(999)),
 	asserta(monster_gold(9999)).
 
 monster_count_move :-

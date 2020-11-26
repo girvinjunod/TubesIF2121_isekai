@@ -37,6 +37,7 @@ boss(X) :-
 battleBoss :-
 	randomize_monster(boss),
 	setState(battle),
+	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)).
 finishBoss :-
 	write('----------------BOSS DEFEATED----------------\n'),
