@@ -60,7 +60,7 @@ finishBoss :-
 	write(X),
 	write(' pun kembali ke dunia asalnya, dia tiba2 berada di depan Indomaret yang dia sedang tuju sebelum dia keisekai.\n'),
 	write('Dia pun melihat dirinya sudah kembali lagi ke semula dengan pakaian biasanya dan tanpa kekuatan apa pun.\n'),
-	write('Dia meraba-raba kantongnya dan menemukan HPnya di sana, lalu ketika ia menyalakan HPnya ia pun terkejur.\n'),
+	write('Dia meraba-raba kantongnya dan menemukan HPnya di sana, lalu ketika ia menyalakan HPnya ia pun terkejut.\n'),
 	nl,
 	write('Disitu tertulis tanggal 30 November 2020\n'),
 	nl,
