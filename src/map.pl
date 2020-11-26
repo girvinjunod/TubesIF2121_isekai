@@ -162,7 +162,6 @@ interact_with_dungeon_boss_cell :-
 interact_with_dungeon_boss_cell :-
 	name(X),
 	boss(X).
-	/* njalanin command encounter boss somehow, WIP */
 
 /* cell-checking util., buat ganti-ganti player_cell */
 cekCell(R,C) :-
