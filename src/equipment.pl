@@ -1,3 +1,7 @@
+equip(_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 equip(telanjang) :-
 	weaponequipped(telanjang), !,
 	armorequipped(telanjang), !,
@@ -64,6 +68,10 @@ equip(Gear) :-
 	removeFromInventory(Gear),
 	write(Gear),write(' telah di-equip.'),!.
 
+unequip(_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 unequip(telanjang) :-
 	(weaponequipped(telanjang)
 	;armorequipped(telanjang)),

@@ -22,8 +22,7 @@ mainMenu :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   write('%                          ~Kok Isekai Gw Penuh Tubes~                         %\n'),
   write('% 1. new game  : untuk memulai petualanganmu                                   %\n'),
-  write('% 2. load game : untuk melanjutkan petualanganmu                               %\n'),
-  write('% 3. exit      : keluar dari gim                                               %\n'),
+  write('% 2. exit      : keluar dari gim                                               %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 status :-
@@ -89,7 +88,6 @@ help :-
   write('%                                                                                  %\n'),
   write('% 18. quest            : Membuka menu quest (hanya bisa di quest board (Q)         %\n'),
   write('%                                                                                  %\n'),
-  write('% 15. save             : Menyimpan gim                                             %\n'),
   write('% 16. exit             : keluar dari gim                                           %\n'),
   write('%                                                                                  %\n'),
   write('%                                   ~Legenda Map~                                  %\n'),
@@ -107,14 +105,12 @@ help :-
   write('%                              ~Perintah Battle~                               %\n'),
   write('% 1. attack        : Serang monster                                            %\n'),
   write('% 2. special_attack: Serang monster dengan special attack                      %\n'),
-  write('% 2. item          : Menuliskan item yang dimiliki                             %\n'),
   write('% 3. kabur         : Kabur dari battle                                         %\n'),
   write('% 4. use(nama)     : Menggunakan item dengan nama item `nama`                  %\n'),
   write('% 5. inventory     : Menuliskan isi inventory                                  %\n'),
   write('% 6. help          : Menampilkan segala bantuan                                %\n'),
   write('% 7. status        : Menampilkan status pemain                                 %\n'),
   write('% 8. exit          : Keluar dari gim                                           %\n'),
-  write('% 9. save          : Menyimpan gim                                             %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 
 help :-
@@ -128,10 +124,6 @@ help :-
 inventory :-
   state(not_started), !,
   write('Inventory tidak tersedia karena permainan belum dimulai.'), nl.
-
-inventory :-
-  state(tutorial), !,
-  write('Inventory tidak tersedia selama tutorial.'), nl.
 
 inventory :-
   inventory(I),

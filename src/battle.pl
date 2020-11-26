@@ -31,6 +31,8 @@ monster_encounter :-
 	write(' di jalan.'), nl,
 	write('Level: '),
 	write(Lv),
+	nl,nl,
+	write('----Battle Start!!----'),nl,nl,
 	asserta(monster_turn(0)),
 	!.
 
@@ -159,12 +161,13 @@ damage_monster(Dmg) :-
 	NewHP is HP - BiasDmg,
 	retractall(monster_hp(HP)),
 	asserta(monster_hp(NewHP)),
+	nl,
 	format('Kamu memberikan ~2f damage.', [BiasDmg]), nl,
 	(
 		NewHP =< 0,
 		monster_die;
 		NewHP > 0
-	).
+	),nl.
 
 monster_die :-
     state(tutorial),
@@ -174,6 +177,7 @@ monster_die :-
 	earnExp(XP),
 	earnGold(Gold),
 	update_active_quest(Name),
+	nl,
 	write(Name),
 	write(' telah dikalahkan.'), nl,
 	write('Mendapat '),
@@ -196,12 +200,13 @@ monster_die :-
 	earnExp(XP),
 	earnGold(Gold),
 	update_active_quest(Name),
+	nl,
 	write(Name),
 	write(' telah dikalahkan.'), nl,
 	write('Mendapat '),
 	write(XP),
 	write(' experience points.'), nl,
-	format('Kamu juga mendapatkan ~w gold.', [Gold]),
+	format('Kamu juga mendapatkan ~w gold.', [Gold]),nl,
 	retractall(current_monster(_)),
 	retractall(monster_hp(_)),
 	retractall(monster_atk(_)),
@@ -314,5 +319,5 @@ damagePlayer(Dmg) :-
 		die, !;
 		retractall(hp(_)),
 		asserta(hp(NewHP)),
-		format('Kamu dicakar, menerima ~2f damage.', [BiasDmg]), nl
+		format('Kamu dicakar, menerima ~2f damage.', [BiasDmg]), nl,nl,nl,
 	).

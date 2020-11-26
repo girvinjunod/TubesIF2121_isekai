@@ -45,7 +45,7 @@ acak(P,Q,X) :-
 start :-
   mainMenu,
   nl,
-  write('Apa yang mau kamu lakukan (new / load / exit): '),
+  write('Apa yang mau kamu lakukan (new / exit): '),
   read(Act),
   nl, nl, nl,
   ((

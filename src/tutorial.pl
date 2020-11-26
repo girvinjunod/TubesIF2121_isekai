@@ -16,9 +16,6 @@ tpb(X) :-
     write(' untuk mengisi formulir job terlebih dahulu sebelum dijelaskan lebih lanjut.\n'),
     nl,
     formulir(X),
-    write('Sesudah '),
-    write(X),
-    write(' mengisi formulir jobnya, Paus Asdos pun memberikan equipment sesuai job yang dipilih kepadanya dan menyuruhnya untuk memakainya.\n'),
     nl,
     write('Lalu Paus Asdos pun melanjutkan eksposisinya.\n'),
     write('Ia bilang bahwa di dunia ini dewa-dewi Dosen telah memberikan anugerah kepada manusia dalam bentuk tubes.\n'),
@@ -51,18 +48,21 @@ getStartingItem :-
     playerClass(swordsman), !,
     addToInventory(pedang_0),
     addToInventory(armor_0),
+	addToInventory(potion, 5),
 	write('Kamu mendapatkan pedang_0 dan armor_0.\n').
 
 getStartingItem :-
     playerClass(archer), !,
     addToInventory(busur_panah_dan_jangka_0),
     addToInventory(jaket_0),
+	addToInventory(potion, 5),
 	write('Kamu mendapatkan busur_panah_dan_jangka_0 dan jaket_0.\n').
 
 getStartingItem :-
     playerClass(sorcerer), !,
     addToInventory(magic_stick_0),
     addToInventory(kaos_0),
+	addToInventory(potion, 5),
 	write('Kamu mendapatkan magic_stick_0 dan kaos_0.\n').
 
 formulir(X) :-
@@ -127,13 +127,13 @@ validFormRole(Role) :-
 
 finishTutorial :-
 	name(NAME),
-    nl,
-	write('-----------------------------------------------------\n'), nl,
+    nl, nl, nl,
+	write('---------------------------------------------------------------------------\n'), nl, nl, nl,
     write('Dengan selesainya tutorial battle ini Paus Asdos pun langsung mengeluarkan '),
     write(NAME),
     write(' ke dunia Jurusan yang kejam.\n'),
-    nl,nl,
-    write('ADVENTURE START'), nl,
+    nl,nl,nl,nl,
+    write('------------------------------ADVENTURE START------------------------------'), nl,nl,nl,nl,
 	retractall(special_cooldown(_)),
 	setState(free).
 
@@ -143,6 +143,6 @@ battleTutorial :-
   asserta(special_cooldown(0)),
   battleStats,
   help, nl,
-  write('Untuk membantu kamu dalam melawan tubes Alstrukdat, kamu diberikan beberapa item.\n'),
-  write('Equip gunakan perintah equip(Nama_item)\n'),
+  write('Untuk membantu kamu dalam melawan tubes Alstrukdat, kamu diberikan 5 potion dan starting equipment.\n'),nl,
+  write('Equip gunakan perintah equip(Nama_item)\n'),nl,
   getStartingItem.
