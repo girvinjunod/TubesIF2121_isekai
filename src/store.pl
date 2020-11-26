@@ -271,7 +271,16 @@ gachaItem :-
   ),
   addToInventory(Item),
   format('Selamat, kamu mendapatkan: ~w dari gacha! :D', [Item]), nl.
+  
+steal :- % Permainan belum dimulai
+  state(not_started), !,
+  write('Permainan belum dimulai, kamu tidak dapat ke store.'), nl.
 
+steal :- % Player tidak di store
+  state(free),
+  player_cell(Cell),
+  Cell \= store_cell, !,
+  write('Gagal mencuri dari store karena kamu sedang tidak di store.'), nl.
 steal :-
 	randomize_monster(shopkeeper),
 	setState(battle),
