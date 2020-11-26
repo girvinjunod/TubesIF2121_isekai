@@ -15,7 +15,7 @@ class(swordsman).
 class(archer).
 class(sorcerer).
 
-baseExp(200).
+baseExp(100).
 
 reset :-
   retractall(playerClass(_)),
@@ -138,7 +138,7 @@ levelUp(Lebih) :-
 
   asserta(level(NewLVL)),
   asserta(levelUpCap(NewLUC)),
-  statsUp,
+  statsUp,nl,
   format('Selamat, kamu sekarang level ~w.', [NewLVL]), nl,
   (
     Lebih >= NewLUC, !,
