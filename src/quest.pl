@@ -88,13 +88,13 @@ quest :-
 	state(free),
 	\+player_cell(quest_cell),
 	!,
-	write('Anda sedang tidak ada di dekat quest board (Q)!\n').
+	write('Kamu sedang tidak ada di dekat quest board (Q)!\n').
 /* player punya active quest */
 quest :-
 	state(free),
 	active_quest(_,_,_,_,_,_),
 	!,
-	write('Anda belum menyelesaikan quest Anda!\n').
+	write('Kamu belum menyelesaikan quest Anda!\n').
 /* available_quest abis */
 quest :-
 	state(free),
@@ -124,7 +124,7 @@ quest :-
 	);
 	(
 		Query = quit,
-		write('Anda telah keluar dari quest board\n'),
+		write('Kamu telah keluar dari quest board\n'),
 		setState(free),
 		!
 	).
@@ -140,8 +140,8 @@ cek_completed_five_quests :-
 /* ngereward quest yang udah selesai */
 active_quest_reward :-
 	active_quest(_,_,_,_,Exp,Gold),
-	write('Anda telah menyelesaikan quest Anda!\n'),
-	format('Anda mendapatkan ~d Exp dan ~d Gold.\n',[Exp,Gold]),
+	write('Kamu telah menyelesaikan quest Anda!\n'),
+	format('Kamu mendapatkan ~d Exp dan ~d Gold.\n',[Exp,Gold]),
 	earnExp(Exp),
 	earnGold(Gold),
 	retractall(active_quest(_,_,_,_,_,_)),

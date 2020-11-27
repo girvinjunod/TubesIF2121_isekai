@@ -44,7 +44,7 @@ battleBoss2 :-
 
 changephase(X):-
 	nl,nl,nl, sleep(2), nl,
-	write('Raja Naga Keri terjatuh kalah melawan '), write(X), write('.\n'),
+	write('Raja Naga Keri terjatuh kalah melawan '), write(X), write('.\n'), nl,
 	write('"Tidakkkkkk...."\n'),nl,
 	sleep(1),
 	write('"Ini belum berakhir..."\n'), nl,
