@@ -51,9 +51,9 @@ generate_quest :-
 	/* random quest */
 	forall(between(1,5,_),(
 		random(0,10,S),
-		random(0,7,Go),
-		random(0,5,W),
-		random(0,3,Gh),
+		random(0,5,Go),
+		random(0,2,W),
+		random(0,1,Gh),
 		XP is 30*S + 150*Go + 8000*W + 20000*Gh,
 		Gold is 30*S +150*Go + 8000*W + 20000*Gh,
 		add_quest([S,Go,W,Gh,XP,Gold])
