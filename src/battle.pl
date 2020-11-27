@@ -313,6 +313,10 @@ kabur :-
 	write('Tidak ada kabur, Raja Naga Keri menghadang jalanmu.\n'),
 	write('Semangat!!!.\n'), !.
 kabur :-
+	current_monster('Raja Naga Demon Keri'),
+	write('Tidak ada kabur, Raja Naga Keri menghadang jalanmu.\n'),
+	write('Semangat!!!.\n'), !.
+kabur :-
 	current_monster('Shopkeeper'),
 	write('Tidak ada kabur, kamu tidak bisa lari dari keadilan.\n'),
 	write('Tanggung jawab atas perbuatanmu!!.\n'), !.
