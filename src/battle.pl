@@ -61,14 +61,14 @@ randomize_monster(X, Lvl) :-
 	setState(battle),
 	asserta(current_monster('goblin')),
 	(
-		Lvl < 10, MLvl is 10;
+		Lvl < 5, MLvl is 10;
 		Lvl > 30, MLvl is 30;
 		MLvl is Lvl
 	),
 	HP is 25 * MLvl + 80,
 	Atk is 10 * MLvl + 15,
 	Def is 5 * MLvl + 5,
-	XP is 35 * MLvl + 225,
+	XP is 30 * MLvl + 225,
 	Gold is 10 * (Lvl + 2),
 	asserta(monster_hp(HP)),
 	asserta(monster_maxHP(HP)),
@@ -83,7 +83,7 @@ randomize_monster(X, Lvl) :-
 	setState(battle),
 	asserta(current_monster('wolf')),
 	(
-		Lvl < 15, MLvl is 15;
+		Lvl < 10, MLvl is 15;
 		Lvl > 45, MLvl is 45;
 		MLvl is Lvl
 	),
@@ -105,7 +105,7 @@ randomize_monster(_, Lvl) :-
 	setState(battle),
 	asserta(current_monster('ghost')),
 	(
-		Lvl < 30, MLvl is 30;
+		Lvl < 25, MLvl is 30;
 		Lvl > 70; MLvl is 70;
 		MLvl is Lvl
 	),
