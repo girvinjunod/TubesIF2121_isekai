@@ -107,7 +107,7 @@ randomize_monster(_, Lvl) :-
 	setState(battle),
 	asserta(current_monster('ghost')),
 	(
-		Lvl < 15, MLvl is 15;
+		Lvl < 12, MLvl is 12;
 		Lvl > 70; MLvl is 70;
 		MLvl is Lvl
 	),
