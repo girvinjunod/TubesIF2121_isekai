@@ -30,7 +30,7 @@ boss(X) :-
 	write('"Hah apa maksud lu nolak duel, ga bisa gitu dong. Pokoknya kita duel sekarang!!"\n'),
 	nl,
 	write('-------------BOSS BATTLE BEGINS!!!----------\n'),
-	nl, battleBoss.
+	nl, battleBoss, enemy, nl.
 
 	
 battleBoss :-
@@ -38,6 +38,24 @@ battleBoss :-
 	setState(battle),
 	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)).
+battleBoss2 :-
+	randomize_monster(boss2),
+	setState(battle),
+	retractall(special_cooldown(_)),
+	asserta(special_cooldown(0)).
+
+changephase(X):-
+	nl,nl,nl, sleep(2), nl,
+	write('Raja Naga Keri terjatuh kalah melawan '), write(X), write('.\n'),
+	write('"Tidakkkkkk...."\n'),nl,
+	sleep(1),
+	write('"Ini belum berakhir..."\n'), nl,
+	sleep(2),
+	write('"AAAAAAAAaaaaaaaaaaaaaaaaa..."\n'),nl,nl,
+	write('Raja Naga Keri telah terjatuh ke energi negatif tubes dan berubah !!!.\n'),nl,nl,nl,
+	write('-------------BOSS BATTLE CONTINUES!!!----------\n'),nl,nl,
+	battleBoss2, enemy, nl.
+
 finishBoss(X):-
 	write('----------------BOSS DEFEATED----------------\n'),
 	nl,nl,nl,

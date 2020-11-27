@@ -156,7 +156,7 @@ enemy :-
   monster_hp(HP), monster_maxHP(MaxHP), monster_atk(ATK), monster_def(DEF), monster_lvl(LVL),
   current_monster(NAME),
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
-  format('                                   Status ~w                                \n', [NAME]),
+  format('  Status ~w                                \n', [NAME]),nl,
   format('  HP          : ~2f/~w', [HP, MaxHP]), nl,
   format('  Attack      : ~w', [ATK]), nl,
   format('  Defense     : ~w', [DEF]), nl,
