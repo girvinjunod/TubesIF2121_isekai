@@ -134,7 +134,7 @@ levelUp(Lebih) :-
   retractall(levelUpCap(_)),
 
   NewLVL is CurLVL + 1,
-  NewLUC is BExp*((CurLVL // 10)+1),
+  NewLUC is BExp+(0.8 * (NewLVL^3)),
 
   asserta(level(NewLVL)),
   asserta(levelUpCap(NewLUC)),
@@ -167,7 +167,7 @@ levelUp(Lebih, gacha) :-
   retractall(levelUpCap(_)),
 
   NewLVL is CurLVL + 1,
-  NewLUC is BExp*((CurLVL // 10)+1),
+  NewLUC is BExp+(0.8 * (NewLVL^3)),
 
   asserta(level(NewLVL)),
   asserta(levelUpCap(NewLUC)),
