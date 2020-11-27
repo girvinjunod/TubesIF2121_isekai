@@ -240,7 +240,7 @@ monster_die :-
 	monster_gold(Gold),
 	earnExp(XP),
 	earnGold(Gold),
-	nl,
+	nl, sleep(1),
 	write('Shopkeeper'),
 	write(' telah dikalahkan.'), nl,nl,
 	write('Mendapat '),
@@ -376,7 +376,7 @@ special_attack :-
 		(
 			playerClass(archer),
 			attack(Atk),
-			write('Kamu menggunakan special attack.\n'),nl,
+			write('Kamu menggunakan special attack.\n'),nl, 
 			write('Steal!!!'), nl,
 			BiasAtk is Atk * 0.5,
 			damage_monster(BiasAtk),
@@ -385,7 +385,7 @@ special_attack :-
 		(
 			playerClass(sorcerer),
 			level(Lvl),
-			write('Kamu menggunakan special attack.\n'), nl,
+			write('Kamu menggunakan special attack.\n'), nl, 
 			write('Ekusupurosion!!!'), nl,
 			BatasAtas is (Lvl*1000)+1,
 			acak(1, BatasAtas, GachaDmg),
@@ -589,7 +589,7 @@ damagePlayer(Dmg) :-
 	NewHP is HP - BiasDmg,
 	(
 		NewHP < 0.01,
-		format('Kamu diserang, menerima ~2f damage.', [BiasDmg]), nl,nl,
+		format('Kamu diserang, menerima ~2f damage.', [BiasDmg]), nl,nl, sleep(1),
 		write('Kamu tewas.'), nl, nl,
 		die, !;
 		retractall(hp(_)),
