@@ -1,8 +1,7 @@
 boss(X) :-
 	nl,
-	write('Mendengar banyaknya tubes yang telah diselesaikan '),
 	write(X),
-	write(', Raja Naga Keri pun mengundangnya untuk datang ke istananya.\n'),
+	write(' pun masuk ke dalam istana Raja Naga Keri.\n'),
 	nl,
 	write('---------------Di Istana---------------\n'),
 	nl,

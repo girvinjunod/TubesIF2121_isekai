@@ -559,7 +559,7 @@ damagePlayer(Dmg) :-
 	BiasDmg is Dmg * DmgMul,
 	NewHP is HP - BiasDmg,
 	(
-		NewHP < 0,
+		NewHP < 0.01,
 		format('Kamu diserang, menerima ~2f damage.', [BiasDmg]), nl,nl,
 		write('Kamu tewas.'), nl, nl,
 		die, !;

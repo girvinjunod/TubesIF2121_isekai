@@ -189,7 +189,7 @@ teleport :-
 teleport :-
   state(A),
   A \= free, !,
-  write('Kamu belum bisa berpindah tempat').
+  write('Kamu tidak bisa menggunakan teleport di luar eksplorasi.\n').
 
 teleport :-
   state(free),
@@ -245,9 +245,10 @@ die :-
 	retractall(weaponequipped(_)),
 	retractall(armorequipped(_)),
 	setState(not_started),
-	write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu melihat sang shopkeeper tersenyum.'), nl,
-	write('Kamu mencoba untuk bergerak namun tidak bisa, karena kamu sudah tewas...'), nl,
-	nl,nl,nl,
+	write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu melihat sang shopkeeper tersenyum...'), nl,nl,
+	write('Kamu mencoba untuk bergerak namun tidak bisa, karena kamu sudah tewas...'), nl,nl,nl,
+	write('Ingat anak-anak, mencuri itu tidak baik.\n'),nl,
+	nl,nl,
 	write('------------------------------------------------------JUSTICE IS SERVED------------------------------------------------------\n'),
 	reset, !.
 
@@ -261,8 +262,8 @@ die :-
   retractall(weaponequipped(_)),
   retractall(armorequipped(_)),
   setState(not_started),
-  write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu mendengar teriakan minta tolong...'), nl,
+  write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu mendengar teriakan minta tolong...'), nl,nl,
   write('Sayangnya, kamu tidak dapat bergerak, karena kamu sudah tewas...'), nl,
-  nl,nl,nl,
+  nl,nl,
   write('------------------------------------------------------GAME OVER------------------------------------------------------\n'),
   reset, !.

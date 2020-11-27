@@ -301,7 +301,7 @@ steal :-
 	setState(battle),
 	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)),nl,
-	write('Anda tertangkap basah mencoba untuk mencuri.\n'),nl,
-	write('Sang shopkeeper mencegat Anda yang mencoba kabur dan battle pun dimulai.\n'),
+	write('Kamu tertangkap basah mencoba untuk mencuri.\n'),nl,
+	write('Sang shopkeeper mencegat kamu yang mencoba kabur dan battle pun dimulai.\n'),
 	nl,nl,
 	write('-----------------------------------------------------SECRET BOSS FIGHT!!-----------------------------------------------------\n'),nl,nl.

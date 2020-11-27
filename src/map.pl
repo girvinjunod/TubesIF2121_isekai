@@ -156,7 +156,7 @@ map :-
 unlock_dungeon_boss_cell :-
 	retractall(dungeon_boss_cell_state(_)),
 	asserta(dungeon_boss_cell_state(unlocked)),
-	write('Karena jasa Anda mengalahkan para tubes, Anda telah diundang ke Istana Raja Naga Keri!\n'),
+	write('Karena jasa Anda mengalahkan para tubes, kamu telah diundang ke Istana Raja Naga Keri!\n'),
 	write('Pintu ke istana terbuka untuk Anda.\n').
 
 /* interact with dungeon boss cell */
