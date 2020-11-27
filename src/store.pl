@@ -40,7 +40,7 @@ store :- % Player di store
   read(Item),
   (
     ( % Kasus item yg dibeli ga ada
-      \+hargaItem(Item, Harga, buyable), !,nl,
+      \+buyable(Item), !,nl,
       write('Kami tidak menjual item itu :('), nl
     );
     write('Berapa banyak? '),
