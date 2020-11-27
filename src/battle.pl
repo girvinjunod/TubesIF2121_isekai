@@ -107,7 +107,7 @@ randomize_monster(_, Lvl) :-
 	setState(battle),
 	asserta(current_monster('ghost')),
 	(
-		Lvl < 15, MLvl is 15;
+		Lvl < 12, MLvl is 12;
 		Lvl > 70; MLvl is 70;
 		MLvl is Lvl
 	),
@@ -153,9 +153,9 @@ randomize_monster(shopkeeper) :-
 	asserta(monster_maxHP(9999)),
 	asserta(monster_atk(2000)),
 	asserta(monster_def(500)),
-	asserta(monster_exp(999999)),
+	asserta(monster_exp(99999)),
 	asserta(monster_lvl(999)),
-	asserta(monster_gold(999999)).
+	asserta(monster_gold(99999)).
 
 monster_count_move :-
 	monster_turn(T),
