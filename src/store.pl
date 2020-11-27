@@ -304,4 +304,5 @@ steal :-
 	write('Kamu tertangkap basah mencoba untuk mencuri.\n'),nl, sleep(2),
 	write('Sang shopkeeper mencegat kamu yang mencoba kabur dan battle pun dimulai.\n'),
 	nl,nl, sleep(1),
-	write('-----------------------------------------------------SECRET BOSS FIGHT!!-----------------------------------------------------\n'),nl,nl, enemy, nl.
+	write('-----------------------------------------------------SECRET BOSS FIGHT!!-----------------------------------------------------\n'), 
+	sleep(2),nl,nl, enemy, nl.

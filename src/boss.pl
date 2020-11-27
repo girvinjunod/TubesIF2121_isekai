@@ -10,7 +10,7 @@ boss(X) :-
 	write(' di istanaku."\n'), sleep(2),
 	write('"Saya, Raja Naga Keri, ingin berterimakasih atas jasa Anda terhadap dunia ini mengalahkan tubes2 blablabla..."\n'),
 	nl, sleep(2),
-	write('Sudah burnout marathon mengerjakan banyak tubes,'),
+	write('Sudah burnout marathon mengerjakan banyak tubes, '),
 	write(X),
 	write(' tidak tahan mendengarkan pidato raja yang panjang dan bertele-tele.\n'), sleep(2),
 	write('Ia pun memotong pidato raja untuk menanyakan kapan dia bisa pulang ke dunianya karena dia masih dikejar deadline tubes di ITB.\n'), sleep(2),
@@ -29,7 +29,7 @@ boss(X) :-
 	nl,
 	write('"Hah apa maksud lu nolak duel, ga bisa gitu dong. Pokoknya kita duel sekarang!!"\n'), sleep(2),
 	nl,
-	write('-------------BOSS BATTLE BEGINS!!!----------\n'),
+	write('-------------BOSS BATTLE BEGINS!!!----------\n'), sleep(2),
 	nl, battleBoss, enemy, nl.
 
 	
@@ -51,9 +51,9 @@ changephase(X):-
 	sleep(1),
 	write('"Ini belum berakhir..."\n'), nl,
 	sleep(2),
-	write('"AAAAAAAAaaaaaaaaaaaaaaaaa..."\n'),nl,nl,
-	write('Raja Naga Keri telah terjatuh ke energi negatif tubes dan berubah !!!.\n'),nl,nl,nl,
-	write('-------------BOSS BATTLE CONTINUES!!!----------\n'),nl,nl,
+	write('"AAAAAAAAaaaaaaaaaaaaaaaaa..."\n'),nl,nl, sleep(2),
+	write('Raja Naga Keri telah terjatuh ke energi negatif tubes dan berubah !!!.\n'),nl,nl,nl, sleep(2),
+	write('-------------BOSS BATTLE CONTINUES!!!----------\n'), sleep(2),nl,nl,
 	battleBoss2, enemy, nl.
 
 finishBoss(X):-
