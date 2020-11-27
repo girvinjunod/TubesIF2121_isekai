@@ -15,7 +15,7 @@ class(swordsman).
 class(archer).
 class(sorcerer).
 
-baseExp(100).
+baseExp(500).
 
 reset :-
   retractall(playerClass(_)),

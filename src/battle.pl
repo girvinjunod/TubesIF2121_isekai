@@ -13,7 +13,6 @@ monster_encounter :-
 	acak(0,100,X),
 	X < 40,
 	acak(0,101,Y),
-    write(Y), nl,
 	setState(battle),
 	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)),
@@ -24,7 +23,11 @@ monster_encounter :-
 		MLvl < 1, TrueMLvl is 1;
 		TrueMLvl is MLvl
 	),
-	randomize_monster(Y, TrueMLvl),
+	(
+		Lvl =< 30, Ya is Y + Lvl;
+		Ya is Y + 30
+	),
+	randomize_monster(Ya, TrueMLvl),
 	write('Bertemu '),
 	current_monster(Name),
 	monster_lvl(Lv),
@@ -45,7 +48,7 @@ randomize_monster(X, Lvl) :-
 	asserta(current_monster('slime')),
 	HP is 30 * Lvl + 50,
 	Atk is 3 * Lvl + 10,
-	Def is 10 * Lvl + 100,
+	Def is 10 * Lvl + 20,
 	XP is 10 * Lvl + 50,
 	Gold is 10 * (Lvl + 1),
 	asserta(monster_hp(HP)),
@@ -66,7 +69,7 @@ randomize_monster(X, Lvl) :-
 		MLvl is Lvl
 	),
 	HP is 25 * MLvl + 80,
-	Atk is 10 * MLvl + 15,
+	Atk is 10 * MLvl + 25,
 	Def is 5 * MLvl + 5,
 	XP is 30 * MLvl + 225,
 	Gold is 10 * (Lvl + 2),
