@@ -22,10 +22,11 @@ store :- % Player di store
   write('% 2. kupon_gacha_item (70 gold)                                                %\n'),
   write('% 3. kupon_gacha_equipment (90 gold)                                           %\n'),
   write('%                                                                              %\n'),
-  write('%                Kami juga menerima penjualan item dan equipment               %\n'),
+  write('%                       Kami juga menerima penjualan item                      %\n'),
+  write('%                              dengan perintah sell.                           %\n'),
   write('%                                                                              %\n'),
   write('%                                                                              %\n'),
-  write('%                     Dilarang mencuri(steal) di toko ini                      %\n'),
+  write('%                     Dilarang mencuri (steal) di toko ini.                    %\n'),
   write('%               Jika Anda mencuri, Anda akan merasakan akibatnya.              %\n'),
   write('%                                                                              %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
@@ -104,7 +105,7 @@ sell :- % Player di store
         retractall(gold(_)),
         asserta(gold(NewGold)),
         format('Terima kasih atas penjualan ~w kamu! Senang berbisnis dengan mu.', [Item]), nl,
-        drop(Item, Qty), !
+        drop(Item, Qty, sell), !
       )
     )
   ).
@@ -210,7 +211,7 @@ gachaWeapon(_) :-
 gachaWeapon(Item) :-
   acak(0, 100, R),
   randomizeWeapon(R, Item).
- 
+
 gachaEquipment(_) :-
   state(S),
   S = not_started, !,

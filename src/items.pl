@@ -192,44 +192,49 @@ use(Item) :-
 drop(_) :-
   state(S),
   S = not_started, !,
-  write('Permainan belum dimulai.').
+  write('Permainan belum dimulai.'), nl.
 
 drop(Gear) :-
-	\+(item(Gear,_,_)),
-	write('Barang itu tidak ada.\n'), !.
+	\+(item(Gear,_,_)), \+item(Gear,_),
+	write('Barang itu tidak ada.\n'),  nl, !.
 drop(Gear) :-
 	countItemInInvetory(Gear, GearCount),
 	GearCount =:= 0, !,
-	write('Kamu tidak memiliki barang itu.\n'), !.
+	write('Kamu tidak memiliki barang itu.\n'), nl,  !.
 	
 drop(X) :-
   removeFromInventory(X),
-  write('Kamu telah drop '), write(X),!.
+  write('Kamu telah membuang '), write(X), nl, !.
+
 drop(_,_) :-
   state(S),
   S = not_started, !,
-  write('Permainan belum dimulai.').
+  write('Permainan belum dimulai.'), nl.
   
 drop(Gear,_) :-
-	\+(item(Gear,_,_)),
-	write('Barang itu tidak ada.\n'), !.
+	\+(item(Gear,_,_)), \+item(Gear,_),
+	write('Barang itu tidak ada.\n'),  nl, !.
 	
 drop(Gear,_) :-
 	countItemInInvetory(Gear, GearCount),
 	GearCount =:= 0, !,
-	write('Kamu tidak memiliki barang itu.\n'), !.
+	write('Kamu tidak memiliki barang itu.\n'),  nl, !.
 
 drop(Gear,Count) :-
 	countItemInInvetory(Gear, GearCount),
 	GearCount < Count, !,
-	write('Kamu tidak memiliki '),write(Count), write(' barang itu.\n'), !.
-	
+	write('Kamu tidak memiliki '),write(Count), write(' barang itu.\n'), nl,  !.
+
 drop(X, 1) :-
-  removeFromInventory(X),
-  write('Kamu telah drop '), write(X),!.
+    drop(X), !.
 
 drop(X, Cnt) :-
-  removeFromInventory(X),
-  NewCnt is Cnt-1,
-  drop(X, NewCnt),
-  write('Kamu telah drop '),write(Cnt), write(X),!.
+  forall(between(1, Cnt, _), (
+    removeFromInventory(X)
+  )),
+  write('Kamu telah drop '),write(Cnt), write(' '), write(X), write('.'), nl, !.
+
+drop(X, Cnt, sell) :-
+  forall(between(1, Cnt, _), (
+    removeFromInventory(X)
+  )), !.

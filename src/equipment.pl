@@ -3,9 +3,9 @@ equip(_) :-
   S = not_started, !,
   write('Permainan belum dimulai.\n').
 equip(telanjang) :-
-	weaponequipped(telanjang), !,
-	armorequipped(telanjang), !,
-	write('Kamu sudah telanjang\n').
+	weaponequipped(telanjang),
+	armorequipped(telanjang),
+	write('Kamu sudah telanjang\n'), !.
 equip(telanjang) :-
 	retract(weaponequipped(X)),
 	retract(armorequipped(Y)),
@@ -18,7 +18,21 @@ equip(telanjang) :-
 	defense(DEF),
 	retractall(defense(_)),
 	NewDEF is DEF - DEFDulu,
-	addToInventory(X), addToInventory(Y),
+	%addToInventory(X), addToInventory(Y),
+    ((
+        X \= telanjang,
+        addToInventory(X)
+    );
+    (
+        true
+    )),
+    ((
+        Y \= telanjang,
+        addToInventory(Y)
+    );
+    (
+        true
+    )),
 	asserta(defense(NewDEF)),
 	asserta(weaponequipped(telanjang)),
 	asserta(armorequipped(telanjang)),
@@ -47,7 +61,7 @@ equip(Gear) :-
 	item(Gear,Slot,Job),
 	playerClass(X),
 	Job = X,
-	Slot = weapon,
+	Slot = weapon, !,
 	retract(weaponequipped(Y)),
 	asserta(weaponequipped(Gear)),
 	item_effect(Gear,Tipe,Stats),
@@ -57,6 +71,13 @@ equip(Gear) :-
 	retractall(attack(_)),
 	NewATK is ATK - Dulu + Stats,
 	asserta(attack(NewATK)),
+    ((
+        Y \= telanjang,
+        addToInventory(Y)
+    );
+    (
+        true
+    )),
 	removeFromInventory(Gear),
 	write(Gear),write(' telah di-equip.\n'),!.
 equip(Gear) :-
@@ -73,6 +94,13 @@ equip(Gear) :-
 	retractall(defense(_)),
 	NewDEF is DEF - Dulu + Stats,
 	asserta(defense(NewDEF)),
+    ((
+        Y \= telanjang,
+        addToInventory(Y)
+    );
+    (
+        true
+    )),
 	removeFromInventory(Gear),
 	write(Gear),write(' telah di-equip.\n'),!.
 
