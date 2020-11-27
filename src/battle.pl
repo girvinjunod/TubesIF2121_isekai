@@ -158,9 +158,9 @@ randomize_monster(shopkeeper) :-
 	asserta(monster_maxHP(9999)),
 	asserta(monster_atk(2000)),
 	asserta(monster_def(500)),
-	asserta(monster_exp(9999)),
+	asserta(monster_exp(99999)),
 	asserta(monster_lvl(999)),
-	asserta(monster_gold(9999)).
+	asserta(monster_gold(99999)).
 
 monster_count_move :-
 	monster_turn(T),
