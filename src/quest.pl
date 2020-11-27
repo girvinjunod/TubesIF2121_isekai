@@ -133,7 +133,7 @@ quest :-
 cek_completed_five_quests :-
 	available_quest(Q),
 	countList(Q,NbAvailableQuest),
-	NbAvailableQuest = 6, /* 4 karena awalnya ada 9 quest, 9-4=5 */
+	NbAvailableQuest = 4, /* 4 karena awalnya ada 9 quest, 9-4=5 */
 	!,
 	unlock_dungeon_boss_cell. /* ada di map.pl */
 
