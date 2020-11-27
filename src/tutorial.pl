@@ -1,4 +1,5 @@
 tpb(X) :-
+	nl,nl,write('---------------PERMAINAN DIMULAI----------------'), nl,nl,
     nl, sleep(2),
     write(X),
     write(' adalah seseorang mahasiswa IF ITB yang stres dengan tubesnya. \nOleh karena itu, dia pun memutuskan untuk pergi ke indomaret untuk rehat. \nNamun saat menyebrang jalan ke indomaret '),
@@ -16,7 +17,7 @@ tpb(X) :-
     write(' untuk mengisi formulir job terlebih dahulu sebelum dijelaskan lebih lanjut.\n'),
     nl, sleep(2),
     formulir(X),
-    nl, sleep(3),
+    nl, sleep(1),
     write('Lalu Paus Asdos pun melanjutkan eksposisinya.\n'),
     write('Ia bilang bahwa di dunia ini dewa-dewi Dosen telah memberikan anugerah kepada manusia dalam bentuk tubes.\n'),
     write('Dengan menyelesaikan tubes seseorang akan dapat menerima EXP points dan bisa level up, menjadi lebih hebat dari sebelumnya.\n'),
@@ -40,7 +41,7 @@ tpb(X) :-
     write(' dan langsung menganggap '),
     write(X),
     write(' setuju.\n'),
-    write('Ia pun langsung diterjunkan ke tutorial battle melawan sebuah tubes Alstrukdat yang telah berubah menjadi slime.\n'), sleep(3),
+    write('Ia pun langsung diterjunkan ke tutorial battle melawan sebuah tubes Alstrukdat yang telah berubah menjadi slime.\n'), sleep(2),
     nl,
     battleTutorial.
 
@@ -134,8 +135,8 @@ finishTutorial :-
 	write('---------------------------------------------------------------------------\n'), nl, nl, nl, sleep(2),
     write('Dengan selesainya tutorial battle ini\nPaus Asdos pun langsung mengeluarkan '),
     write(NAME),
-    write(' ke dunia Jurusan yang kejam.\n'), sleep(4),
-    nl,nl,nl,nl,
+    write(' ke dunia Jurusan yang kejam.\n'),
+    nl,nl,nl,nl, sleep(3),
     write('------------------------------ADVENTURE START------------------------------'), nl,nl,nl,nl,
 	retractall(special_cooldown(_)),
 	setState(free).
