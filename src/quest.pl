@@ -46,16 +46,16 @@ generate_quest :-
 	/* quest spam satu monster */
 	add_quest([5,0,0,0,150,150]),
 	add_quest([0,5,0,0,750,750]),
-	add_quest([0,0,5,0,40000,40000]),
-	add_quest([0,0,0,5,100000,100000]),
+	add_quest([0,0,5,0,1500,1500]),
+	add_quest([0,0,0,5,5000,5000]),
 	/* random quest */
 	forall(between(1,5,_),(
-		random(0,10,S),
+		random(0,8,S),
 		random(0,5,Go),
-		random(0,2,W),
+		random(0,3,W),
 		random(0,1,Gh),
-		XP is 30*S + 150*Go + 8000*W + 20000*Gh,
-		Gold is 30*S +150*Go + 8000*W + 20000*Gh,
+		XP is 30*S + 150*Go + 300*W + 1000*Gh,
+		Gold is 30*S +150*Go + 300*W + 1000*Gh,
 		add_quest([S,Go,W,Gh,XP,Gold])
 		)),
 	!.
