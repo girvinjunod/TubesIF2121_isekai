@@ -10,9 +10,9 @@
 :- dynamic(monster_lvl/1).
 
 monster_encounter :-
-	acak(X),
-	X < 0.4,
-	acak(Y),
+	acak(0,100,X),
+	X < 40,
+	acak(0,100,Y),
 	setState(battle),
 	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)),
@@ -39,7 +39,7 @@ monster_encounter :-
 monster_encounter.
 
 randomize_monster(X, Lvl) :-
-	X < 0.5,
+	X < 40,
 	setState(battle),
 	asserta(current_monster('slime')),
 	HP is 30 * Lvl + 50,
@@ -56,7 +56,7 @@ randomize_monster(X, Lvl) :-
 	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
-	X < 0.8,
+	X < 70,
 	setState(battle),
 	asserta(current_monster('goblin')),
 	(
@@ -78,7 +78,7 @@ randomize_monster(X, Lvl) :-
 	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
-	X < 0.99,
+	X < 99,
 	setState(battle),
 	asserta(current_monster('wolf')),
 	(
