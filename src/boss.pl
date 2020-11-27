@@ -40,9 +40,7 @@ battleBoss :-
 	asserta(special_cooldown(0)).
 battleBoss2 :-
 	randomize_monster(boss2),
-	setState(battle),
-	retractall(special_cooldown(_)),
-	asserta(special_cooldown(0)).
+	setState(battle).
 
 changephase(X):-
 	nl,nl,nl, sleep(2), nl,
@@ -54,10 +52,11 @@ changephase(X):-
 	write('"AAAAAAAAaaaaaaaaaaaaaaaaa..."\n'),nl,nl, sleep(2),
 	write('Raja Naga Keri telah terjatuh ke energi negatif tubes dan berubah !!!.\n'),nl,nl,nl, sleep(2),
 	write('-------------BOSS BATTLE CONTINUES!!!----------\n'), sleep(2),nl,nl,
-	battleBoss2, enemy, nl.
+	battleBoss2, nl.
 
 finishBoss(X):-
-	write('----------------BOSS DEFEATED----------------\n'),
+	sleep(2), nl, nl,
+	write('----------------BOSS DEFEATED----------------\n'), sleep(3),
 	nl,nl,nl,
 	write('Dengan Raja Naga Keri terkalahkan, tidak ada lagi yang menghalangi '), 
 	write(X),
@@ -83,6 +82,6 @@ finishBoss(X):-
 	nl,
 	write('"Hah kacau, udah deadline tubes Alstrukdat dong!!!!"\n'), sleep(4),
 	nl,nl,nl,
-	write('------------------------------------------------------THE END------------------------------------------------------\n'),
+	write('----------------------------------------THE END---------------------------------------\n'),
 	setState(not_started), !, reset, fail.
 	

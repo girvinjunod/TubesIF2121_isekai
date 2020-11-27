@@ -215,6 +215,7 @@ monster_die :-
 	retractall(monster_exp(_)),
 	retractall(monster_gold(_)),
     retractall(monster_turn(_)),
+	setState(free),
 	name(X),
     changephase(X), !.
 monster_die :-
