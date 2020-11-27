@@ -28,42 +28,42 @@ hargaItem(injeksi_hormon, 90).
 hargaItem(uc1000, 90).
 hargaItem(devil_fruit, 110).
 hargaItem(dragons_tears, 110).
-hargaItem(pedang_0, 5).
-hargaItem(pedang_1, 30).
-hargaItem(pedang_2, 75).
-hargaItem(pedang_3, 150).
-hargaItem(pedang_4, 250).
-hargaItem(pedang_5, 400).
-hargaItem(armor_0, 5).
-hargaItem(armor_1, 30).
-hargaItem(armor_2, 75).
-hargaItem(armor_3, 150).
-hargaItem(armor_4, 250).
-hargaItem(armor_5, 400).
-hargaItem(busur_panah_dan_jangka_0, 5).
-hargaItem(busur_panah_dan_jangka_1, 30).
-hargaItem(busur_panah_dan_jangka_2, 75).
-hargaItem(busur_panah_dan_jangka_3, 150).
-hargaItem(busur_panah_dan_jangka_4, 250).
-hargaItem(busur_panah_dan_jangka_5, 400).
-hargaItem(jaket_0, 5).
-hargaItem(jaket_1, 30).
-hargaItem(jaket_2, 75).
-hargaItem(jaket_3, 150).
-hargaItem(jaket_4, 250).
-hargaItem(jaket_5, 400).
-hargaItem(magic_stick_0, 5).
-hargaItem(magic_stick_1, 30).
-hargaItem(magic_stick_2, 75).
-hargaItem(magic_stick_3, 150).
-hargaItem(magic_stick_4, 250).
-hargaItem(magic_stick_5, 400).
-hargaItem(kaos_0, 5).
-hargaItem(kaos_1, 30).
-hargaItem(kaos_2, 75).
-hargaItem(kaos_3, 150).
-hargaItem(kaos_4, 250).
-hargaItem(kaos_5, 400).
+hargaItem(wooden_sword, 5).
+hargaItem(iron_sword, 30).
+hargaItem(steel_sword, 75).
+hargaItem(dragon_sword, 150).
+hargaItem(masamune, 250).
+hargaItem(ultima_blade, 400).
+hargaItem(wooden_armor, 5).
+hargaItem(iron_armor, 30).
+hargaItem(steel_armor, 75).
+hargaItem(dragon_armor, 150).
+hargaItem(diamond_armor, 250).
+hargaItem(nanomachines, 400).
+hargaItem(busur_panah_dan_jangka, 5).
+hargaItem(crossbow, 30).
+hargaItem(longbow, 75).
+hargaItem(portable_ballista, 150).
+hargaItem(sniper_rifle, 250).
+hargaItem(railgun, 400).
+hargaItem(leather_cloak, 5).
+hargaItem(wolfhide_cloak, 30).
+hargaItem(ironhide_cloak, 75).
+hargaItem(shadow_cloak, 150).
+hargaItem(dragonscale_cloak, 250).
+hargaItem(batman_cloak, 400).
+hargaItem(magic_stick, 5).
+hargaItem(magic_wand, 30).
+hargaItem(magic_staff, 75).
+hargaItem(grand_magic_staff, 150).
+hargaItem(celestial_staff, 250).
+hargaItem(paddlepop, 400).
+hargaItem(kaos, 5).
+hargaItem(magic_robe, 30).
+hargaItem(grand_magic_robe, 75).
+hargaItem(celestial_robe, 150).
+hargaItem(lab_coat, 250).
+hargaItem(bathrobe, 400).
 
 /* list item equip
 format: (nama, tipe, role) */
@@ -75,44 +75,44 @@ item(telanjang, armor, swordsman).
 item(telanjang, armor, archer).
 item(telanjang, armor, sorcerer).
 
-item(pedang_0, weapon, swordsman).
-item(armor_0, armor, swordsman).
-item(pedang_1, weapon, swordsman).
-item(armor_1, armor, swordsman).
-item(pedang_2, weapon, swordsman).
-item(armor_2, armor, swordsman).
-item(pedang_3, weapon, swordsman).
-item(armor_3, armor, swordsman).
-item(pedang_4, weapon, swordsman).
-item(armor_4, armor, swordsman).
-item(pedang_5, weapon, swordsman).
-item(armor_5, armor, swordsman).
+item(wooden_sword, weapon, swordsman).
+item(wooden_armor, armor, swordsman).
+item(iron_sword, weapon, swordsman).
+item(iron_armor, armor, swordsman).
+item(steel_sword, weapon, swordsman).
+item(steel_armor, armor, swordsman).
+item(dragon_sword, weapon, swordsman).
+item(dragon_armor, armor, swordsman).
+item(masamune, weapon, swordsman).
+item(diamond_armor, armor, swordsman).
+item(ultima_blade, weapon, swordsman).
+item(nanomachines, armor, swordsman).
 
-item(busur_panah_dan_jangka_0, weapon, archer).
-item(jaket_0, armor, archer).
-item(busur_panah_dan_jangka_1, weapon, archer).
-item(jaket_1, armor, archer).
-item(busur_panah_dan_jangka_2, weapon, archer).
-item(jaket_2, armor, archer).
-item(busur_panah_dan_jangka_3, weapon, archer).
-item(jaket_3, armor, archer).
-item(busur_panah_dan_jangka_4, weapon, archer).
-item(jaket_4, armor, archer).
-item(busur_panah_dan_jangka_5, weapon, archer).
-item(jaket_5, armor, archer).
+item(busur_panah_dan_jangka, weapon, archer).
+item(leather_cloak, armor, archer).
+item(crossbow, weapon, archer).
+item(wolfhide_cloak, armor, archer).
+item(longbow, weapon, archer).
+item(ironhide_cloak, armor, archer).
+item(portable_ballista, weapon, archer).
+item(shadow_cloak, armor, archer).
+item(sniper_rifle, weapon, archer).
+item(dragonscale_cloak, armor, archer).
+item(railgun, weapon, archer).
+item(batman_cloak, armor, archer).
 
-item(magic_stick_0, weapon, sorcerer).
-item(kaos_0, armor, sorcerer).
-item(magic_stick_1, weapon, sorcerer).
-item(kaos_1, armor, sorcerer).
-item(magic_stick_2, weapon, sorcerer).
-item(kaos_2, armor, sorcerer).
-item(magic_stick_3, weapon, sorcerer).
-item(kaos_3, armor, sorcerer).
-item(magic_stick_4, weapon, sorcerer).
-item(kaos_4, armor, sorcerer).
-item(magic_stick_5, weapon, sorcerer).
-item(kaos_5, armor, sorcerer).
+item(magic_stick, weapon, sorcerer).
+item(kaos, armor, sorcerer).
+item(magic_wand, weapon, sorcerer).
+item(magic_robe, armor, sorcerer).
+item(magic_staff, weapon, sorcerer).
+item(grand_magic_robe, armor, sorcerer).
+item(grand_magic_staff, weapon, sorcerer).
+item(celestial_robe, armor, sorcerer).
+item(celestial_staff, weapon, sorcerer).
+item(lab_coat, armor, sorcerer).
+item(paddlepop, weapon, sorcerer).
+item(bathrobe, armor, sorcerer).
 
 /* list efek item */
 /* format: (nama, stats_affacted, value change) */
@@ -141,52 +141,52 @@ item_effect(devil_fruit, defense, 500).
 item_effect(kupon_gacha_equipment, -, -).
 item_effect(kupon_gacha_item, -, -).
 
-item_effect(magic_stick_0, weapon, 30).
-item_effect(kaos_0, armor, 5).
-item_effect(busur_panah_dan_jangka_0, weapon, 25).
-item_effect(jaket_0, armor, 10).
-item_effect(pedang_0, weapon, 15).
-item_effect(armor_0, armor, 25).
+item_effect(magic_stick, weapon, 30).
+item_effect(kaos, armor, 5).
+item_effect(busur_panah_dan_jangka, weapon, 25).
+item_effect(leather_cloak, armor, 10).
+item_effect(wooden_sword, weapon, 15).
+item_effect(wooden_armor, armor, 25).
 
 % Common: (50%)
-item_effect(magic_stick_1, weapon, 60).
-item_effect(kaos_1, armor, 10).
-item_effect(busur_panah_dan_jangka_1, weapon, 50).
-item_effect(jaket_1, armor, 20).
-item_effect(pedang_1, weapon, 30).
-item_effect(armor_1, armor, 50).
+item_effect(magic_wand, weapon, 60).
+item_effect(magic_robe, armor, 10).
+item_effect(crossbow, weapon, 50).
+item_effect(wolfhide_cloak, armor, 20).
+item_effect(iron_sword, weapon, 30).
+item_effect(iron_armor, armor, 50).
 
 % Rare: (30%)
-item_effect(magic_stick_2, weapon, 120).
-item_effect(kaos_2, armor, 20).
-item_effect(busur_panah_dan_jangka_2, weapon, 100).
-item_effect(jaket_2, armor, 40).
-item_effect(pedang_2, weapon, 60).
-item_effect(armor_2, armor, 100).
+item_effect(magic_staff, weapon, 120).
+item_effect(grand_magic_robe, armor, 20).
+item_effect(longbow, weapon, 100).
+item_effect(ironhide_cloak, armor, 40).
+item_effect(steel_sword, weapon, 60).
+item_effect(steel_armor, armor, 100).
 
 % Ultra Rare: (12%)
-item_effect(pedang_3, weapon, 150).
-item_effect(armor_3, armor, 250).
-item_effect(busur_panah_dan_jangka_3, weapon, 250).
-item_effect(jaket_3, armor, 100).
-item_effect(magic_stick_3, weapon, 250).
-item_effect(kaos_3, armor, 50).
+item_effect(dragon_sword, weapon, 150).
+item_effect(dragon_armor, armor, 250).
+item_effect(portable_ballista, weapon, 250).
+item_effect(shadow_cloak, armor, 100).
+item_effect(grand_magic_staff, weapon, 250).
+item_effect(celestial_robe, armor, 50).
 
 % SR: (5%)
-item_effect(pedang_4, weapon, 240).
-item_effect(armor_4, armor, 400).
-item_effect(busur_panah_dan_jangka_4, weapon, 400).
-item_effect(jaket_4, armor, 160).
-item_effect(magic_stick_4, weapon, 480).
-item_effect(kaos_4, armor, 80).
+item_effect(masamune, weapon, 240).
+item_effect(diamond_armor, armor, 400).
+item_effect(sniper_rifle, weapon, 400).
+item_effect(dragonscale_cloak, armor, 160).
+item_effect(celestial_staff, weapon, 480).
+item_effect(lab_coat, armor, 80).
 
 % SSR: (3%)
-item_effect(pedang_5, weapon, 450).
-item_effect(armor_5, armor, 750).
-item_effect(busur_panah_dan_jangka_5, weapon, 750).
-item_effect(jaket_5, armor, 300).
-item_effect(magic_stick_5, weapon, 900).
-item_effect(kaos_5, armor, 150).
+item_effect(ultima_blade, weapon, 450).
+item_effect(nanomachines, armor, 750).
+item_effect(railgun, weapon, 750).
+item_effect(batman_cloak, armor, 300).
+item_effect(paddlepop, weapon, 900).
+item_effect(bathrobe, armor, 150).
 
 /* Penggunaan item */
 use(_) :-

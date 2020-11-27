@@ -127,41 +127,41 @@ randomizeArmor(X, Item) :-
   X < 5, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = armor_5);
-    (Y =:= 1, !, Item = jaket_5);
-    (Y =:= 0, !, Item = kaos_5)
+    (Y =:= 2, !, Item = nanomachines);
+    (Y =:= 1, !, Item = batman_cloak);
+    (Y =:= 0, !, Item = bathrobe)
   ).
 randomizeArmor(X, Item) :-
   X < 13, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = armor_4);
-    (Y =:= 1, !, Item = jaket_4);
-    (Y =:= 0, !, Item = kaos_4)
+    (Y =:= 2, !, Item = diamond_armor);
+    (Y =:= 1, !, Item = dragonscale_cloak);
+    (Y =:= 0, !, Item = lab_coat)
   ).
 randomizeArmor(X, Item) :-
   X < 25, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = armor_3);
-    (Y =:= 1, !, Item = jaket_3);
-    (Y =:= 0, !, Item = kaos_3)
+    (Y =:= 2, !, Item = dragon_armor);
+    (Y =:= 1, !, Item = shadow_cloak);
+    (Y =:= 0, !, Item = celestial_robe)
   ).
 randomizeArmor(X, Item) :-
   X < 50, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = armor_2);
-    (Y =:= 1, !, Item = jaket_2);
-    (Y =:= 0, !, Item = kaos_2)
+    (Y =:= 2, !, Item = steel_armor);
+    (Y =:= 1, !, Item = ironhide_cloak);
+    (Y =:= 0, !, Item = grand_magic_robe)
   ).
 randomizeArmor(X, Item) :-
   X < 100, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = armor_1);
-    (Y =:= 1, !, Item = jaket_1);
-    (Y =:= 0, !, Item = kaos_1)
+    (Y =:= 2, !, Item = iron_armor);
+    (Y =:= 1, !, Item = wolfhide_cloak);
+    (Y =:= 0, !, Item = magic_robe)
   ).
 
 gachaArmor(Item) :-
@@ -172,41 +172,41 @@ randomizeWeapon(X, Item) :-
   X < 5, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = pedang_5);
-    (Y =:= 1, !, Item = busur_panah_dan_jangka_5);
-    (Y =:= 0, !, Item = magic_stick_5)
+    (Y =:= 2, !, Item = ultima_blade);
+    (Y =:= 1, !, Item = railgun);
+    (Y =:= 0, !, Item = paddlepop)
   ).
 randomizeWeapon(X, Item) :-
   X < 13, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = pedang_4);
-    (Y =:= 1, !, Item = busur_panah_dan_jangka_4);
-    (Y =:= 0, !, Item = magic_stick_4)
+    (Y =:= 2, !, Item = masamune);
+    (Y =:= 1, !, Item = sniper_rifle);
+    (Y =:= 0, !, Item = celestial_staff)
   ).
 randomizeWeapon(X, Item) :-
   X < 25, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = pedang_3);
-    (Y =:= 1, !, Item = busur_panah_dan_jangka_3);
-    (Y =:= 0, !, Item = magic_stick_3)
+    (Y =:= 2, !, Item = dragon_sword);
+    (Y =:= 1, !, Item = portable_ballista);
+    (Y =:= 0, !, Item = grand_magic_staff)
   ).
 randomizeWeapon(X, Item) :-
   X < 50, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = pedang_2);
-    (Y =:= 1, !, Item = busur_panah_dan_jangka_2);
-    (Y =:= 0, !, Item = magic_stick_2)
+    (Y =:= 2, !, Item = steel_sword);
+    (Y =:= 1, !, Item = longbow);
+    (Y =:= 0, !, Item = magic_staff)
   ).
 randomizeWeapon(X, Item) :-
   X < 100, !,
   Y is X mod 3,
   (
-    (Y =:= 2, !, Item = pedang_1);
-    (Y =:= 1, !, Item = busur_panah_dan_jangka_1);
-    (Y =:= 0, !, Item = magic_stick_1)
+    (Y =:= 2, !, Item = iron_sword);
+    (Y =:= 1, !, Item = crossbow);
+    (Y =:= 0, !, Item = magic_wand)
   ).
 gachaWeapon(_) :-
   state(S),

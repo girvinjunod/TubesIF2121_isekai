@@ -46,24 +46,24 @@ tpb(X) :-
 
 getStartingItem :-
     playerClass(swordsman), !,
-    addToInventory(pedang_0),
-    addToInventory(armor_0),
+    addToInventory(wooden_sword),
+    addToInventory(wooden_armor),
 	addToInventory(potion, 5),
-	write('Kamu mendapatkan pedang_0 dan armor_0.\n').
+	write('Kamu mendapatkan wooden_sword dan wooden_armor.\n').
 
 getStartingItem :-
     playerClass(archer), !,
-    addToInventory(busur_panah_dan_jangka_0),
-    addToInventory(jaket_0),
+    addToInventory(busur_panah_dan_jangka),
+    addToInventory(leather_cloak),
 	addToInventory(potion, 5),
-	write('Kamu mendapatkan busur_panah_dan_jangka_0 dan jaket_0.\n').
+	write('Kamu mendapatkan busur_panah_dan_jangka dan leather_cloak.\n').
 
 getStartingItem :-
     playerClass(sorcerer), !,
-    addToInventory(magic_stick_0),
-    addToInventory(kaos_0),
+    addToInventory(magic_stick),
+    addToInventory(kaos),
 	addToInventory(potion, 5),
-	write('Kamu mendapatkan magic_stick_0 dan kaos_0.\n').
+	write('Kamu mendapatkan magic_stick dan kaos.\n').
 
 formulir(X) :-
   write(' ----------------------------------------------------\n'),
@@ -143,9 +143,9 @@ finishTutorial :-
 battleTutorial :-
   randomize_monster(0.3, 1),
   setState(tutorial),
-  asserta(special_cooldown(0)),
-  battleStats,
-  help, nl,
+  asserta(special_cooldown(0)),nl,nl,
+  battleStats,nl,nl,
+  help, nl,nl,
   write('Untuk membantu kamu dalam melawan tubes Alstrukdat, kamu diberikan 5 potion dan starting equipment.\n'),nl,
   write('Equip gunakan perintah equip(Nama_item)\n'),nl,
   getStartingItem.
