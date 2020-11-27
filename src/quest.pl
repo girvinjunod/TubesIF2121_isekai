@@ -45,26 +45,26 @@ generate_quest :-
 	remove_active_quest,
 	/* quest spam satu monster */
 	add_quest([5,0,0,0,150,150]),
-	add_quest([0,5,0,0,200,200]),
-	add_quest([0,0,5,0,250,250]),
-	add_quest([0,0,0,5,500,500]),
+	add_quest([0,5,0,0,750,750]),
+	add_quest([0,0,5,0,40000,40000]),
+	add_quest([0,0,0,5,100000,100000]),
 	/* random quest */
 	forall(between(1,5,_),(
 		random(0,10,S),
 		random(0,7,Go),
 		random(0,5,W),
 		random(0,3,Gh),
-		XP is 30*S + 40*Go + 50*W + 100*Gh,
-		Gold is 30*S + 40*Go + 50*W + 100*Gh,
+		XP is 30*S + 150*Go + 8000*W + 20000*Gh,
+		Gold is 30*S +150*Go + 8000*W + 20000*Gh,
 		add_quest([S,Go,W,Gh,XP,Gold])
 		)),
 	!.
 
 /* available quests printing util. */
 print_quest(X,[[S,Go,W,Gh,Exp,Gold]]) :- 
-	format('~w ~d. ~d Slime, ~d Goblin, ~d Wolf, ~d Ghost, ~d Exp, ~d Gold                     ~w\n',['%',X,S,Go,W,Gh,Exp,Gold,'%']).
+	format('  ~d. ~d Slime, ~d Goblin, ~d Wolf, ~d Ghost, ~d Exp, ~d Gold\n',[X,S,Go,W,Gh,Exp,Gold]).
 print_quest(X,[[S,Go,W,Gh,Exp,Gold]|Tail]) :-
-	format('~w ~d. ~d Slime, ~d Goblin, ~d Wolf, ~d Ghost, ~d Exp, ~d Gold                     ~w\n',['%',X,S,Go,W,Gh,Exp,Gold,'%']),
+	format('  ~d. ~d Slime, ~d Goblin, ~d Wolf, ~d Ghost, ~d Exp, ~d Gold\n',[X,S,Go,W,Gh,Exp,Gold]),
 	NextX is X + 1,
 	print_quest(NextX,Tail),
 	!.
