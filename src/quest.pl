@@ -71,8 +71,8 @@ print_quest(X,[[S,Go,W,Gh,Exp,Gold]|Tail]) :-
 
 print_quest :-
 	write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
-	write('%                               ~Quest Board~                                  %\n'),
-	write('%                                                                              %\n'),
+	write('                                ~Quest Board~                                   \n'),
+	write('                                                                                \n'),
 	available_quest(Q),
 	print_quest(1,Q),
 	write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
@@ -133,7 +133,7 @@ quest :-
 cek_completed_five_quests :-
 	available_quest(Q),
 	countList(Q,NbAvailableQuest),
-	NbAvailableQuest = 4, /* 4 karena awalnya ada 9 quest, 9-4=5 */
+	NbAvailableQuest = 6, /* 4 karena awalnya ada 9 quest, 9-4=5 */
 	!,
 	unlock_dungeon_boss_cell. /* ada di map.pl */
 
