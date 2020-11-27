@@ -28,6 +28,42 @@ hargaItem(injeksi_hormon, 90).
 hargaItem(uc1000, 90).
 hargaItem(devil_fruit, 110).
 hargaItem(dragons_tears, 110).
+hargaItem(pedang_0, 5).
+hargaItem(pedang_1, 30).
+hargaItem(pedang_2, 75).
+hargaItem(pedang_3, 150).
+hargaItem(pedang_4, 250).
+hargaItem(pedang_5, 400).
+hargaItem(armor_0, 5).
+hargaItem(armor_1, 30).
+hargaItem(armor_2, 75).
+hargaItem(armor_3, 150).
+hargaItem(armor_4, 250).
+hargaItem(armor_5, 400).
+hargaItem(busur_panah_dan_jangka_0, 5).
+hargaItem(busur_panah_dan_jangka_1, 30).
+hargaItem(busur_panah_dan_jangka_2, 75).
+hargaItem(busur_panah_dan_jangka_3, 150).
+hargaItem(busur_panah_dan_jangka_4, 250).
+hargaItem(busur_panah_dan_jangka_5, 400).
+hargaItem(jaket_0, 5).
+hargaItem(jaket_1, 30).
+hargaItem(jaket_2, 75).
+hargaItem(jaket_3, 150).
+hargaItem(jaket_4, 250).
+hargaItem(jaket_5, 400).
+hargaItem(magic_stick_0, 5).
+hargaItem(magic_stick_1, 30).
+hargaItem(magic_stick_2, 75).
+hargaItem(magic_stick_3, 150).
+hargaItem(magic_stick_4, 250).
+hargaItem(magic_stick_5, 400).
+hargaItem(kaos_0, 5).
+hargaItem(kaos_1, 30).
+hargaItem(kaos_2, 75).
+hargaItem(kaos_3, 150).
+hargaItem(kaos_4, 250).
+hargaItem(kaos_5, 400).
 
 /* list item equip
 format: (nama, tipe, role) */

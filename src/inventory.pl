@@ -16,20 +16,35 @@ inventory([
 listInventory(_, []) :-
   true, !. %do nothing
 listInventory(Counter, [H|T]) :-
-  item(H, consumable), !,
+  (item(H, consumable),
+  hargaItem(H, Harga,_)), !,
   nl,
   format('  ~w. ~w', [Counter, H]), nl,
   item_effect(H, StatsAffacted, Effect),
-   write('     type: consumable'), nl,
+   write('     type  : consumable'), nl,
   format('     effect: ~w ~w', [Effect, StatsAffacted]), nl,
+  format('     harga : ~w gold', [Harga]), nl,
+  NextCounter is Counter + 1,
+  listInventory(NextCounter, T).
+  
+listInventory(Counter, [H|T]) :-
+  (item(H, consumable),
+  hargaItem(H, Harga)), !,
+  nl,
+  format('  ~w. ~w', [Counter, H]), nl,
+  item_effect(H, StatsAffacted, Effect),
+   write('     type  : consumable'), nl,
+  format('     effect: ~w ~w', [Effect, StatsAffacted]), nl,
+  format('     harga : ~w gold', [Harga]), nl,
   NextCounter is Counter + 1,
   listInventory(NextCounter, T).
 
 listInventory(Counter, [H|T]) :-
   item(H, WA, Role), !,
+  item_effect(H, StatsAffacted, Effect),
+  hargaItem(H, Harga), !,
   nl,
   format('  ~w. ~w', [Counter, H]), nl,
-  item_effect(H, StatsAffacted, Effect),
   (
   (StatsAffacted = weapon,
   X = damage
@@ -37,8 +52,9 @@ listInventory(Counter, [H|T]) :-
   (X = defense)
    ),
   format('     ~w untuk ~w', [WA, Role]), nl,
-   write('     type: equipment'), nl,
+   write('     type  : equipment'), nl,
   format('     effect: ~w ~w', [Effect, X]), nl,
+  format('     harga : ~w gold', [Harga]), nl,
   NextCounter is Counter + 1,
   listInventory(NextCounter, T).
 
