@@ -21,6 +21,13 @@ store :- % Player di store
   write('% 1. potion (50 gold)                                                          %\n'),
   write('% 2. kupon_gacha_item (70 gold)                                                %\n'),
   write('% 3. kupon_gacha_equipment (90 gold)                                           %\n'),
+  write('%                                                                              %\n'),
+  write('%                Kami juga menerima penjualan item dan equipment               %\n'),
+  write('%                                                                              %\n'),
+  write('%                                                                              %\n'),
+  write('%                     Dilarang mencuri(steal) di toko ini                      %\n'),
+  write('%               Jika Anda mencuri, Anda akan merasakan akibatnya.              %\n'),
+  write('%                                                                              %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   nl,
   write('Masukkan nama item yang mau kamu beli: '),
@@ -195,10 +202,19 @@ randomizeWeapon(X, Item) :-
     (Y =:= 1, !, Item = busur_panah_dan_jangka_1);
     (Y =:= 0, !, Item = magic_stick_1)
   ).
+gachaWeapon(_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 
 gachaWeapon(Item) :-
   acak(0, 100, R),
   randomizeWeapon(R, Item).
+ 
+gachaEquipment(_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 
 gachaEquipment :-
   countItemInInvetory(kupon_gacha_equipment, Cnt),
@@ -219,13 +235,20 @@ gachaEquipment :-
     (R =:= 1, !, gachaWeapon(Item))
   ),
   addToInventory(Item),
-  format('Selamat, kamu mendapatkan: ~w dari gacha! :D', [Item]), nl.
+  format('Selamat, kamu mendapatkan ~w dari gacha! :D', [Item]), nl.
 
 /*
 * drop chancenya (dri gacha)
-* potion: 75%
-* skincare: 13%
-* steroids: 12%
+* potion: 50%
+* skincare: 15%
+* steroids: 15%
+* adrenalin: 6 %
+* elixir: 2%
+* spicy_chili: 5 %
+* holy_water: 5 %
+* dragon's tears: 1 %
+* devil_fruit: 1 %
+*
 */
 gachaItem :-
   countItemInInvetory(kupon_gacha_item, Cnt),
@@ -243,11 +266,36 @@ gachaItem :-
   acak(0, 100, R),
   (
     (
-      R < 25,
-      (R < 13, !, Item = skincare);
-      (R < 25, !, Item = steroids)
+      R > 49,
+      (R > 98 ,!, Item = devil_fruit);
+	  (R > 97 ,!, Item = dragons_tears);
+	  (R > 95 ,!, Item = elixir);
+	  (R > 90 ,!, Item = holy_water);
+	  (R > 85 ,!, Item = spicy_chili);
+	  (R > 79 ,!, Item = adrenalin);
+	  (R > 64 ,!, Item = skincare);
+      (R > 49, !, Item = steroids)
     );
     (Item = potion)
   ),
   addToInventory(Item),
   format('Selamat, kamu mendapatkan: ~w dari gacha! :D', [Item]), nl.
+  
+steal :- % Permainan belum dimulai
+  state(not_started), !,
+  write('Permainan belum dimulai, kamu tidak dapat ke store.'), nl.
+
+steal :- % Player tidak di store
+  state(free),
+  player_cell(Cell),
+  Cell \= store_cell, !,
+  write('Gagal mencuri dari store karena kamu sedang tidak di store.'), nl.
+steal :-
+	randomize_monster(shopkeeper),
+	setState(battle),
+	retractall(special_cooldown(_)),
+	asserta(special_cooldown(0)),nl,
+	write('Anda tertangkap basah mencoba untuk mencuri.\n'),nl,
+	write('Sang shopkeeper mencegat Anda yang mencoba kabur dan battle pun dimulai.\n'),
+	nl,nl,
+	write('-----------------------------------------------------SECRET BOSS FIGHT!!-----------------------------------------------------\n'),nl,nl.

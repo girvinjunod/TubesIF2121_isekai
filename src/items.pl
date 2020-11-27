@@ -4,6 +4,14 @@ format: (nama, tipe)*/
 item(potion, consumable).
 item(steroids, consumable).
 item(skincare, consumable).
+item(adrenalin, consumable).
+item(elixir, consumable).
+item(spicy_chili, consumable).
+item(holy_water, consumable).
+item(injeksi_hormon, consumable).
+item(uc1000, consumable).
+item(devil_fruit, consumable).
+item(dragons_tears, consumable).
 item(kupon_gacha_equipment, consumable).
 item(kupon_gacha_item, consumable).
 
@@ -76,6 +84,14 @@ item_effect(telanjang, armor, 0).
 item_effect(potion, hp, 100).
 item_effect(steroids, attack, 50).
 item_effect(skincare, defense, 50).
+item_effect(adrenalin, hp, 300).
+item_effect(elixir, hp, 10000).
+item_effect(spicy_chili, attack, 100).
+item_effect(injeksi_hormon, attack, 300).
+item_effect(dragons_tears, attack, 500).
+item_effect(holy_water, defense, 100).
+item_effect(uc1000, defense, 300).
+item_effect(devil_fruit, defense, 500).
 item_effect(kupon_gacha_equipment, -, -).
 item_effect(kupon_gacha_item, -, -).
 
@@ -144,7 +160,7 @@ use(Item) :-
     attack(ATK),
     retractall(attack(_)),
     NewATK is ATK + X,
-    write('Berhasil menggunakan steroids, sekarang kamu tambah buff dan serangan mu semakin keras.'),
+    write('Berhasil menggunakan '), write(Item), write(' untuk meningkatkan attack.\n'),
     asserta(attack(NewATK)),
     removeFromInventory(Item), !
   );
@@ -159,7 +175,7 @@ use(Item) :-
     (
       NewHP is Max
     )),
-    write('Berhasil berobat dengan potion.'),
+    write('Berhasil berobat dengan '), write(Item), write(' .\n'),
     retractall(hp(_)),
     asserta(hp(NewHP)),
     removeFromInventory(Item), !
@@ -169,18 +185,51 @@ use(Item) :-
     defense(DEF),
     retractall(defense(_)),
     NewDEF is DEF + X,
-    write('Berhasil menggunakan skincare, sekarang kamu semakin kebal terhadap serangan (dan enak diliat).'),
+    write('Berhasil menggunakan '), write(Item), write(' untuk meningkatkan defense.\n'),
     asserta(defense(NewDEF)),
     removeFromInventory(Item)
   )), !.
+drop(_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 
+drop(Gear) :-
+	\+(item(Gear,_,_)),
+	write('Barang itu tidak ada.\n'), !.
+drop(Gear) :-
+	countItemInInvetory(Gear, GearCount),
+	GearCount =:= 0, !,
+	write('Kamu tidak memiliki barang itu.\n'), !.
+	
 drop(X) :-
-  removeFromInventory(X).
+  removeFromInventory(X),
+  write('Kamu telah drop '), write(X),!.
+drop(_,_) :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
+  
+drop(Gear,_) :-
+	\+(item(Gear,_,_)),
+	write('Barang itu tidak ada.\n'), !.
+	
+drop(Gear,_) :-
+	countItemInInvetory(Gear, GearCount),
+	GearCount =:= 0, !,
+	write('Kamu tidak memiliki barang itu.\n'), !.
 
+drop(Gear,Count) :-
+	countItemInInvetory(Gear, GearCount),
+	GearCount < Count, !,
+	write('Kamu tidak memiliki '),write(Count), write(' barang itu.\n'), !.
+	
 drop(X, 1) :-
-  removeFromInventory(X).
+  removeFromInventory(X),
+  write('Kamu telah drop '), write(X),!.
 
 drop(X, Cnt) :-
   removeFromInventory(X),
   NewCnt is Cnt-1,
-  drop(X, NewCnt).
+  drop(X, NewCnt),
+  write('Kamu telah drop '),write(Cnt), write(X),!.

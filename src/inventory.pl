@@ -30,9 +30,15 @@ listInventory(Counter, [H|T]) :-
   nl,
   format('  ~w. ~w', [Counter, H]), nl,
   item_effect(H, StatsAffacted, Effect),
+  (
+  (StatsAffacted = weapon,
+  X = damage
+  );
+  (X = defense)
+   ),
   format('     ~w untuk ~w', [WA, Role]), nl,
    write('     type: equipment'), nl,
-  format('     effect: ~w ~w', [Effect, StatsAffacted]), nl,
+  format('     effect: ~w ~w', [Effect, X]), nl,
   NextCounter is Counter + 1,
   listInventory(NextCounter, T).
 

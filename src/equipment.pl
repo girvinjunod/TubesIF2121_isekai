@@ -24,6 +24,14 @@ equip(telanjang) :-
 	asserta(armorequipped(telanjang)),
 	write('Anda telah menelanjangkan diri.\n'), !.
 equip(Gear) :-
+	weaponequipped(X),
+	X = Gear,
+	write('Kamu sedang memakai weapon itu.\n'), !.
+equip(Gear) :-
+	armorequipped(X),
+	X = Gear,
+	write('Kamu sedang memakai armor itu.\n'), !.
+equip(Gear) :-
 	\+item(Gear,_,_),
 	write('Equipment itu tidak ada.\n'),!.
 equip(Gear) :-

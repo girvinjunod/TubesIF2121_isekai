@@ -37,13 +37,14 @@ boss(X) :-
 battleBoss :-
 	randomize_monster(boss),
 	setState(battle),
+	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)).
-finishBoss :-
+finishBoss(X):-
 	write('----------------BOSS DEFEATED----------------\n'),
 	nl,nl,nl,
 	write('Dengan Raja Naga Keri terkalahkan, tidak ada lagi yang menghalangi '),
 	write(X),
-	write('untuk kembali ke dunianya melewati portal menuju dunianya yang ada di istana.\n'),
+	write(' untuk kembali ke dunianya melewati portal menuju dunianya yang ada di istana.\n'),
 	write('Sebelum ia pergi, ia pun menggunakan sistem pengumuman di istana untuk mengirimkan surat pengumuman ke seluruh penduduk jurusan.\n'),
 	nl,
 	write('Di sana dia menuliskan bahwa meskipun badai tubes telah lewat, tubes2 akan tetap ada.\n'),
@@ -59,7 +60,7 @@ finishBoss :-
 	write(X),
 	write(' pun kembali ke dunia asalnya, dia tiba2 berada di depan Indomaret yang dia sedang tuju sebelum dia keisekai.\n'),
 	write('Dia pun melihat dirinya sudah kembali lagi ke semula dengan pakaian biasanya dan tanpa kekuatan apa pun.\n'),
-	write('Dia meraba-raba kantongnya dan menemukan HPnya di sana, lalu ketika ia menyalakan HPnya ia pun terkejur.\n'),
+	write('Dia meraba-raba kantongnya dan menemukan HPnya di sana, lalu ketika ia menyalakan HPnya ia pun terkejut.\n'),
 	nl,
 	write('Disitu tertulis tanggal 30 November 2020\n'),
 	nl,

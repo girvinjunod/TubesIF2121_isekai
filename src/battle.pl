@@ -110,7 +110,7 @@ randomize_monster(_, Lvl) :-
 	),
 	HP is 40 * MLvl + 150,
 	Atk is 20 * MLvl + 2,
-	Def is 30 * MLvl + 5,
+	Def is 20 * MLvl + 5,
 	XP is 100 * MLvl + 325,
 	Gold is 10 * (Lvl + 2),
 	asserta(monster_hp(HP)),
@@ -127,9 +127,20 @@ randomize_monster(boss) :-
 	asserta(monster_hp(4200)),
 	asserta(monster_maxHP(4200)),
 	asserta(monster_atk(420)),
-	asserta(monster_def(420)),
+	asserta(monster_def(200)),
 	asserta(monster_exp(0)),
 	asserta(monster_lvl(69)),
+	asserta(monster_gold(9999)).
+
+randomize_monster(shopkeeper) :-
+	setState(battle),
+	asserta(current_monster('Shopkeeper')),
+	asserta(monster_hp(9999)),
+	asserta(monster_maxHP(9999)),
+	asserta(monster_atk(2000)),
+	asserta(monster_def(500)),
+	asserta(monster_exp(9999)),
+	asserta(monster_lvl(999)),
 	asserta(monster_gold(9999)).
 
 monster_count_move :-
@@ -190,15 +201,37 @@ monster_die :-
 	retractall(monster_gold(_)),
     retractall(monster_turn(_)),
 	setState(free),
-    finishBoss, !.
+	name(X),
+    finishBoss(X), !.
+	
+monster_die :-
+	state(battle),
+	current_monster('Shopkeeper'),
+	monster_exp(XP),
+	monster_gold(Gold),
+	earnExp(XP),
+	earnGold(Gold),
+	nl,
+	write('Shopkeeper'),
+	write(' telah dikalahkan.'), nl,nl,
+	write('Mendapat '),
+	write(XP),
+	write(' experience points.'), nl,
+	format('Kamu juga mendapatkan ~w gold.', [Gold]),nl,
+	retractall(current_monster(_)),
+	retractall(monster_hp(_)),
+	retractall(monster_atk(_)),
+	retractall(monster_def(_)),
+	retractall(monster_exp(_)),
+	retractall(monster_gold(_)),
+	retractall(monster_turn(_)),
+	setState(free), !.
 
 monster_die :-
     state(tutorial),
 	current_monster(Name),
 	monster_exp(XP),
 	monster_gold(Gold),
-	earnExp(XP),
-	earnGold(Gold),
 	update_active_quest(Name),
 	nl,
 	write(Name),
@@ -207,6 +240,8 @@ monster_die :-
 	write(XP),
 	write(' experience points.'), nl,
 	format('Kamu juga mendapatkan ~w gold.', [Gold]),
+	earnExp(XP),
+	earnGold(Gold),
 	retractall(current_monster(_)),
 	retractall(monster_hp(_)),
 	retractall(monster_atk(_)),
@@ -222,9 +257,6 @@ monster_die :-
 	current_monster(Name),
 	monster_exp(XP),
 	monster_gold(Gold),
-	earnExp(XP),
-	earnGold(Gold),
-	update_active_quest(Name),
 	nl,
 	write(Name),
 	write(' telah dikalahkan.'), nl,nl,
@@ -232,6 +264,9 @@ monster_die :-
 	write(XP),
 	write(' experience points.'), nl,
 	format('Kamu juga mendapatkan ~w gold.', [Gold]),nl,
+	earnExp(XP),
+	earnGold(Gold),
+	update_active_quest(Name),
 	retractall(current_monster(_)),
 	retractall(monster_hp(_)),
 	retractall(monster_atk(_)),
@@ -247,6 +282,10 @@ kabur :-
 	current_monster('Raja Naga Keri'),
 	write('Kamu gagal kabur, Raja Naga Keri menghadang jalanmu.\n'),
 	write('Semangat!!!.\n'), !.
+kabur :-
+	current_monster('Shopkeeper'),
+	write('Kamu gagal kabur, kamu tidak bisa lari dari keadilan.\n'),
+	write('Tanggung jawab atas perbuatanmu!!.\n'), !.
 kabur :-
 	state(battle),
 	%random(X),
@@ -277,7 +316,7 @@ special_counter :-
 
 special_counter.
 
-steal :-
+maling :-
   acak(0, 100, R),
   (
 	(
@@ -289,6 +328,10 @@ steal :-
   ),
   addToInventory(Item),
   write('Berhasil mencuri '), write(Item), write(' dari monster'), nl.
+  
+special_attack :-
+	state(not_started), !,
+	write('Gamenya belom mulai bang, udah attack2 aja.').
 
 special_attack :-
 	special_cooldown(0),
@@ -307,7 +350,7 @@ special_attack :-
 			write('Steal!!!'), nl,
 			BiasAtk is Atk * 0.5,
 			damage_monster(BiasAtk),
-			steal
+			maling
 		), !;
 		(
 			playerClass(sorcerer),
@@ -516,7 +559,8 @@ damagePlayer(Dmg) :-
 	NewHP is HP - BiasDmg,
 	(
 		NewHP < 0,
-		write('Kamu meninggal.'), nl,
+		format('Kamu diserang, menerima ~2f damage.', [BiasDmg]), nl,nl,
+		write('Kamu tewas.'), nl, nl,
 		die, !;
 		retractall(hp(_)),
 		asserta(hp(NewHP)),

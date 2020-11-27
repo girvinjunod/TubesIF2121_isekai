@@ -24,7 +24,10 @@ mainMenu :-
   write('% 1. new game  : untuk memulai petualanganmu                                   %\n'),
   write('% 2. exit      : keluar dari gim                                               %\n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-
+status :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 status :-
   active_quest(S,Go,W,Gh,QuestExp,QuestGold), !,
   name(NAME), hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP),
@@ -136,13 +139,17 @@ inventory :-
 
 inventory :-
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
-  write('%                                ~Inventory~                                   %\n'),
+  write('                                 ~Inventory~                                    \n'),
   inventory(I),
-  listInventory(1, I),
+  listInventory(1, I), nl,
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
 
 shop :-
   store.
+enemy :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
 
 enemy :-
   monster_hp(HP), monster_maxHP(MaxHP), monster_atk(ATK), monster_def(DEF), monster_lvl(LVL),

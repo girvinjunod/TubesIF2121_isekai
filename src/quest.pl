@@ -78,6 +78,11 @@ print_quest :-
 	write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n').
 
 /* command quest. */
+quest :-
+  state(S),
+  S = not_started, !,
+  write('Permainan belum dimulai.').
+
 /* player lagi gak di quest cell (Q) */
 quest :-
 	state(free),
