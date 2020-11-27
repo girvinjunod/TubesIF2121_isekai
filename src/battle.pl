@@ -314,7 +314,7 @@ kabur :-
 	write('Semangat!!!.\n'), !.
 kabur :-
 	current_monster('Raja Naga Demon Keri'),
-	write('Tidak ada kabur, Raja Naga Keri menghadang jalanmu.\n'),
+	write('Tidak ada kabur, Raja Naga Demon Keri menghadang jalanmu.\n'),
 	write('Semangat!!!.\n'), !.
 kabur :-
 	current_monster('Shopkeeper'),

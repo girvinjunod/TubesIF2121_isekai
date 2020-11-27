@@ -292,11 +292,12 @@ steal :- % Permainan belum dimulai
   write('Permainan belum dimulai, kamu tidak dapat ke store.'), nl.
 
 steal :- % Player tidak di store
-  state(free),
   player_cell(Cell),
   Cell \= store_cell, !,
   write('Gagal mencuri dari store karena kamu sedang tidak di store.'), nl.
 steal :-
+	player_cell(Cell),
+	Cell = store_cell, !,
 	randomize_monster(shopkeeper),
 	setState(battle),
 	retractall(special_cooldown(_)),
