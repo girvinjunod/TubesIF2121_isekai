@@ -40,7 +40,7 @@ store :- % Player di store
   read(Item),
   (
     ( % Kasus item yg dibeli ga ada
-      \+hargaItem(Item, Harga, buyable), !,
+      \+hargaItem(Item, Harga, buyable), !,nl,
       write('Kami tidak menjual item itu :('), nl
     );
     write('Berapa banyak? '),
@@ -50,14 +50,14 @@ store :- % Player di store
     QtyHarga is Harga*Qty,
     (
       ( % Uang kurang
-        UangTersedia < QtyHarga, !,
+        UangTersedia < QtyHarga, !,nl,
         write('Kamu kurang cukup kaya untuk membeli item ini.'), nl,
         write('Go slay some monster atau ambil lah quest terlebih dahulu.'), nl
       );
       ( % Transaksi berhasil
         NewGold is UangTersedia - QtyHarga,
         retractall(gold(_)),
-        asserta(gold(NewGold)),
+        asserta(gold(NewGold)),nl,
         format('Selamat atas pembelian ~w kamu! Senang berbisnis dengan mu.', [Item]), nl,
         addToInventory(Item, Qty), !
       )
