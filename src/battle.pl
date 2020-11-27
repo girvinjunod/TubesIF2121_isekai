@@ -128,12 +128,23 @@ randomize_monster(_, Lvl) :-
 randomize_monster(boss) :-
 	setState(battle),
 	asserta(current_monster('Raja Naga Keri')),
-	asserta(monster_hp(4200)),
-	asserta(monster_maxHP(4200)),
-	asserta(monster_atk(420)),
+	asserta(monster_hp(2500)),
+	asserta(monster_maxHP(2500)),
+	asserta(monster_atk(300)),
 	asserta(monster_def(200)),
 	asserta(monster_exp(0)),
 	asserta(monster_lvl(69)),
+	asserta(monster_gold(9999)).
+
+randomize_monster(boss2) :-
+	setState(battle),
+	asserta(current_monster('Raja Naga Demon Keri')),
+	asserta(monster_hp(6666)),
+	asserta(monster_maxHP(6666)),
+	asserta(monster_atk(500)),
+	asserta(monster_def(50)),
+	asserta(monster_exp(0)),
+	asserta(monster_lvl(99)),
 	asserta(monster_gold(9999)).
 
 randomize_monster(shopkeeper) :-
@@ -195,7 +206,21 @@ damage_monster(Dmg) :-
 		NewHP > 0
 	),nl.
 monster_die :-
+	state(battle),
 	current_monster('Raja Naga Keri'),
+	nl,
+	retractall(current_monster(_)),
+	retractall(monster_hp(_)),
+	retractall(monster_atk(_)),
+	retractall(monster_def(_)),
+	retractall(monster_exp(_)),
+	retractall(monster_gold(_)),
+    retractall(monster_turn(_)),
+	name(X),
+    changephase(X), !.
+monster_die :-
+	state(battle),
+	current_monster('Raja Naga Demon Keri'),
 	nl,
 	retractall(current_monster(_)),
 	retractall(monster_hp(_)),
@@ -258,6 +283,7 @@ monster_die :-
 
 
 monster_die :-
+	state(battle),
 	current_monster(Name),
 	monster_exp(XP),
 	monster_gold(Gold),
@@ -284,11 +310,11 @@ kabur :-
 	write('Masa tutorial udah kabur aja.\n'), !.
 kabur :-
 	current_monster('Raja Naga Keri'),
-	write('Kamu gagal kabur, Raja Naga Keri menghadang jalanmu.\n'),
+	write('Tidak ada kabur, Raja Naga Keri menghadang jalanmu.\n'),
 	write('Semangat!!!.\n'), !.
 kabur :-
 	current_monster('Shopkeeper'),
-	write('Kamu gagal kabur, kamu tidak bisa lari dari keadilan.\n'),
+	write('Tidak ada kabur, kamu tidak bisa lari dari keadilan.\n'),
 	write('Tanggung jawab atas perbuatanmu!!.\n'), !.
 kabur :-
 	state(battle),
@@ -562,7 +588,7 @@ damagePlayer(Dmg) :-
 	BiasDmg is Dmg * DmgMul,
 	NewHP is HP - BiasDmg,
 	(
-		NewHP < 0,
+		NewHP < 0.01,
 		format('Kamu diserang, menerima ~2f damage.', [BiasDmg]), nl,nl,
 		write('Kamu tewas.'), nl, nl,
 		die, !;

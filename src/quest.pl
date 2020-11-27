@@ -62,9 +62,9 @@ generate_quest :-
 
 /* available quests printing util. */
 print_quest(X,[[S,Go,W,Gh,Exp,Gold]]) :- 
-	format('~w ~d. ~d Slime(s), ~d Goblin(s), ~d Wolf(s), ~d Ghost(s), ~d Exp(s), ~d Gold(s)   ~w\n',['%',X,S,Go,W,Gh,Exp,Gold,'%']).
+	format('~w ~d. ~d Slime, ~d Goblin, ~d Wolf, ~d Ghost, ~d Exp, ~d Gold                     ~w\n',['%',X,S,Go,W,Gh,Exp,Gold,'%']).
 print_quest(X,[[S,Go,W,Gh,Exp,Gold]|Tail]) :-
-	format('~w ~d. ~d Slime(s), ~d Goblin(s), ~d Wolf(s), ~d Ghost(s), ~d Exp(s), ~d Gold(s)   ~w\n',['%',X,S,Go,W,Gh,Exp,Gold,'%']),
+	format('~w ~d. ~d Slime, ~d Goblin, ~d Wolf, ~d Ghost, ~d Exp, ~d Gold                     ~w\n',['%',X,S,Go,W,Gh,Exp,Gold,'%']),
 	NextX is X + 1,
 	print_quest(NextX,Tail),
 	!.
@@ -141,7 +141,7 @@ cek_completed_five_quests :-
 active_quest_reward :-
 	active_quest(_,_,_,_,Exp,Gold),
 	write('Anda telah menyelesaikan quest Anda!\n'),
-	format('Anda mendapatkan ~d Exp(s) dan ~d Gold(s).\n',[Exp,Gold]),
+	format('Anda mendapatkan ~d Exp dan ~d Gold.\n',[Exp,Gold]),
 	earnExp(Exp),
 	earnGold(Gold),
 	retractall(active_quest(_,_,_,_,_,_)),

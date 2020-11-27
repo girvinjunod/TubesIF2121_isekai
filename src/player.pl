@@ -189,7 +189,7 @@ teleport :-
 teleport :-
   state(A),
   A \= free, !,
-  write('Kamu belum bisa berpindah tempat').
+  write('Kamu tidak bisa menggunakan teleport di luar eksplorasi.\n').
 
 teleport :-
   state(free),
@@ -210,7 +210,7 @@ teleport :-
       retractall(player_coordinate(_, _)),
       asserta(player_cell(store_cell)),
       asserta(player_coordinate(X, Y)),
-      write('Kamu berhasil teleport ke store')
+      write('Kamu berhasil teleport ke store\n')
     );
     (
       (Tujuan = quest; Tujuan = 2), !,
@@ -219,7 +219,7 @@ teleport :-
       retractall(player_coordinate(_, _)),
       asserta(player_cell(quest_cell)),
       asserta(player_coordinate(X, Y)),
-      write('Kamu berhasil teleport ke quest')
+      write('Kamu berhasil teleport ke quest\n')
     );
     (
       (Tujuan = boss; Tujuan = 3), !,
@@ -228,10 +228,11 @@ teleport :-
       retractall(player_coordinate(_, _)),
       asserta(player_cell(dungeon_boss_cell)),
       asserta(player_coordinate(X, Y)),
-      write('Kamu berhasil teleport ke boss')
+      write('Kamu berhasil teleport ke boss\n'),
+	  interact_with_dungeon_boss_cell
     );
     (
-      write('Tidak ada portal di tempat pilihanmu, teleport dibatalkan.')
+      write('Tidak ada portal di tempat pilihanmu, teleport dibatalkan.\n')
     )
   ).
 die :-
@@ -244,10 +245,11 @@ die :-
 	retractall(gold(_)),
 	retractall(weaponequipped(_)),
 	retractall(armorequipped(_)),
-	setState(not_started),
-	write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu melihat sang shopkeeper tersenyum.'), nl,
-	write('Kamu mencoba untuk bergerak namun tidak bisa, karena kamu sudah tewas...'), nl,
-	nl,nl,nl,
+	setState(not_started),nl, sleep(1),
+	write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu melihat sang shopkeeper tersenyum...'), nl,nl, sleep(1),
+	write('Kamu mencoba untuk bergerak namun tidak bisa, karena kamu sudah tewas...'), nl,nl,nl, sleep(1),
+	write('Ingat anak-anak, mencuri itu tidak baik.\n'),nl, sleep(1),
+	nl,nl,
 	write('------------------------------------------------------JUSTICE IS SERVED------------------------------------------------------\n'),
 	reset, !.
 
@@ -260,9 +262,9 @@ die :-
   retractall(gold(_)),
   retractall(weaponequipped(_)),
   retractall(armorequipped(_)),
-  setState(not_started),
-  write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu mendengar teriakan minta tolong...'), nl,
+  setState(not_started), nl, sleep(1),
+  write('Kamu terjatuh di tengah pertempuran, seiring kamu ditelan kegelapan, kamu mendengar teriakan minta tolong...'), nl,nl, sleep(1),
   write('Sayangnya, kamu tidak dapat bergerak, karena kamu sudah tewas...'), nl,
-  nl,nl,nl,
+  nl,nl, sleep(1),
   write('------------------------------------------------------GAME OVER------------------------------------------------------\n'),
   reset, !.

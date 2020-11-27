@@ -36,7 +36,7 @@ store :- % Player di store
   write('                                                                                \n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   nl,
-  write('Masukkan nama item yang mau kamu beli: '),
+  write('Masukkan nama item yang ingin dibeli: '),
   read(Item),
   (
     ( % Kasus item yg dibeli ga ada
@@ -230,9 +230,9 @@ gachaEquipment :-
 gachaEquipment :-
   removeFromInventory(kupon_gacha_equipment),
   write('Melakukan gacha...'), nl,
-  write('Deg... '),
+  write('Deg... '),nl,
   sleep(1),
-  write('Deg... '),
+  write('Deg... '),nl,
   sleep(1),
   write('Tetot!'), nl,
   acak(0, 2, R),
@@ -264,9 +264,9 @@ gachaItem :-
 gachaItem :-
   removeFromInventory(kupon_gacha_item),
   write('Melakukan gacha...'), nl,
-  write('Deg... '),
+  write('Deg... '),nl,
   sleep(1),
-  write('Deg... '),
+  write('Deg... '),nl,
   sleep(1),
   write('Tetot!'), nl,
   acak(0, 100, R),
@@ -300,8 +300,8 @@ steal :-
 	randomize_monster(shopkeeper),
 	setState(battle),
 	retractall(special_cooldown(_)),
-	asserta(special_cooldown(0)),nl,
-	write('Anda tertangkap basah mencoba untuk mencuri.\n'),nl,
-	write('Sang shopkeeper mencegat Anda yang mencoba kabur dan battle pun dimulai.\n'),
-	nl,nl,
-	write('-----------------------------------------------------SECRET BOSS FIGHT!!-----------------------------------------------------\n'),nl,nl.
+	asserta(special_cooldown(0)),nl, sleep(2),
+	write('Kamu tertangkap basah mencoba untuk mencuri.\n'),nl, sleep(2),
+	write('Sang shopkeeper mencegat kamu yang mencoba kabur dan battle pun dimulai.\n'),
+	nl,nl, sleep(1),
+	write('-----------------------------------------------------SECRET BOSS FIGHT!!-----------------------------------------------------\n'),nl,nl, enemy, nl.
