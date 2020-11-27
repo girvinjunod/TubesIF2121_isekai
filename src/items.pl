@@ -15,11 +15,17 @@ item(dragons_tears, consumable).
 item(kupon_gacha_equipment, consumable).
 item(kupon_gacha_item, consumable).
 
-hargaItem(potion, 50, buyable).
-hargaItem(adrenalin, 200, buyable).
-hargaItem(elixir, 2000, buyable).
-hargaItem(kupon_gacha_item, 70, buyable).
-hargaItem(kupon_gacha_equipment, 90, buyable).
+buyable(potion).
+buyable(adrenalin).
+buyable(elixir).
+buyable(kupon_gacha_item).
+buyable(kupon_gacha_equipment).
+
+hargaItem(potion, 50).
+hargaItem(adrenalin, 200).
+hargaItem(elixir, 2000).
+hargaItem(kupon_gacha_item, 70).
+hargaItem(kupon_gacha_equipment, 90).
 hargaItem(steroids, 50).
 hargaItem(skincare, 50).
 hargaItem(spicy_chili, 70).

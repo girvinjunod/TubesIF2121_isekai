@@ -318,7 +318,7 @@ special_counter :-
 special_counter.
 
 maling :-
-  acak(0, 100, R),
+  acak(0, 100, R), !,
   (
 	(
 	  R < 35,
@@ -327,8 +327,8 @@ maling :-
 	);
 	(Item = potion)
   ),
-  addToInventory(Item),
-  write('Berhasil mencuri '), write(Item), write(' dari monster'), nl.
+  write('Berhasil mencuri '), write(Item), write(' dari monster'),nl,
+  addToInventory(Item), !.
   
 special_attack :-
 	state(not_started), !,

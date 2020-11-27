@@ -17,7 +17,7 @@ listInventory(_, []) :-
   true, !. %do nothing
 listInventory(Counter, [H|T]) :-
   (item(H, consumable),
-  hargaItem(H, Harga,_)), !,
+  hargaItem(H, Harga)), !,
   nl,
   format('  ~w. ~w', [Counter, H]), nl,
   item_effect(H, StatsAffacted, Effect),
@@ -60,7 +60,9 @@ listInventory(Counter, [H|T]) :-
 
 /* Inventory operator */
 
-addToInventory(_) :- inventory(Inven), countList(Inven, Cnt), Cnt >= 100, !, fail.
+addToInventory(_) :- inventory(Inven), countList(Inven, Cnt), Cnt >= 100, 
+	write('Item dan equipmentmu telah melebihi batas inventory.\n\n'),
+	write('Inventory-mu pun bocor sehingga item dan equipmentmu terjatuh sampai tersisa 100 buah saja.\n'), !.
 addToInventory(X) :- \+inventory(_), asserta(inventory([X])), !.
 addToInventory(X) :- inventory(OldInven),
   retractall(inventory(_)),

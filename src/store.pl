@@ -46,7 +46,7 @@ store :- % Player di store
     write('Berapa banyak? '),
     read(Qty),
     gold(UangTersedia),
-    hargaItem(Item, Harga, buyable),
+    hargaItem(Item, Harga), buyable(Item),
     QtyHarga is Harga*Qty,
     (
       ( % Uang kurang
