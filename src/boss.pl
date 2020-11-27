@@ -1,9 +1,9 @@
 boss(X) :-
 	nl,
 	write(X),
-	write(' pun masuk ke dalam istana Raja Naga Keri.\n'), sleep(3),
+	write(' pun masuk ke dalam istana Raja Naga Keri.\n'), sleep(2),
 	nl,
-	write('---------------Di Istana---------------\n'), sleep(1),
+	write('---------------Di Istana---------------\n'), sleep(2),
 	nl,
 	write('"Selamat datang hero '),
 	write(X),
