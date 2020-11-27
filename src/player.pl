@@ -15,7 +15,7 @@ class(swordsman).
 class(archer).
 class(sorcerer).
 
-baseExp(500).
+baseExp(200).
 
 reset :-
   retractall(playerClass(_)),
@@ -134,7 +134,7 @@ levelUp(Lebih) :-
   retractall(levelUpCap(_)),
 
   NewLVL is CurLVL + 1,
-  NewLUC is BExp+(0.8 * (NewLVL^3)),
+  NewLUC is NewLVL*BExp + BExp,
 
   asserta(level(NewLVL)),
   asserta(levelUpCap(NewLUC)),
@@ -167,7 +167,7 @@ levelUp(Lebih, gacha) :-
   retractall(levelUpCap(_)),
 
   NewLVL is CurLVL + 1,
-  NewLUC is BExp+(0.8 * (NewLVL^3)),
+  NewLUC is NewLVL*BExp+BExp,
 
   asserta(level(NewLVL)),
   asserta(levelUpCap(NewLUC)),
