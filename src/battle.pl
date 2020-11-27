@@ -140,8 +140,8 @@ randomize_monster(boss2) :-
 	asserta(current_monster('Raja Naga Demon Keri')),
 	asserta(monster_hp(6666)),
 	asserta(monster_maxHP(6666)),
-	asserta(monster_atk(500)),
-	asserta(monster_def(30)),
+	asserta(monster_atk(666)),
+	asserta(monster_def(66)),
 	asserta(monster_exp(0)),
 	asserta(monster_lvl(99)),
 	asserta(monster_gold(9999)).
