@@ -11,7 +11,7 @@
 
 monster_encounter :-
 	acak(0,100,X),
-	X < 40,
+	X < 60,
 	acak(0,101,Y),
 	setState(battle),
 	retractall(special_cooldown(_)),
@@ -53,7 +53,7 @@ randomize_monster(X, Lvl) :-
 	HP is 30 * MLvl + 50,
 	Atk is 3 * MLvl + 10,
 	Def is 10 * MLvl + 20,
-	XP is 10 * MLvl + 50,
+	XP is 20 * MLvl + 50,
 	Gold is 10 * (MLvl + 1),
 	asserta(monster_hp(HP)),
 	asserta(monster_maxHP(HP)),
@@ -68,7 +68,7 @@ randomize_monster(X, Lvl) :-
 	setState(battle),
 	asserta(current_monster('goblin')),
 	(
-		Lvl < 5, MLvl is 10;
+		Lvl < 10, MLvl is 10;
 		Lvl > 35, MLvl is 35;
 		MLvl is Lvl
 	),
@@ -90,7 +90,7 @@ randomize_monster(X, Lvl) :-
 	setState(battle),
 	asserta(current_monster('wolf')),
 	(
-		Lvl < 10, MLvl is 15;
+		Lvl < 15, MLvl is 15;
 		Lvl > 45, MLvl is 45;
 		MLvl is Lvl
 	),
@@ -366,7 +366,9 @@ maling :-
 special_attack :-
 	state(not_started), !,
 	write('Gamenya belom mulai bang, udah attack2 aja.').
-
+special_attack :-
+	state(free),
+	write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl, !.
 special_attack :-
 	special_cooldown(0),
 	(
@@ -408,9 +410,6 @@ special_attack :-
 
 special_attack :-
     special_cooldown(_).
-
-special_attack :-
-	write('Kamu sedang tidak dalam battle, mau nyerang naon?'), nl, !.
 
 randomizeFlavorS(X) :-
   X < 40, !,
