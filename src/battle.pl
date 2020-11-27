@@ -68,7 +68,7 @@ randomize_monster(X, Lvl) :-
 	setState(battle),
 	asserta(current_monster('goblin')),
 	(
-		Lvl < 10, MLvl is 10;
+		Lvl < 5, MLvl is 5;
 		Lvl > 35, MLvl is 35;
 		MLvl is Lvl
 	),
