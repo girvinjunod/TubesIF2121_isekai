@@ -140,8 +140,12 @@ printCell(_,_) :-
 map :-
   state(S),
   S = not_started, !,
-  write('Permainan belum dimulai.').
-
+  write('Permainan belum dimulai.\n').
+  
+map :-
+  state(S),
+  S = tutorial, !,
+  write('Map belum tersedia di tutorial.\n').
 map :-
 	nRow(R),
 	nCol(C),

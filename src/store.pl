@@ -36,7 +36,7 @@ store :- % Player di store
   write('                                                                                \n'),
   write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n'),
   nl,
-  write('Masukkan nama item yang mau kamu beli: '),
+  write('Masukkan nama item yang ingin dibeli: '),
   read(Item),
   (
     ( % Kasus item yg dibeli ga ada

@@ -192,6 +192,7 @@ damage_monster(Dmg) :-
 		NewHP > 0
 	),nl.
 monster_die :-
+	state(battle),
 	current_monster('Raja Naga Keri'),
 	nl,
 	retractall(current_monster(_)),
@@ -255,6 +256,7 @@ monster_die :-
 
 
 monster_die :-
+	state(battle),
 	current_monster(Name),
 	monster_exp(XP),
 	monster_gold(Gold),
@@ -281,11 +283,11 @@ kabur :-
 	write('Masa tutorial udah kabur aja.\n'), !.
 kabur :-
 	current_monster('Raja Naga Keri'),
-	write('Kamu gagal kabur, Raja Naga Keri menghadang jalanmu.\n'),
+	write('Tidak ada kabur, Raja Naga Keri menghadang jalanmu.\n'),
 	write('Semangat!!!.\n'), !.
 kabur :-
 	current_monster('Shopkeeper'),
-	write('Kamu gagal kabur, kamu tidak bisa lari dari keadilan.\n'),
+	write('Tidak ada kabur, kamu tidak bisa lari dari keadilan.\n'),
 	write('Tanggung jawab atas perbuatanmu!!.\n'), !.
 kabur :-
 	state(battle),
