@@ -10,9 +10,8 @@
 :- dynamic(monster_lvl/1).
 
 monster_encounter :-
-	acak(0,100,X),
-	X < 60,
-	acak(0,101,Y),
+	acak(0,300,X),
+	X < 180,
 	setState(battle),
 	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)),
@@ -23,11 +22,7 @@ monster_encounter :-
 		MLvl < 1, TrueMLvl is 1;
 		TrueMLvl is MLvl
 	),
-	(
-		Lvl =< 30, Ya is Y + Lvl;
-		Ya is Y + 30
-	),
-	randomize_monster(Ya, TrueMLvl),
+	randomize_monster(X, TrueMLvl),
 	write('Bertemu '),
 	current_monster(Name),
 	monster_lvl(Lv),
@@ -43,7 +38,7 @@ monster_encounter :-
 monster_encounter.
 
 randomize_monster(X, Lvl) :-
-	X < 40,
+	X < 120,
 	setState(battle),
 	asserta(current_monster('slime')),
 	(
@@ -51,8 +46,8 @@ randomize_monster(X, Lvl) :-
 		MLvl is Lvl
 	),
 	HP is 30 * MLvl + 50,
-	Atk is 3 * MLvl + 10,
-	Def is 5 * MLvl + 20,
+	Atk is 2 * MLvl + 10,
+	Def is 2 * MLvl + 20,
 	XP is 20 * MLvl + 50,
 	Gold is 10 * (MLvl + 1),
 	asserta(monster_hp(HP)),
@@ -64,7 +59,7 @@ randomize_monster(X, Lvl) :-
 	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
-	X < 75,
+	X < 45,
 	setState(battle),
 	asserta(current_monster('goblin')),
 	(
@@ -86,17 +81,17 @@ randomize_monster(X, Lvl) :-
 	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
-	X < 99,
+	X < 59,
 	setState(battle),
 	asserta(current_monster('wolf')),
 	(
-		Lvl < 15, MLvl is 15;
+		Lvl < 8, MLvl is 8;
 		Lvl > 45, MLvl is 45;
 		MLvl is Lvl
 	),
 	HP is 30 * MLvl + 100,
 	Atk is 15 * MLvl + 20,
-	Def is 10 * MLvl + 5,
+	Def is 5 * MLvl + 5,
 	XP is 55 * MLvl + 325,
 	Gold is 10 * (Lvl + 2),
 	asserta(monster_hp(HP)),
@@ -112,11 +107,11 @@ randomize_monster(_, Lvl) :-
 	setState(battle),
 	asserta(current_monster('ghost')),
 	(
-		Lvl < 25, MLvl is 30;
+		Lvl < 15, MLvl is 15;
 		Lvl > 70; MLvl is 70;
 		MLvl is Lvl
 	),
-	HP is 40 * MLvl + 150,
+	HP is 20 * MLvl + 150,
 	Atk is 20 * MLvl + 2,
 	Def is 20 * MLvl + 5,
 	XP is 100 * MLvl + 325,
@@ -158,9 +153,9 @@ randomize_monster(shopkeeper) :-
 	asserta(monster_maxHP(9999)),
 	asserta(monster_atk(2000)),
 	asserta(monster_def(500)),
-	asserta(monster_exp(99999)),
+	asserta(monster_exp(999999)),
 	asserta(monster_lvl(999)),
-	asserta(monster_gold(99999)).
+	asserta(monster_gold(999999)).
 
 monster_count_move :-
 	monster_turn(T),
