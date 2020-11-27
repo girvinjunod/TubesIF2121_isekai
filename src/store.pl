@@ -18,9 +18,11 @@ store :- % Player di store
   format('  Uang tersedia: ~w\n', [UangTersedia]),
   write('%                                                                              %\n'),
   write('% Item yang kami jual:                                                         %\n'),
-  write('% 1. potion (50 gold)                                                          %\n'),
-  write('% 2. kupon_gacha_item (70 gold)                                                %\n'),
-  write('% 3. kupon_gacha_equipment (90 gold)                                           %\n'),
+  write('%   potion (50 gold)                                                           %\n'),
+  write('%   adrenalin (200 gold)                                                       %\n'),
+  write('%   elixir (2000 gold)                                                         %\n'),
+  write('%   kupon_gacha_item (70 gold)                                                 %\n'),
+  write('%   kupon_gacha_equipment (90 gold)                                            %\n'),
   write('%                                                                              %\n'),
   write('%                       Kami juga menerima penjualan item                      %\n'),
   write('%                              dengan perintah sell.                           %\n'),
@@ -35,13 +37,13 @@ store :- % Player di store
   read(Item),
   (
     ( % Kasus item yg dibeli ga ada
-      \+hargaItem(Item, Harga), !,
+      \+hargaItem(Item, Harga, buyable), !,
       write('Kami tidak menjual item itu :('), nl
     );
     write('Berapa banyak? '),
     read(Qty),
     gold(UangTersedia),
-    hargaItem(Item, Harga),
+    hargaItem(Item, Harga, buyable),
     QtyHarga is Harga*Qty,
     (
       ( % Uang kurang

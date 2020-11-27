@@ -12,7 +12,8 @@
 monster_encounter :-
 	acak(0,100,X),
 	X < 40,
-	acak(0,100,Y),
+	acak(0,101,Y),
+    write(Y), nl,
 	setState(battle),
 	retractall(special_cooldown(_)),
 	asserta(special_cooldown(0)),
@@ -56,7 +57,7 @@ randomize_monster(X, Lvl) :-
 	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
-	X < 70,
+	X < 75,
 	setState(battle),
 	asserta(current_monster('goblin')),
 	(

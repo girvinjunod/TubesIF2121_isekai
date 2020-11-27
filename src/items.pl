@@ -15,9 +15,19 @@ item(dragons_tears, consumable).
 item(kupon_gacha_equipment, consumable).
 item(kupon_gacha_item, consumable).
 
-hargaItem(potion, 50).
-hargaItem(kupon_gacha_item, 70).
-hargaItem(kupon_gacha_equipment, 90).
+hargaItem(potion, 50, buyable).
+hargaItem(adrenalin, 200, buyable).
+hargaItem(elixir, 2000, buyable).
+hargaItem(kupon_gacha_item, 70, buyable).
+hargaItem(kupon_gacha_equipment, 90, buyable).
+hargaItem(steroids, 50).
+hargaItem(skincare, 50).
+hargaItem(spicy_chili, 70).
+hargaItem(holy_water, 70).
+hargaItem(injeksi_hormon, 90).
+hargaItem(uc1000, 90).
+hargaItem(devil_fruit, 110).
+hargaItem(dragons_tears, 110).
 
 /* list item equip
 format: (nama, tipe, role) */
@@ -82,15 +92,15 @@ item_effect(telanjang, weapon, 0).
 item_effect(telanjang, armor, 0).
 
 item_effect(potion, hp, 100).
-item_effect(steroids, attack, 50).
-item_effect(skincare, defense, 50).
 item_effect(adrenalin, hp, 300).
 item_effect(elixir, hp, 10000).
+item_effect(steroids, attack, 50).
+item_effect(skincare, defense, 50).
 item_effect(spicy_chili, attack, 100).
-item_effect(injeksi_hormon, attack, 300).
-item_effect(dragons_tears, attack, 500).
 item_effect(holy_water, defense, 100).
+item_effect(injeksi_hormon, attack, 300).
 item_effect(uc1000, defense, 300).
+item_effect(dragons_tears, attack, 500).
 item_effect(devil_fruit, defense, 500).
 item_effect(kupon_gacha_equipment, -, -).
 item_effect(kupon_gacha_item, -, -).
