@@ -38,7 +38,7 @@ dunia jurusan.
 * Defense oriented
 * Stat:
   * Initial Max HP: 800
-  * Attack: 50
+  * Attack: 75
   * Defense: 150
 * Special Attack: Lionheart
   * Deals the amount of current hp as damage
@@ -67,7 +67,7 @@ _Stats are still works in progress and may still be changed_
 ## Sistem
 * Intro + Tutorial isinya teks, trus ada battle sekali.
 * World ada map, shop, random enemy encounter, pintu ke final boss ketutup dulu di awalnya
-* Bisa ambil quest yg isinya bunuh enemy berdasarkan tipe, rewardnya bisa gold, exp, atau item
+* Bisa ambil quest yg isinya bunuh enemy berdasarkan tipe, rewardnya exp sama gold
 * Quest cuma bisa ambil satu2
 * Enemy drop exp sama gold
 * Gold pake buat shop gacha

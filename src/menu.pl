@@ -43,7 +43,7 @@ status :-
   format('  Experience  : ~w/~w', [EXP, LUC]), nl,
   format('  Job         : ~w', [PC]), nl,
   format('  Gold        : ~w', [Gold]), nl,
-  format('  Active Quest: ~d Slime(s) ~d Goblin(s) ~d Wolf(s) ~d Ghost(s) ~d Exp(s) ~d Gold(s)\n',[S,Go,W,Gh,QuestExp,QuestGold]),
+  format('  Active Quest: ~d Slime ~d Goblin ~d Wolf ~d Ghost ~d Exp ~d Gold',[S,Go,W,Gh,QuestExp,QuestGold]), nl,
    write('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 status :-
   name(NAME), hp(HP), maxHP(MaxHP), attack(ATK), defense(DEF), level(LVL), experience(EXP),
