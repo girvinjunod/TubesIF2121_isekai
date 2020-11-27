@@ -38,7 +38,7 @@ monster_encounter :-
 monster_encounter.
 
 randomize_monster(X, Lvl) :-
-	X < 120,
+	X < 72,
 	setState(battle),
 	asserta(current_monster('slime')),
 	(
@@ -59,7 +59,7 @@ randomize_monster(X, Lvl) :-
 	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
-	X < 45,
+	X < 126,
 	setState(battle),
 	asserta(current_monster('goblin')),
 	(
@@ -81,7 +81,7 @@ randomize_monster(X, Lvl) :-
 	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
-	X < 59,
+	X < 171,
 	setState(battle),
 	asserta(current_monster('wolf')),
 	(
