@@ -46,17 +46,21 @@ randomize_monster(X, Lvl) :-
 	X < 40,
 	setState(battle),
 	asserta(current_monster('slime')),
-	HP is 30 * Lvl + 50,
-	Atk is 3 * Lvl + 10,
-	Def is 10 * Lvl + 20,
-	XP is 10 * Lvl + 50,
-	Gold is 10 * (Lvl + 1),
+	(
+		Lvl > 30, MLvl is 30;
+		MLvl is Lvl
+	),
+	HP is 30 * MLvl + 50,
+	Atk is 3 * MLvl + 10,
+	Def is 10 * MLvl + 20,
+	XP is 10 * MLvl + 50,
+	Gold is 10 * (MLvl + 1),
 	asserta(monster_hp(HP)),
 	asserta(monster_maxHP(HP)),
 	asserta(monster_atk(Atk)),
 	asserta(monster_def(Def)),
 	asserta(monster_exp(XP)),
-	asserta(monster_lvl(Lvl)),
+	asserta(monster_lvl(MLvl)),
 	asserta(monster_gold(Gold)),
 	!.
 randomize_monster(X, Lvl) :-
@@ -65,7 +69,7 @@ randomize_monster(X, Lvl) :-
 	asserta(current_monster('goblin')),
 	(
 		Lvl < 5, MLvl is 10;
-		Lvl > 30, MLvl is 30;
+		Lvl > 35, MLvl is 35;
 		MLvl is Lvl
 	),
 	HP is 25 * MLvl + 80,
