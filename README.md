@@ -23,7 +23,7 @@
 * Jalankan battle tutorial, input help untuk melihat command yang bisa digunakan.
 * Selesai tutorial, maka masuk ke sesi eksplorasi.
 * Liat help untuk semua command yang mungkin.
-* Untuk membuka jalan ke boss, selesaikan 3 quest dari quest board.
+* Untuk membuka jalan ke boss, selesaikan 5 quest dari quest board.
 * Untuk berinteraksi dengan tile khusus, player harus berada di tile itu lalu mengetik command khusus seperti store. dan quest.
 * Di store, input command store. untuk membuka menu store dan membeli item.
 * Jika Anda kehabisan HP maka player akan tewas dan game akan berakhir.
